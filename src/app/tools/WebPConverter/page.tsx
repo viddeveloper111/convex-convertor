@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, ChangeEvent } from "react";
+import { FileImage } from "lucide-react";
 
 export default function WebPConverterPage() {
   const [files, setFiles] = useState<File[]>([]);
@@ -66,21 +67,21 @@ export default function WebPConverterPage() {
   };
 
   return (
-    <div className="bg-white min-h-screen flex flex-col items-center p-6">
+    <div className="bg-[#181023] min-h-screen flex flex-col items-center p-6">
       <div className="container mx-auto max-w-5xl flex flex-col space-y-10">
 
         {/* Header */}
         <header className="text-center space-y-2">
-          <h1 className="text-4xl font-bold text-black">WebP Converter</h1>
-          <p className="text-black">Convert images to WebP format with batch processing.</p>
-          <p className="text-sm text-gray-700">
-            by <b>Jam.dev</b> — One click bug reports devs love
-          </p>
+         <h1 className="flex justify-center items-center gap-2 text-4xl font-bold text-[#9B4DF4]">
+      <FileImage className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
+      WebP Converter
+    </h1>
+          <p className="text-gray-400">Convert images to WebP format with batch processing.</p>
         </header>
 
         {/* File Upload Card */}
-        <div className="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6 flex flex-col gap-6">
-          <label className="w-full h-40 border-2 border-dashed border-gray-600 rounded-lg flex flex-col justify-center items-center text-gray-400 cursor-pointer hover:border-gray-400 transition">
+        <div className="bg-black shadow-lg rounded-xl p-6 flex flex-col gap-6">
+          <label className="w-full h-40 border-2 border-dashed border-gray-600 rounded-lg flex flex-col justify-center items-center text-gray-400 cursor-pointer hover:border-[#9B4DF4] transition">
             Drag and drop your images here, or click to select
             <input type="file" accept="image/*" multiple className="hidden" onChange={handleFileChange} />
             <p className="text-sm mt-2">Max size 40MB per file</p>
@@ -139,7 +140,7 @@ export default function WebPConverterPage() {
           <div className="flex gap-4 flex-wrap">
             <button
               onClick={handleConvert}
-              className="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500 transition"
+              className="px-6 py-2 bg-[#9B4DF4] text-white rounded-lg hover:bg-[#592199] transition"
             >
               Convert to WebP
             </button>
@@ -169,19 +170,19 @@ export default function WebPConverterPage() {
 
         {/* Info / Contribution */}
         <div className="grid md:grid-cols-2 gap-6 w-full">
-         <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-700 flex flex-col items-start gap-3 hover:shadow-lg transition">
-              <p className="text-black">
+         <div className="bg-black p-6 rounded-2xl shadow-md border border-gray-700 flex flex-col items-start gap-3 hover:shadow-lg transition">
+              <p className="text-white">
                 Our tools are free and open source. Feel free to contribute.
               </p>
-              <button className="px-4 py-2 border text-black border-gray-600 rounded-xl hover:bg-gray-800  hover:text-white transition">
+              <button className="px-4 py-2 border text-black border-gray-600 rounded-xl bg-[#9B4DF4] hover:bg-[#51119b]  hover:text-white transition">
                 Contribute
               </button>
             </div>
-           <div className=" p-6 rounded-2xl shadow-md border border-gray-700 flex flex-col items-start gap-3 hover:shadow-lg transition">
-              <p className="text-black">
+           <div className=" bg-black p-6 rounded-2xl shadow-md border border-gray-700 flex flex-col items-start gap-3 hover:shadow-lg transition">
+              <p className="text-white">
                 Auto-capture all the info engineers need to debug!
               </p>
-              <button className="px-4 py-2 border border-gray-600 text-black rounded-xl hover:bg-gray-800 hover:text-white transition">
+              <button className="px-4 py-2 border border-gray-600 text-black rounded-xl bg-[#9B4DF4] hover:bg-[#5a19a5] hover:text-white transition">
                 Try Jam
               </button>
             </div>

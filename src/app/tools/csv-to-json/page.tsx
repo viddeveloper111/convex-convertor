@@ -2,6 +2,7 @@
 
 import React, { useMemo, useRef, useState,ChangeEvent,KeyboardEvent  } from "react";
 import Link from "next/link";
+import { FileJson } from "lucide-react";
 
 export default function CsvToJsonPage() {
   const [csv, setCsv] = useState(
@@ -77,32 +78,26 @@ export default function CsvToJsonPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white text-black px-4 py-8">
+    <div className="min-h-screen  px-4 py-8 bg-[#181023]">
       <div className="max-w-6xl mx-auto container">
         <header className="mb-6 flex items-center justify-between gap-4">
-          <div className="justify-center">
-            <h1 className="text-3xl md:text-4xl font-semibold">CSV → JSON Converter</h1>
-            <p className="text-gray-400 mt-1">
-             Fast, free, open source, ad-free tools.
-            </p>
-          
-           <div className="items-center mt-2">
-      <input
-        type="text"
-        placeholder="by Jam.dev One click bug reports devs love"
-        value={value}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-        className="border rounded-xl w-80 text-sm  cursor-pointer"
-      />
-    </div>
-    </div>
-          <button
-            onClick={() => fileInputRef.current?.click()}
-            className="rounded-2xl border border-gray-700 px-4 py-2 hover:bg-gray-900 hover:text-white"
-          >
-            Upload CSV
-          </button>
+         <div className="flex flex-col items-center text-center">
+  <h1 className="flex items-center gap-2 text-3xl md:text-4xl font-semibold text-[#9B4DF4]">
+    <FileJson className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" /> 
+    CSV → JSON Converter
+  </h1>
+  <p className="text-gray-400 mt-1">
+    Fast, free, open source, ad-free tools.
+  </p>
+</div>
+
+       <button
+  onClick={() => fileInputRef.current?.click()}
+  className="rounded-2xl border border-gray-700 px-4 py-2 bg-[#9B4DF4] hover:text-white"
+>
+  Upload CSV
+</button>
+
           <input
             ref={fileInputRef}
             type="file"
@@ -114,7 +109,7 @@ export default function CsvToJsonPage() {
 
         <div className="grid md:grid-cols-2 gap-6">
           {/* Left: CSV input */}
-          <div className="bg-gray-900 rounded-2xl p-4 border border-gray-800 text-white">
+          <div className="bg-black rounded-2xl p-4 border border-gray-800 text-white">
             <div className="flex flex-wrap items-center gap-3 mb-3">
               <label className="text-sm text-gray-400">Delimiter</label>
               <select
@@ -144,7 +139,7 @@ export default function CsvToJsonPage() {
             <textarea
               value={csv}
               onChange={(e) => setCsv(e.target.value)}
-              className="w-full h-64 md:h-[28rem] bg-white text-black rounded-xl p-3 border border-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-700"
+              className="w-full h-64 md:h-[28rem] text-white bg-black rounded-xl p-3 border border-gray-800 focus:outline-none focus:ring-2 focus:ring-[#9B4DF4]"
               placeholder="Paste CSV here"
               spellCheck={false}
             />
@@ -153,7 +148,7 @@ export default function CsvToJsonPage() {
           </div>
 
           {/* Right: JSON output */}
-          <div className="bg-gray-900 rounded-2xl p-4 border border-gray-800 flex flex-col text-white">
+          <div className="bg-black rounded-2xl p-4 border border-gray-800 flex flex-col text-white">
             <div className="flex items-center justify-between mb-3">
               <h2 className="text-lg font-medium">JSON Output</h2>
               <div className="flex items-center gap-2">
@@ -171,58 +166,36 @@ export default function CsvToJsonPage() {
                 </button>
               </div>
             </div>
-            <pre className="flex-1 overflow-auto rounded-xl bg-white text-black p-3 border border-gray-800 text-sm whitespace-pre-wrap">
+            <pre className="flex-1 overflow-auto rounded-xl bg-black text-[#9B4DF4] p-3 border  border-gray-800 text-sm whitespace-pre-wrap">
               {JSON.stringify(json, null, 2)}
             </pre>
           </div>
         </div>
-
-        {/* Mini preview table */}
-        {/* {!!rows.length && (
-          <div className="mt-6">
-            <h3 className="text-base text-gray-300 mb-2">Quick Preview</h3>
-            <div className="overflow-auto border border-gray-800 rounded-2xl">
-              <table className="min-w-full text-sm">
-                <tbody>
-                  {rows.slice(0, 6).map((r, i) => (
-                    <tr key={i} className="odd:bg-black even:bg-gray-950">
-                      {r.map((c, j) => (
-                        <td key={j} className="px-3 py-2 border-r border-gray-900 text-gray-200">
-                          {c}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        )} */}
      
        <div className="grid md:grid-cols-2 gap-6 mt-8">
   {/* Card 1: Contribute */}
-  <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
-    <p className="text-black text-base">
+  <div className="bg-black p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
+    <p className="text-white ">
       Our tools are free and open source. Feel free to contribute.
     </p>
-    <button className="px-4 py-2 border border-gray-600 rounded-xl hover:bg-gray-800 transition hover:text-white">
+    <button className="px-4 py-2 border border-gray-600 rounded-xl bg-[#9B4DF4] hover:bg-[#181023] transition hover:text-white">
       Contribute
     </button>
   </div>
 
   {/* Card 2: Try Jam */}
-  <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
-    <p className="text-black text-base">
+  <div className="bg-black p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
+    <p className="text-white">
       Auto-capture all the info engineers need to debug!
     </p>
- <button className="px-4 py-2 border border-gray-600 rounded-xl hover:bg-gray-800 transition hover:text-white">      Try Jam
+ <button className="px-4 py-2 border border-gray-600 rounded-xl bg-[#9B4DF4] hover:bg-[#181023] transition hover:text-white">      Try Jam
     </button>
   </div>
 </div>
-<div className="mt-8 text-black space-y-2 text-sm ">
+<div className="mt-8 text-gray-300 space-y-2 text-sm ">
   <p>You can convert CSV files into JSON online with this free tool. If you work with APIs, data, or web apps, you can use Jam's CSV to JSON converter to turn tabular data into JSON format.</p>
 </div>
-<div className="mt-8 text-black space-y-2 text-sm">
+<div className=" text-gray-300 space-y-2 text-sm">
   <p>
     Just paste your CSV file and get the JSON result. Built with 💜 by the developers at Jam, using the open-source{" "}
     <Link href="#" className="underline font-bold">
@@ -231,7 +204,7 @@ export default function CsvToJsonPage() {
     package.
   </p>
 </div>
-<div className="mt-8 text-black space-y-2 text-sm">
+<div className="mt-8 text-gray-300 space-y-2 text-sm">
   <h2 className="text-xl font-semibold mb-2  text-white">How to Use Jam's CSV to JSON Converter Tool</h2>
   <p>
     Whether you're working on web development projects, data analysis, or integrating with APIs, this converter makes it easy to convert CSV files into JSON data.
@@ -253,7 +226,7 @@ export default function CsvToJsonPage() {
 
   </ul>
 </div>
-<div className="mt-8 text-black text-sm space-y-2">
+<div className="mt-8 text-gray-300 text-sm space-y-2">
     <h2 className="text-xl font-semibold mb-2  text-white">More JSON Utilities —</h2>
   <p className="mb-2">
      Beautify JSON, convert from query parameters, or YAML with Jam's free developer utilities. They're all available in dark mode too.
@@ -270,7 +243,7 @@ export default function CsvToJsonPage() {
     </li>
   </ul>
 </div>
-<div className="mt-8text-black text-sm space-y-2">
+<div className="mt-8 text-gray-300 text-sm space-y-2">
 <h2 className="text-xl font-semibold mb-2  text-white">Benefits of Converting CSV to JSON format</h2>
   <p className="mb-2">
     CSV is a simple file format used to store data in tables, like in a spreadsheet. JSON (JavaScript Object Notation) is an easy-to-read data format that both people and computers can understand.
@@ -287,7 +260,7 @@ export default function CsvToJsonPage() {
     </li>
   </ul>
 </div>
-<div className="mt-8 text-black text-sm space-y-4">
+<div className="mt-8 text-gray-300 text-sm space-y-4">
   <h2 className="text-xl font-semibold mb-2 text-white">FAQs</h2>
   <ul className="list-disc list-inside space-y-2">
     <li>

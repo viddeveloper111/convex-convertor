@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { ClipboardCopy, ClipboardCheck } from "lucide-react";
 import yaml from "js-yaml";
+import { FileJson } from "lucide-react";
 
 export default function JsonToYamlPage() {
   const [jsonInput, setJsonInput] = useState("");
@@ -35,24 +36,23 @@ export default function JsonToYamlPage() {
   };
 
   return (
-    <div className="bg-white min-h-screen flex justify-center p-6">
+    <div className="bg-[#181023] min-h-screen flex justify-center p-6">
       {/* Container */}
       <div className="w-full max-w-5xl space-y-8">
         {/* Header */}
         <header className="text-center space-y-2">
-          <h1 className="text-3xl font-bold text-black">
-            JSON to YAML Converter
-          </h1>
-          <p className="text-black">
+              <h1 className="flex justify-center items-center gap-2 text-3xl font-bold text-[#9B4DF4]">
+      <FileJson className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
+      JSON to YAML Converter
+    </h1>
+          <p className="text-gray-400">
             Free, Open Source & Ad-free
           </p>
-          <p className="text-sm text-gray-700">
-            by <b>Jam.dev</b> — One click bug reports devs love
-          </p>
+         
         </header>
 
         {/* Input Section */}
-        <section className="space-y-2 border p-5 bg-gray-900 rounded-2xl">
+        <section className="space-y-2 border p-5 bg-black rounded-2xl">
           <label className="font-semibold text-white ">
             JSON Input
           </label>
@@ -60,22 +60,22 @@ export default function JsonToYamlPage() {
             value={jsonInput}
             onChange={(e) => setJsonInput(e.target.value)}
             rows={8}
-            className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-lg text-black bg-white font-mono text-sm"
+            className="w-full p-3 border border-gray-300  rounded-lg bg-black text-white font-mono text-sm focus:ring-2 focus:ring-[#9B4DF4]"
             placeholder='{"name":"John","age":30}'
           />
         </section>
 
         {/* Output Section */}
         <section className="space-y-2 relative">
-          <label className="font-semibold text-black">
+          <label className="font-semibold text-white">
             YAML Output
           </label>
-          <pre className="p-6 rounded-lg border border-gray-300 dark:border-gray-700 bg-white text-green-500 font-mono text-sm whitespace-pre-wrap">
+          <pre className="p-6 rounded-lg border border-gray-300  bg-black text-[#9B4DF4] font-mono text-sm whitespace-pre-wrap focus:ring-2 focus:ring-[#9B4DF4]">
             {yamlOutput}
           </pre>
           <button
             onClick={handleCopy}
-            className="absolute top-8 right-2 flex items-center gap-1 px-3 py-1 bg-gray-900 text-white rounded-lg hover:bg-gray-700 transition"
+            className="absolute top-8 right-2 flex items-center gap-1 px-3 py-1 bg-[#9B4DF4] text-white rounded-lg hover:bg-[#501594] transition "
           >
             {copied ? <ClipboardCheck size={16} /> : <ClipboardCopy size={16} />}
             {copied ? "Copied!" : "Copy"}
@@ -83,31 +83,31 @@ export default function JsonToYamlPage() {
         </section>
 
         {/* Description & Benefits */}
-        <section className="bg-white  rounded-2xl shadow p-6 space-y-4">
-          <p className="text-black">
+        <section className=" p-6 space-y-4">
+          <p className="text-gray-400">
             This free tool quickly converts JSON to YAML. Ideal for configuration files, data, or web apps. Simply paste your JSON data and get the YAML result. Built with 💜 by the Jam developers, using the open-source <code>js-yaml</code> package.
           </p>
 
-          <h2 className="text-2xl font-bold text-black">How to Use</h2>
-          <p className="text-black">
+          <h2 className="text-2xl font-bold text-white">How to Use</h2>
+          <p className="text-gray-400">
             To convert JSON data to YAML files, just input your JSON and copy the YAML output. No signup required.
           </p>
-          <p className="text-black">
+          <p className="text-gray-400">
             Our tool’s built-in YAML Validator ensures syntactically correct output, so you can reliably use the data in your applications.
           </p>
-          <p className="text-black">
+          <p className="text-gray-400">
             Need to convert the other way? Use the YAML to JSON converter.
           </p>
 
-          <h2 className="text-2xl font-bold text-black">Benefits of Converting JSON to YAML</h2>
-          <ul className="list-disc pl-6 space-y-1 text-black">
+          <h2 className="text-2xl font-bold text-white">Benefits of Converting JSON to YAML</h2>
+          <ul className="list-disc pl-6 space-y-1 text-gray-400">
             <li><b>Data Integration:</b> Merge data from files easily in web apps and APIs.</li>
             <li><b>Data Processing:</b> Better for converting data between programming languages.</li>
             <li><b>Data Sharing:</b> Easier to share and exchange structured data between systems.</li>
           </ul>
 
-          <h2 className="text-2xl font-bold text-black">JSON vs YAML</h2>
-          <ul className="list-disc pl-6 space-y-1 text-black">
+          <h2 className="text-2xl font-bold text-white">JSON vs YAML</h2>
+          <ul className="list-disc pl-6 space-y-1 text-gray-400">
             <li><b>Readability:</b> YAML prioritizes human readability with clean indentation; JSON is structured but less readable for complex configs.</li>
             <li><b>Syntax:</b> JSON is stricter; YAML supports multi-line strings and nested maps/dictionaries.</li>
             <li><b>Use Cases:</b> JSON is common in APIs; YAML is common for configuration files and Ansible playbooks.</li>
@@ -116,9 +116,9 @@ export default function JsonToYamlPage() {
         </section>
 
         {/* FAQs */}
-        <section className="bg-white  rounded-2xl shadow p-6 space-y-2">
-          <h2 className="text-2xl font-bold text-black">FAQs</h2>
-          <ul className="list-disc pl-6 space-y-2 text-black">
+        <section className=" p-6 space-y-2">
+          <h2 className="text-2xl font-bold text-white">FAQs</h2>
+          <ul className="list-disc pl-6 space-y-2 text-gray-400">
             <li>Can you turn JSON into YAML? Yes, easily and reliably.</li>
             <li>How accurate is the converter? It ensures data integrity when converting formats.</li>
             <li>How to use an editor for conversion? Use VSCode with relevant extensions or our online tool.</li>

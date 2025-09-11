@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ClipboardCopy, ClipboardCheck } from "lucide-react";
+import { Braces } from "lucide-react";
 
 export default function QueryParamsToJsonPage() {
   const [query, setQuery] = useState("");
@@ -35,23 +36,21 @@ export default function QueryParamsToJsonPage() {
   };
 
   return (
-    <div className="bg-white min-h-screen py-10">
+    <div className="bg-[#181023] min-h-screen py-10">
       <div className="container mx-auto max-w-5xl p-6 space-y-12">
         {/* Header */}
         <header className="text-center space-y-2">
-          <h1 className="text-3xl font-bold text-black">
-            Query Params to JSON
-          </h1>
-          <p className="text-black">
+          <h1 className="flex items-center justify-center gap-2 text-3xl font-bold text-[#9B4DF4]">
+      <Braces className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
+      Query Params to JSON
+    </h1>
+          <p className="text-gray-400">
             Free, Open Source & Ad-free
-          </p>
-          <p className="text-sm text-gray-700">
-            by <b>Jam.dev</b> — One click bug reports devs love
           </p>
         </header>
 
         {/* Converter Tool */}
-        <section className="dark:bg-gray-900 rounded-2xl shadow p-6 space-y-6">
+        <section className="bg-black rounded-2xl shadow p-6 space-y-6">
           <div className="grid md:grid-cols-2 gap-6">
             {/* Input */}
             <div>
@@ -63,7 +62,7 @@ export default function QueryParamsToJsonPage() {
                 onChange={handleChange}
                 placeholder="Paste your query string here"
                 rows={12}
-                className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-700 text-black bg-white font-mono text-sm"
+                className="w-full p-3 rounded-lg border border-gray-300  bg-black text-white font-mono text-sm focus:ring-2 focus:ring-[#9B4DF4]"
               />
             </div>
 
@@ -72,12 +71,12 @@ export default function QueryParamsToJsonPage() {
               <h2 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">
                 JSON Output
               </h2>
-              <pre className="w-full h-[290px] p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white text-green-400 font-mono text-sm overflow-x-auto">
+              <pre className="w-full h-[290px] p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#9B4DF4] bg-black text-[#9B4DF4] font-mono text-sm overflow-x-auto">
                 {jsonOutput}
               </pre>
               <button
                 onClick={handleCopy}
-                className="mt-2 flex items-center gap-3 px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-800 transition"
+                className="mt-2 flex items-center gap-3 px-6 py-2 bg-[#9B4DF4] text-white rounded-lg hover:bg-[#541998] transition"
               >
                 {copied ? <ClipboardCheck size={18} /> : <ClipboardCopy size={18} />}
                 {copied ? "Copied!" : "Copy"}
@@ -87,22 +86,22 @@ export default function QueryParamsToJsonPage() {
         </section>
 
         {/* Intro */}
-        <section className="bg-white  rounded-2xl shadow p-6 space-y-3">
-          <p className="text-black">
+        <section className=" p-6 space-y-3">
+          <p className="text-gray-400">
             Convert URL query parameters into JSON format quickly and easily.
             Ideal for web applications, APIs, or data manipulation.
           </p>
-          <p className="text-black">
+          <p className="text-gray-400">
             Made with 💜 by the developers building Jam.
           </p>
         </section>
 
         {/* How to Use */}
-        <section className="bg-white rounded-2xl shadow p-6">
-          <h2 className="text-2xl font-bold text-black mb-2">
+        <section className="p-6">
+          <h2 className="text-2xl font-bold text-white mb-2">
             How to Use the Query Params to JSON Converter
           </h2>
-          <ol className="list-decimal pl-6 space-y-2 text-black">
+          <ol className="list-decimal pl-6 space-y-2 text-gray-400">
             <li>Paste your URL query string into the input box.</li>
             <li>JSON output is generated instantly.</li>
             <li>Copy the JSON output for further use in your project.</li>
@@ -110,9 +109,9 @@ export default function QueryParamsToJsonPage() {
         </section>
 
         {/* Use Cases */}
-        <section className="bg-white  rounded-2xl shadow p-6 space-y-3">
-          <h2 className="text-2xl font-bold text-black">Use Cases</h2>
-          <ul className="list-disc pl-6 text-black space-y-1">
+        <section className="p-6 space-y-3">
+          <h2 className="text-2xl font-bold text-white">Use Cases</h2>
+          <ul className="list-disc pl-6 text-gray-400 space-y-1">
             <li><b>Data Integration:</b> Merge data from query strings easily.</li>
             <li><b>Data Processing:</b> Convert query data into JSON for processing in multiple languages.</li>
             <li><b>Data Sharing:</b> Structured JSON makes it easier to share and exchange data.</li>
@@ -120,9 +119,9 @@ export default function QueryParamsToJsonPage() {
         </section>
 
         {/* FAQs */}
-        <section className="bg-white  rounded-2xl shadow p-6 space-y-2">
-          <h2 className="text-2xl font-bold text-black mb-2">FAQs</h2>
-          <ul className="list-disc pl-6 text-black space-y-1">
+        <section className="p-6 space-y-2">
+          <h2 className="text-2xl font-bold text-white mb-2">FAQs</h2>
+          <ul className="list-disc pl-6 text-gray-400 space-y-1">
             <li><b>How to convert URL into JSON?</b> Paste your query string; output is JSON.</li>
             <li><b>Can JSON be passed as a query parameter?</b> Yes, encode JSON as a string.</li>
             <li><b>How to pass parameters in JSON format?</b> Encode object as a string in the query string.</li>

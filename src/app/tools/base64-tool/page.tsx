@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ClipboardCopy, ClipboardCheck } from "lucide-react";
 import Link from "next/link";
+import { Binary } from "lucide-react";
 
 export default function Base64ToolPage() {
   const [input, setInput] = useState("");
@@ -48,16 +49,17 @@ const copyToClipboard = (text: string, type: "input" | "output") => {
   };
  
   return (
-    <div className="bg-white text-black min-h-screen flex flex-col items-center p-6">
+    <div className="bg-[#181023] text-black min-h-screen flex flex-col items-center p-6">
       {/* Header */}
       <header className="text-center mb-10">
-        <h1 className="text-4xl font-bold mb-3 text-black">
-          Base64 Encoder & Decoder
-        </h1>
+    <h1 className="flex items-center gap-2 text-4xl font-bold mb-3 text-[#9B4DF4]">
+  <Binary className="w-10 h-10 bg-[#9B4DF4] text-white rounded-2xl p-2" />
+  Base64 Encoder & Decoder
+</h1>
         <p className="text-gray-400">Free, Open Source & Ad-free</p>
       </header>
 
-     <div className="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6 max-w-3xl w-full flex flex-col gap-6">
+     <div className="bg-black shadow-lg rounded-xl p-6 max-w-3xl w-full flex flex-col gap-6">
       {/* Input */}
       <div className="relative">
         <textarea
@@ -65,11 +67,11 @@ const copyToClipboard = (text: string, type: "input" | "output") => {
           onChange={(e) => handleChange(e.target.value)}
           placeholder="Paste your text or Base64 string here..."
           rows={6}
-          className="w-full p-4 border rounded-lg text-black bg-white border-gray-700 focus:ring-2 focus:ring-indigo-400 transition"
+          className="w-full p-4 border rounded-lg bg-black text-white border-gray-400 focus:ring-2 focus:ring-[#9B4DF4] transition"
         />
         <button
           onClick={() => copyToClipboard(input, "input")}
-          className="absolute top-2 right-2 p-1 rounded-full bg-indigo-500 text-white hover:bg-indigo-600 transition"
+          className="absolute top-2 right-2 p-1 rounded-full bg-[#9B4DF4] text-white hover:bg-[#430985] transition"
           title="Copy Input"
         >
           {copiedInput ? <ClipboardCheck size={20} /> : <ClipboardCopy size={20} />}
@@ -83,11 +85,11 @@ const copyToClipboard = (text: string, type: "input" | "output") => {
           placeholder="Result will appear here..."
           rows={6}
           readOnly
-          className="w-full p-4 border rounded-lg text-black bg-white border-gray-700 focus:ring-2 focus:ring-indigo-400 transition"
+          className="w-full p-4 border rounded-lg bg-black text-white border-gray-400 focus:ring-2 focus:ring-[#9B4DF4] transition"
         />
         <button
           onClick={() => copyToClipboard(output, "output")}
-          className="absolute top-2 right-2 p-1 rounded-full bg-green-500 text-white hover:bg-green-600 transition"
+          className="absolute top-2 right-2 p-1 rounded-full bg-[#9B4DF4] text-white hover:bg-[#450a89] transition"
           title="Copy Output"
         >
           {copiedOutput ? <ClipboardCheck size={20} /> : <ClipboardCopy size={20} />}
@@ -97,44 +99,44 @@ const copyToClipboard = (text: string, type: "input" | "output") => {
 
       {/* Info Cards */}
       <div className="grid md:grid-cols-2 gap-6 mt-10 max-w-3xl w-full">
-        <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
-          <p className="text-black">
+        <div className="bg-black p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
+          <p className="text-white">
             Our tools are free and open source. Feel free to contribute.
           </p>
-          <button className="px-4 py-2 border text-black border-gray-600 rounded-xl hover:bg-gray-800 hover:text-white transition">
+          <button className="px-4 py-2 border text-black border-gray-600 rounded-xl bg-[#9B4DF4] hover:bg-[#181023] hover:text-white transition">
             Contribute
           </button>
         </div>
-        <div className="bg-white  p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
-          <p className="text-black">
+        <div className="bg-black  p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
+          <p className="text-white">
             Auto-capture all the info engineers need to debug!
           </p>
-          <button className="px-4 py-2 border border-gray-600 text-black rounded-xl hover:bg-gray-800  hover:text-white transition">
+          <button className="px-4 py-2 border border-gray-600 text-black rounded-xl bg-[#9B4DF4] hover:bg-[#181023]  hover:text-white transition">
             Try Jam
           </button>
         </div>
       </div>
       <div className="mt-15 ">
-        <p className="text-black ">
+        <p className="text-gray-300 ">
           Use this free Base64 encoder and decoder to easily convert between plain text and Base64-encoded strings.<br/>
           This tool is perfect for decoding API responses.
         </p>
       </div>
        <section className="max-w-3xl mx-auto  py-12">
-      <h2 className="text-2xl md:text-xl font-bold text-black mb-2">
+      <h2 className="text-2xl md:text-xl font-bold text-white mb-2">
         How to Use the Base64 Decode Tool
       </h2>
 
       <div className="">
-        <p className="text-gray-700 dark:text-black ">
+        <p className="text-gray-300 ">
           You can use this tool to <span className="font-semibold">decode Base64-encoded strings</span>,
           or to convert Base64 text strings back to their original binary form. Just paste your data
           and copy the result instantly. If you need to convert <span className="font-semibold">images to Base64</span>,
           this tool works for that <Link href="#" className="underline font-bold text-white"> too.</Link>
         </p>
 
-        <h3 className="text-xl font-semibold text-gray-900 dark:text-black mt-6">Use Cases:</h3>
-        <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-black text-lg">
+        <h3 className="text-xl font-semibold text-white mt-6">Use Cases:</h3>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 text-lg">
           <li>
             <span className="font-semibold">Data Conversion:</span> Convert text strings to their
             original binary form, useful for handling encoded text data.
@@ -152,14 +154,14 @@ const copyToClipboard = (text: string, type: "input" | "output") => {
       </h2>
 
       <div className="">
-        <p className="text-gray-700 dark:text-black ">
+        <p className="text-gray-300 ">
           Base64 encoding converts <span className="font-semibold">binary data into a text format</span> 
           that can be safely transmitted over text-based protocols like HTTP, email, and more. 
           This process ensures that the data remains intact and prevents corruption during transmission.
         </p>
 
-        <h3 className="text-xl font-semibold text-gray-900 dark:text-black mt-6">Key Benefits:</h3>
-        <ul className="list-disc list-inside space-y-2 text-gray-400 dark:text-black">
+        <h3 className="text-xl font-semibold text-white mt-6">Key Benefits:</h3>
+        <ul className="list-disc list-inside space-y-2 text-gray-300">
           <li>
             <span className="font-semibold">Data Integrity:</span> Ensures that binary data, special 
             characters, and non-ASCII symbols are correctly transmitted over the internet without corruption.
@@ -185,13 +187,13 @@ const copyToClipboard = (text: string, type: "input" | "output") => {
         <h2 className="text-xl md:text-1xl font-bold text-gray-900 dark:text-white mb-6">
           Using Base64 in JavaScript
         </h2>
-        <p className="text-gray-700 dark:text-black mb-4 ">
+        <p className="text-gray-300 mb-4 ">
           In JavaScript, Base64 encoding and decoding can be done using the built-in{" "}
-          <code className="bg-gray-100 dark:bg-gray-400 px-1 rounded">btoa</code> and{" "}
-          <code className="bg-gray-100 dark:bg-gray-400 px-1 rounded">atob</code> functions.
+          <code className="bg-[#9B4DF4]  px-1 rounded">btoa</code> and{" "}
+          <code className="bg-[#9B4DF4]  px-1 rounded">atob</code> functions.
         </p>
 
-                     <pre className="bg-gray-900 text-green-400 text-sm rounded-lg p-4 overflow-x-auto mb-6">
+                     <pre className="bg-black text-[#9B4DF4]  text-sm rounded-lg p-4 overflow-x-auto mb-6">
              {`let text = "Hello, world!";
              let encoded = btoa(text);
              console.log(encoded); // "SGVsbG8sIHdvcmxkIQ=="
@@ -201,14 +203,14 @@ const copyToClipboard = (text: string, type: "input" | "output") => {
              console.log(decoded); // "Hello, world!"`}
         </pre>
 
-        <p className="text-gray-700 dark:text-black ">
+        <p className="text-gray-300 ">
           These functions make it easy to handle encoding and decoding directly within your JavaScript 
           code, enabling smooth data processing and transmission in web applications.
         </p>
       </div>
 
       {/* --- Meet Jam --- */}
-      <div className=" text-blacks rounded-2xl shadow-lg p-4">
+      <div className=" text-gray-300 rounded-2xl shadow-lg p-4">
         <h2 className="text-xl md:text-1xl font-bold mb-4 text-white">
           Meet Jam: The Ultimate Tool for Debugging Web Apps
         </h2>
@@ -226,8 +228,8 @@ const copyToClipboard = (text: string, type: "input" | "output") => {
           Jam captures your screen and automatically includes all the debug details developers 
           need to fix issues in a shareable link.
         </p>
-<div className="flex flex-col justify-center rounded-2xl bg-gray-900 h-50 items-center">
-  <button className="bg-emerald-500 text-black font-semibold px-6 py-3 rounded-xl shadow transition w-50">
+<div className="flex flex-col justify-center rounded-2xl bg-black h-50 items-center">
+  <button className="bg-[#9B4DF4] text-black font-semibold px-6 py-3 rounded-xl shadow transition w-50">
     Get Jam for Free
   </button>
   <p className="mt-2 text-sm text-gray-400">⭐ 150+ reviews · 100k+ users</p>
@@ -237,10 +239,10 @@ const copyToClipboard = (text: string, type: "input" | "output") => {
 
       {/* --- FAQs --- */}
      <div className="rounded-2xl mt-10">
-  <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-black mb-6">
+  <h2 className="text-xl md:text-2xl font-bold text-white mb-6">
     FAQs
   </h2>
-  <ul className="space-y-4 text-gray-700 dark:text-black list-disc pl-6">
+  <ul className="space-y-4 text-gray-300 list-disc pl-6">
     <li>
       <span className="font-semibold text-white">Can you decode Base64?</span><br />
       Yes, you can. Use this tool online by pasting the text into the input box and copying the decoded output.
