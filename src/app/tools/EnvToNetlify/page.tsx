@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ClipboardCopy, ClipboardCheck } from "lucide-react";
+import { FileCog } from "lucide-react";
 
 export default function EnvToNetlifyPage() {
   const [envInput, setEnvInput] = useState("");
@@ -33,24 +34,22 @@ export default function EnvToNetlifyPage() {
   };
 
   return (
-    <div className="bg-white min-h-screen p-6 flex justify-center">
+    <div className="bg-[#181023] min-h-screen p-6 flex justify-center">
       {/* Container */}
       <div className="w-full max-w-5xl space-y-8">
         {/* Header */}
         <header className="text-center space-y-2">
-          <h1 className="text-3xl font-bold text-black">
-            Convert .env to netlify.toml
-          </h1>
-          <p className="text-black">
+          <h1 className="flex items-center justify-center gap-2 text-3xl font-bold text-[#9B4DF4]">
+      <FileCog className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
+      Convert .env to netlify.toml
+    </h1>
+          <p className="text-gray-400">
             Free, Open Source & Ad-free
-          </p>
-          <p className="text-sm text-black">
-            by <b>Jam.dev</b> — One click bug reports devs love
           </p>
         </header>
 
         {/* Input Section */}
-        <section className="space-y-2 border rounded-2xl p-5 bg-gray-900 ">
+        <section className="space-y-2 border rounded-2xl p-5 bg-black ">
           <label className="font-semibold text-white">
             Paste your .env content
           </label>
@@ -58,17 +57,17 @@ export default function EnvToNetlifyPage() {
             value={envInput}
             onChange={(e) => setEnvInput(e.target.value)}
             rows={6}
-            className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-lg text-black bg-white font-mono text-sm"
+            className="w-full p-3 border border-gray-300  rounded-lg bg-black text-white font-mono text-sm focus:ring-2 focus:ring-[#9B4DF4]"
             placeholder="API_KEY=12345&#10;NODE_ENV=production"
           />
         </section>
 
         {/* Output Section */}
         <section className="space-y-2">
-          <label className="font-semibold text-black">
+          <label className="font-semibold text-white">
             netlify.toml output
           </label>
-          <pre className="p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white text-green-400 font-mono text-sm">
+          <pre className="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#9B4DF4] bg-black text-[#9B4DF4] font-mono text-sm">
             {netlifyOutput}
           </pre>
           <button
@@ -81,8 +80,8 @@ export default function EnvToNetlifyPage() {
         </section>
 
         {/* Description */}
-        <section className="bg-white  rounded-2xl shadow p-6">
-          <p className="text-black">
+        <section className=" p-6">
+          <p className="text-gray-400">
             This free tool allows you to quickly and easily convert your <code>.env</code> file variables into the format needed for your <code>netlify.toml</code> file. 
             This tool was contributed to Jam&apos;s dev utilities by Cassidy Williams — software engineer, dev advocate, startup advisor, and investor. 
             You can find her posting memes on Twitter and sharing learnings and tools for developers in her newsletter.
@@ -90,11 +89,11 @@ export default function EnvToNetlifyPage() {
         </section>
 
         {/* How to Use */}
-        <section className="bg-white  rounded-2xl shadow p-6 space-y-2">
-          <h2 className="text-2xl font-bold text-black mb-2">
+        <section className=" p-6 space-y-2">
+          <h2 className="text-2xl font-bold text-white mb-2">
             How to Use
           </h2>
-          <ul className="list-disc pl-6 space-y-2 text-black">
+          <ul className="list-disc pl-6 space-y-2 text-gray-400">
             <li>
               <strong>Paste your variables:</strong> Copy the variables from your <code>.env</code> file and paste them into the input box.
             </li>

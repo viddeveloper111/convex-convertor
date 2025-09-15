@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, ChangeEvent } from "react";
+import { Move } from "lucide-react";
 
 export default function ImageResizerPage() {
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -46,23 +47,21 @@ export default function ImageResizerPage() {
   };
 
   return (
-    <div className="bg-white min-h-screen flex flex-col items-center p-6">
+    <div className="bg-[#181023] min-h-screen flex flex-col items-center p-6">
       <div className="container mx-auto max-w-4xl flex flex-col items-center space-y-10">
 
         {/* Header */}
         <header className="text-center space-y-2">
-          <h1 className="text-4xl font-bold text-black">Image Resizer</h1>
-          <p className="text-black">Fast, free, open source, ad-free tools.</p>
-          <p className="text-sm text-gray-700">
-            by <b>Jam.dev</b> — One click bug reports devs love
-          </p>
+          <h1 className="flex items-center gap-2 text-4xl font-bold text-[#9B4DF4]">
+  <Move className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" /> Image Resizer</h1>
+          <p className="text-gray-400">Fast, free, open source, ad-free tools.</p>
         </header>
 
         {/* Upload & Resize Section */}
-        <div className="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6 w-full flex flex-col gap-6">
+        <div className=" bg-black shadow-lg rounded-xl p-6 w-full flex flex-col gap-6">
 
           {/* File Input */}
-          <label className="w-full h-40 border-2 border-dashed border-gray-600 rounded-lg flex flex-col justify-center items-center text-gray-400 cursor-pointer hover:border-gray-400 transition">
+          <label className="w-full h-40 border-2 border-dashed border-gray-600 rounded-lg flex flex-col justify-center items-center text-gray-400 cursor-pointer hover:border-[#9B4DF4] transition">
             {imageFile ? imageFile.name : "Drag and drop your image here, or click to select"}
             <input type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
             <p className="text-sm mt-2">Max size 40MB</p>
@@ -77,7 +76,7 @@ export default function ImageResizerPage() {
                 value={width}
                 onChange={(e) => setWidth(Number(e.target.value))}
                 placeholder="Enter width"
-                className="w-full p-3 border rounded-lg text-black bg-white border-gray-700 focus:ring-2 focus:ring-gray-400 transition"
+                className="w-full p-3 border rounded-lg bg-black text-white border-gray-700 focus:ring-2 focus:ring-[#9B4DF4] transition"
               />
             </div>
             <div>
@@ -87,7 +86,7 @@ export default function ImageResizerPage() {
                 value={height}
                 onChange={(e) => setHeight(Number(e.target.value))}
                 placeholder="Enter height"
-                className="w-full p-3 border rounded-lg text-black bg-white border-gray-700 focus:ring-2 focus:ring-gray-400 transition"
+                className="w-full p-3 border rounded-lg bg-black text-white border-gray-700 focus:ring-2 focus:ring-[#9B4DF4] transition"
               />
             </div>
           </div>
@@ -107,7 +106,7 @@ export default function ImageResizerPage() {
               <select
                 value={format}
                 onChange={(e) => setFormat(e.target.value)}
-                className="p-2 rounded-lg text-black bg-white border border-gray-700 focus:ring-2 focus:ring-gray-400 transition"
+                className="p-2 rounded-lg bg-black text-white border border-gray-700 focus:ring-2 focus:ring-[#9B4DF4] transition"
               >
                 <option value="png">PNG</option>
                 <option value="jpeg">JPEG</option>
@@ -120,14 +119,14 @@ export default function ImageResizerPage() {
           <div>
           <button
             onClick={handleResize}
-            className="px-6 py-2  bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition"
+            className="px-6 py-2  bg-[#9B4DF4] text-white rounded-lg hover:bg-[#5916a5] transition"
           >
             Resize
           </button>
           <a
                 href={resizedUrl}
                 download={`resized-image.${format}`}
-                className="px-6 py-2  bg-green-600 text-white rounded-lg hover:bg-green-500 transition float-end"
+                className="px-6 py-2  bg-[#9B4DF4] text-white rounded-lg hover:bg-[#501396] transition float-end"
               >
                 Download Image
               </a>
@@ -152,19 +151,19 @@ export default function ImageResizerPage() {
 
         {/* Info / Contribution */}
         <div className="grid md:grid-cols-2 gap-6 w-full">
-          <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
-            <p className="text-black">
+          <div className="bg-black p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
+            <p className="text-white">
               Our tools are free and open source. Feel free to contribute.
             </p>
-            <button className="px-4 py-2 border text-black border-gray-600 rounded-xl hover:bg-gray-800 hover:text-white transition">
+            <button className="px-4 py-2 border text-black border-gray-600 rounded-xl bg-[#9B4DF4] hover:bg-[#5b1ca3] hover:text-white transition">
               Contribute
             </button>
           </div>
-          <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
-            <p className="text-black">
+          <div className="bg-black p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
+            <p className="text-white">
               Auto-capture all the info engineers need to debug!
             </p>
-            <button className="px-4 py-2 border border-gray-600 text-black rounded-xl hover:bg-gray-800 hover:text-white transition">
+            <button className="px-4 py-2 border border-gray-600 text-black rounded-xl bg-[#9B4DF4] hover:bg-[#5d249e] hover:text-white transition">
               Try Jam
             </button>
           </div>

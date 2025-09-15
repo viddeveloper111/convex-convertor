@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { ClipboardCopy, ClipboardCheck } from "lucide-react";
+import { Ruler } from "lucide-react";
 
 export default function CssUnitsConverterPage() {
   const [value, setValue] = useState("");
@@ -42,20 +43,19 @@ export default function CssUnitsConverterPage() {
   };
 
   return (
-    <div className="bg-white min-h-screen flex flex-col items-center p-6">
+    <div className="bg-[#181023] min-h-screen flex flex-col items-center p-6">
       <div className="container mx-auto max-w-4xl flex flex-col items-center space-y-10">
 
         {/* Header */}
         <header className="text-center space-y-2">
-          <h1 className="text-4xl font-bold text-black">CSS Units Converter</h1>
-          <p className="text-black">Fast, free, open source, ad-free tools.</p>
-          <p className="text-sm text-gray-700">
-            by <b>Jam.dev</b> — One click bug reports devs love
-          </p>
+<h1 className="flex items-center gap-2 text-4xl font-bold text-[#9B4DF4]">
+  <Ruler className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
+  CSS Units Converter
+</h1>          <p className="text-gray-400">Fast, free, open source, ad-free tools.</p>
         </header>
 
         {/* Converter Tool */}
-        <div className="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6 w-full flex flex-col gap-6">
+        <div className="bg-white dark:bg-black shadow-lg rounded-xl p-6 w-full flex flex-col gap-6">
 
           {/* Input Value */}
           <div>
@@ -65,7 +65,7 @@ export default function CssUnitsConverterPage() {
               value={value}
               onChange={(e) => setValue(e.target.value)}
               placeholder="Enter value"
-              className="w-full p-3 border rounded-lg text-black bg-white border-gray-700 focus:ring-2 focus:ring-indigo-400 transition"
+              className="w-full p-3 border rounded-lg bg-black text-white border-gray-700 focus:ring-2 focus:ring-[#9B4DF4] transition"
             />
           </div>
 
@@ -75,7 +75,7 @@ export default function CssUnitsConverterPage() {
             <select
               value={fromUnit}
               onChange={(e) => setFromUnit(e.target.value)}
-              className="w-full p-3 border rounded-lg text-black bg-white border-gray-700 focus:ring-2 focus:ring-indigo-400 transition"
+              className="w-full p-3 border rounded-lg bg-black text-white border-gray-700 focus:ring-2 focus:ring-[#9B4DF4] transition"
             >
               <option value="px">Pixels (px)</option>
               <option value="rem">Rems (rem)</option>
@@ -91,7 +91,7 @@ export default function CssUnitsConverterPage() {
             <select
               value={toUnit}
               onChange={(e) => setToUnit(e.target.value)}
-              className="w-full p-3 border rounded-lg text-black bg-white border-gray-700 focus:ring-2 focus:ring-indigo-400 transition"
+              className="w-full p-3 border rounded-lg bg-black text-white border-gray-700 focus:ring-2 focus:ring-[#9B4DF4] transition"
             >
               <option value="px">Pixels (px)</option>
               <option value="rem">Rems (rem)</option>
@@ -109,11 +109,11 @@ export default function CssUnitsConverterPage() {
               value={result}
               readOnly
               placeholder="Conversion result"
-              className="w-full p-3 border rounded-lg bg-white text-green-400 border-gray-700 focus:ring-2 focus:ring-indigo-400 transition"
+              className="w-full p-3 border rounded-lg bg-black text-[#9B4DF4] border-gray-700 focus:ring-2 focus:ring-[#9B4DF4] transition"
             />
             <button
               onClick={handleCopy}
-              className="absolute top-10 right-2 p-1 rounded-full bg-indigo-500 text-white hover:bg-indigo-600 transition"
+              className="absolute top-10 right-2 p-1 rounded-full bg-[#9B4DF4] text-white hover:bg-[#53129d] transition"
               title="Copy Result"
             >
               {copied ? <ClipboardCheck size={20} /> : <ClipboardCopy size={20} />}
@@ -123,20 +123,20 @@ export default function CssUnitsConverterPage() {
         </div>
         {/* Info / Contribution */}
         <div className="grid md:grid-cols-2 gap-6 w-full">
-          <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
-            <p className="text-black">
+          <div className="bg-black p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
+            <p className="text-white">
               Our tools are free and open source. Feel free to contribute.
             </p>
-            <button className="px-4 py-2 border text-black border-gray-600 rounded-xl hover:bg-gray-800 
+            <button className="px-4 py-2 border text-black border-gray-600 rounded-xl bg-[#9B4DF4] hover:bg-[#5915a5]
 hover:text-white transition">
               Contribute
             </button>
           </div>
-          <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
-            <p className="text-black">
+          <div className="bg-black p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
+            <p className="text-white">
               Auto-capture all the info engineers need to debug!
             </p>
-            <button className="px-4 py-2 border border-gray-600 text-black rounded-xl hover:bg-gray-800 hover:text-white  transition">
+            <button className="px-4 py-2 border border-gray-600 text-black rounded-xl bg-[#9B4DF4] hover:bg-[#5a1ca1] hover:text-white  transition">
               Try Jam
             </button>
           </div>

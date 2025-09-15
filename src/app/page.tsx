@@ -54,7 +54,10 @@ export default function JamToolsPage() {
     Lorem: Type,
     WebP: Image,
     SQL: Database,
+    DOC: FileText,
   };
+
+  
 
   const tools = [
     {
@@ -207,11 +210,43 @@ export default function JamToolsPage() {
       desc: "Minify SQL by removing comments, extra spaces, and formatting for cleaner, optimized queries.",
       path: "/tools/SQLMinifier",
     },
+       { name: "DOCX to PDF",
+    type:"DOC",
+    desc: "Minify SQL by removing comments, extra spaces, and formatting for cleaner, optimized queries.",
+    path: "/tools/DocToPdfConverter",
+   },
+   {
+    name: "JPG to PDF",
+    type: "Image",
+    desc: "Easily convert JPG/PNG images into PDF format. Maintain image quality while embedding inside PDF instantly.",
+    path: "/tools/JpgToPdfConverter",
+  },
+  {
+    name: "HTML to PDF",
+    type: "Convert",
+    desc: "Convert your HTML files into clean, structured PDFs while keeping text formatting intact.",
+    path: "/tools/HtmlToPdfConverter",
+  },
+  {
+  name: "Excel to PDF",
+  type: "XLSX",
+  desc: "Convert Excel sheets into PDF with proper tables.",
+  path: "/tools/ExcelToPdfConverter",
+  },
+  {
+  name: "PowerPoint to PDF",
+  type: "PPT",
+  desc: "Convert PPTX slides into PDF (text-only, one slide per page).",
+  path: "/tools/PptToPdfConverter",
+},
+
   ];
 
-  const [search, setSearch] = useState("");
-  const [filter, setFilter] = useState("");
+  
+
+ const [filter, setFilter] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [search, setSearch] = useState("");
 
   const toolTypes = Array.from(new Set(tools.map((t) => t.type)));
 
@@ -219,25 +254,23 @@ export default function JamToolsPage() {
     const matchesSearch =
       tool.name.toLowerCase().includes(search.toLowerCase()) ||
       tool.desc.toLowerCase().includes(search.toLowerCase());
+
     const matchesFilter = filter ? tool.type === filter : true;
+
     return matchesSearch && matchesFilter;
   });
 
-   const handleSelect = (type: string) => {
+  const handleSelect = (type: string) => {
     setFilter(type);
     setDropdownOpen(false);
   };
 
- return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-800 text-white ">
-      {/* 🔹 Header */}
-      <Header
-        onSearch={(q) => setSearch(q)}
-        onCommandPalette={() => alert("Command palette opened!")}
-      />
 
+  
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-800 text-white">
       <main className="container mx-auto py-12 px-4">
-        {/* Custom Dropdown */}
+        {/* 🔹 Dropdown */}
         <div className="relative w-full max-w-sm mb-8">
           <button
             onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -250,37 +283,34 @@ export default function JamToolsPage() {
             <span className="ml-2">▼</span>
           </button>
 
-{dropdownOpen && (
-  <ul className="absolute z-50 mt-2 w-full bg-black/70 backdrop-blur-md border border-gray-700 rounded-lg shadow-lg max-h-60 overflow-auto">
-    {/* 🔹 All Tools Option */}
-    <li
-      onClick={() => handleSelect("")}
-      className="flex items-center gap-2 px-4 py-2 hover:bg-black/50 cursor-pointer transition"
-    >
-      <FileText className="w-4 h-4 text-indigo-500" />
-      <span>All Categories</span>
-    </li>
+          {dropdownOpen && (
+            <ul className="absolute z-50 mt-2 w-full bg-black/70 backdrop-blur-md border border-gray-700 rounded-lg shadow-lg max-h-60 overflow-auto">
+              <li
+                onClick={() => handleSelect("")}
+                className="flex items-center gap-2 px-4 py-2 hover:bg-black/50 cursor-pointer transition"
+              >
+                <FileText className="w-4 h-4 text-indigo-500" />
+                <span>All Categories</span>
+              </li>
 
-    {toolTypes.map((type) => {
-      const Icon = iconMap[type];
-      return (
-        <li
-          key={type}
-          onClick={() => handleSelect(type)}
-          className="flex items-center gap-2 px-4 py-2 hover:bg-black/50 cursor-pointer transition "
-        >
-          <Icon className="w-4 h-4 text-indigo-500" />
-          <span>{type}</span>
-        </li>
-      );
-    })}
-  </ul>
-)}
-
+              {toolTypes.map((type) => {
+                const Icon = iconMap[type] || FileText;
+                return (
+                  <li
+                    key={type}
+                    onClick={() => handleSelect(type)}
+                    className="flex items-center gap-2 px-4 py-2 hover:bg-black/50 cursor-pointer transition"
+                  >
+                    <Icon className="w-4 h-4 text-indigo-500" />
+                    <span>{type}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
         </div>
 
-
-        {/* Tool Cards Grid */}
+        {/* 🔹 Tools Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredTools.length > 0 ? (
             filteredTools.map((tool, idx) => {

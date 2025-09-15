@@ -29,6 +29,7 @@ export default function Footer() {
     { name: "Lorem Ipsum Generator", path: "/tools/LoremIpsum" },
     { name: "WebP Converter", path: "/tools/WebPConverter" },
     { name: "SQL Minifier", path: "/tools/SQLMinifier" },
+    { name: "docx to PDF" , path: "tools/DocToPdfConverter" }
   ];
 
   return (

@@ -33,63 +33,56 @@ export function Header({ onSearch, onCommandPalette }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-purple-700 backdrop-blur-md shadow-lg border-b border-purple-600">
-  <div className="max-w-7xl mx-auto flex h-16 items-center justify-between px-4">
-    {/* Left Logo + Title */}
-    <div className="flex items-center gap-6">
-      <div className="flex items-center gap-2">
-        <div className="h-8 w-8 rounded-lg bg-gradient-to-r from-purple-600 to-purple-400 backdrop-blur-md flex items-center justify-center shadow-md border border-gray-700">
-          <span className="text-sm font-bold text-white">C</span>
+      <div className=" mx-auto flex h-16 items-center justify-between px-4">
+        {/* Left Logo + Title */}
+        <div className="flex items-center gap-2">
+          {/* Custom CC Logo */}
+          <div className="h-12 w-12 rounded-lg bg-gray-900 flex items-center justify-center shadow-lg border border-gray-700">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 64 64"
+              className="h-8 w-8 text-purple-400"
+              fill="currentColor"
+            >
+              {/* Outer C */}
+              <path d="M28 12c-8.8 0-16 7.2-16 16s7.2 16 16 16h4v-6h-4c-5.5 0-10-4.5-10-10s4.5-10 10-10h4v-6h-4z"/>
+              {/* Inner C */}
+              <path d="M44 12c-8.8 0-16 7.2-16 16s7.2 16 16 16h4v-6h-4c-5.5 0-10-4.5-10-10s4.5-10 10-10h4v-6h-4z"/>
+              {/* Small wrench accent on top right */}
+              <path d="M52 8l-4 4 2 2-8 8 4 4 8-8 2 2 4-4-8-8z"/>
+            </svg>
+          </div>
+          <Link href={"/"} className="flex items-center">
+          <span className="text-xl font-extrabold text-white tracking-wide">
+            Convex Converter
+          </span>
+          </Link>
         </div>
 
-        <Link href="/" className="text-lg font-bold text-white">
-          Convex Converter
-        </Link>
+        {/* Right Actions - Search Input Only */}
+        <div className="flex-1 flex justify-end">
+          {/* Search Input */}
+          <div className="relative hidden md:block mr-2">
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-purple-400" />
+            <Input
+              placeholder="Search tools..."
+              value={searchValue}
+              onChange={handleSearchChange}
+              className="
+                w-64 pl-10 pr-4 
+                bg-gray-900 
+                border-2 border-purple-400 
+                rounded-md 
+                text-sm text-white 
+                placeholder-gray-400 
+                focus:ring-2 focus:ring-purple-400
+                transition
+              "
+            />
+          </div>
+        </div>
       </div>
-    </div>
-
-    {/* Right Actions */}
-    <div className="flex items-center gap-4">
-      {/* Search Input */}
-      <div className="relative hidden md:block">
-        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-purple-400" />
-        <Input
-          placeholder="Search tools..."
-          value={searchValue}
-          onChange={handleSearchChange}
-          className="
-            w-80 pl-10 pr-16 
-            bg-gray-900 
-            border-2 border-purple-400 
-            rounded-md 
-            text-sm text-white 
-            placeholder-gray-400 
-            focus:ring-2 focus:ring-purple-400
-            transition
-          "
-        />
-      </div>
-
-      {/* GitHub Button */}
-      <Button
-        variant="outline"
-        size="sm"
-        asChild
-        className="border border-gray-900 bg-black text-white hover:bg-gray-800 hover:text-white"
-      >
-        <a
-          href="https://github.com/jam-dev"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center"
-        >
-          <Github className="h-4 w-4 mr-2" />
-          Contribute
-        </a>
-      </Button>
-    </div>
-  </div>
-</header>
-
+    </header>
   );
 }
 
