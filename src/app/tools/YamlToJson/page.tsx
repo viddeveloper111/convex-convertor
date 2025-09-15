@@ -11,18 +11,24 @@ export default function YamlToJsonPage() {
   const [copied, setCopied] = useState(false);
 
   // YAML → JSON conversion
-  useEffect(() => {
-    try {
-      if (yamlInput.trim() === "") {
-        setJsonOutput("[]");
-        return;
-      }
-      const parsed = yaml.load(yamlInput);
-      setJsonOutput(JSON.stringify(parsed, null, 2));
-    } catch (err) {
-      setJsonOutput(`Error: ${err.message}`);
+// YAML → JSON conversion
+useEffect(() => {
+  try {
+    if (yamlInput.trim() === "") {
+      setJsonOutput("[]");
+      return;
     }
-  }, [yamlInput]);
+    const parsed = yaml.load(yamlInput);
+    setJsonOutput(JSON.stringify(parsed, null, 2));
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      setJsonOutput(`Error: ${err.message}`);
+    } else {
+      setJsonOutput("An unknown error occurred");
+    }
+  }
+}, [yamlInput]);
+
 
   // Copy to clipboard
   const handleCopy = () => {

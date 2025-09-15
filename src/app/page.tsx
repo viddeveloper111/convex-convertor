@@ -57,8 +57,6 @@ export default function JamToolsPage() {
     DOC: FileText,
   };
 
-  
-
   const tools = [
     {
       name: "CSV to JSON",
@@ -210,41 +208,69 @@ export default function JamToolsPage() {
       desc: "Minify SQL by removing comments, extra spaces, and formatting for cleaner, optimized queries.",
       path: "/tools/SQLMinifier",
     },
-       { name: "DOCX to PDF",
-    type:"DOC",
-    desc: "Minify SQL by removing comments, extra spaces, and formatting for cleaner, optimized queries.",
-    path: "/tools/DocToPdfConverter",
-   },
-   {
-    name: "JPG to PDF",
-    type: "Image",
-    desc: "Easily convert JPG/PNG images into PDF format. Maintain image quality while embedding inside PDF instantly.",
-    path: "/tools/JpgToPdfConverter",
-  },
-  {
-    name: "HTML to PDF",
-    type: "Convert",
-    desc: "Convert your HTML files into clean, structured PDFs while keeping text formatting intact.",
-    path: "/tools/HtmlToPdfConverter",
-  },
-  {
-  name: "Excel to PDF",
-  type: "XLSX",
-  desc: "Convert Excel sheets into PDF with proper tables.",
-  path: "/tools/ExcelToPdfConverter",
-  },
-  {
-  name: "PowerPoint to PDF",
-  type: "PPT",
-  desc: "Convert PPTX slides into PDF (text-only, one slide per page).",
-  path: "/tools/PptToPdfConverter",
-},
-
+    {
+      name: "DOCX to PDF",
+      type: "DOC",
+      desc: "Minify SQL by removing comments, extra spaces, and formatting for cleaner, optimized queries.",
+      path: "/tools/DocToPdfConverter",
+    },
+    {
+      name: "JPG to PDF",
+      type: "Image",
+      desc: "Easily convert JPG/PNG images into PDF format. Maintain image quality while embedding inside PDF instantly.",
+      path: "/tools/JpgToPdfConverter",
+    },
+    {
+      name: "HTML to PDF",
+      type: "Convert",
+      desc: "Convert your HTML files into clean, structured PDFs while keeping text formatting intact.",
+      path: "/tools/HtmlToPdfConverter",
+    },
+    {
+      name: "Excel to PDF",
+      type: "XLSX",
+      desc: "Convert Excel sheets into PDF with proper tables.",
+      path: "/tools/ExcelToPdfConverter",
+    },
+    {
+      name: "PowerPoint to PDF",
+      type: "PPT",
+      desc: "Convert PPTX slides into PDF (text-only, one slide per page).",
+      path: "/tools/PptToPdfConverter",
+    },
+    // {
+    //   name: "PDF to Word",
+    //   type: "DOC",
+    //   desc: "Convert PDF files into editable Word DOCX format instantly.",
+    //   path: "/tools/PdfToWordConverter",
+    // },
+    {
+      name: "MP4 to MP3",
+      type: "Audio",
+      desc: "Extract audio from MP4 video and save it as MP3 format.",
+      path: "/tools/Mp4ToMp3Converter",
+    },
+    {
+      name: "PDF Lock/Unlock",
+      type: "Text",
+      desc: "Secure your PDFs with passwords or remove existing ones easily.",
+      path: "/tools/PDFlockunlock",
+    },
+    {
+      name: "Heic to JPG",
+      type: "Image",
+      desc: "Convert HEIC images to JPG format quickly and easily.",
+      path: "/tools/HeicToJpgConverter",
+    },
+    {
+      name: "Markdown to HTML",
+      type: "Markdown",
+      desc: "Convert Markdown text to HTML format for web use.",
+      path: "/tools/MarkdownToHtmlConverter",
+    }
   ];
 
-  
-
- const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [search, setSearch] = useState("");
 
@@ -265,8 +291,6 @@ export default function JamToolsPage() {
     setDropdownOpen(false);
   };
 
-
-  
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-800 text-white">
       <main className="container mx-auto py-12 px-4">
