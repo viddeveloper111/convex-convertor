@@ -31,7 +31,7 @@ export default function Footer() {
   ];
 
   return (
-  <footer className="bg-gray-900 text-gray-300 px-6 py-10">
+  <footer className="bg-[#181023] text-gray-300 px-6 py-10">
   {/* Tools Section */}
 <div className="mb-6">
   <h3 className="font-bold text-lg  text-white">Tools</h3>

@@ -131,6 +131,11 @@ const tools = [
     desc: "Minify SQL by removing comments, extra spaces, and formatting for cleaner, optimized queries.",
     path: "/tools/SQLMinifier",
    },
+   { name: "DOCX to PDF", 
+    type:"DOC",
+    desc: "Minify SQL by removing comments, extra spaces, and formatting for cleaner, optimized queries.",
+    path: "/tools/DocToPdfConverter",
+   },
 ];
 
  const [search, setSearch] = useState("");
