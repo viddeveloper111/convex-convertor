@@ -2,10 +2,9 @@
 
 import { useRef, useState } from "react";
 import { jsPDF } from "jspdf";
-import * as mammoth from "mammoth";
-import { FileText } from "lucide-react";
+import { Code2 } from "lucide-react";
 
-export default function DocToPdfConverter() {
+export default function HtmlToPdfConverter() {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [fileName, setFileName] = useState<string>("");
   const [pdfUrl, setPdfUrl] = useState<string>("");
@@ -13,35 +12,46 @@ export default function DocToPdfConverter() {
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+
     setFileName(file.name);
 
-    if (file.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
-      const arrayBuffer = await file.arrayBuffer();
-      const result = await mammoth.extractRawText({ arrayBuffer });
-      const text = result.value;
+    if (file.type === "text/html") {
+      const reader = new FileReader();
+      reader.onload = async (event) => {
+        const htmlContent = event.target?.result as string;
 
-      const pdf = new jsPDF();
-      pdf.setFontSize(12);
-      pdf.text(text, 10, 10);
+        const pdf = new jsPDF("p", "pt", "a4");
 
-      const pdfBlob = pdf.output("blob");
-      const url = URL.createObjectURL(pdfBlob);
-      setPdfUrl(url);
+        // Render HTML into the PDF
+        await pdf.html(htmlContent, {
+          callback: (doc) => {
+            const pdfBlob = doc.output("blob");
+            const url = URL.createObjectURL(pdfBlob);
+            setPdfUrl(url);
+          },
+          margin: [20, 20, 20, 20],
+          autoPaging: "text",
+          x: 10,
+          y: 10,
+          width: 550,
+          windowWidth: 800,
+        });
+      };
+      reader.readAsText(file);
     } else {
-      alert("Please upload a DOCX file");
+      alert("Please upload a valid HTML file");
     }
   };
 
   return (
     <div className="min-h-screen bg-[#181023] p-6 flex flex-col items-center">
       {/* Title */}
-   <h1 className="text-3xl md:text-4xl font-bold text-[#9B4DF4] text-center flex items-center justify-center gap-2">
-  <FileText className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
-  WORD → PDF Converter
-</h1>
-      <p className="text-gray-400">
-          Free, Open Source & Ad-free
-        </p>
+      <h1 className="text-3xl md:text-4xl font-bold text-[#9B4DF4] text-center flex items-center justify-center gap-2">
+        <Code2 className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
+        HTML → PDF Converter
+      </h1>
+      <p className="text-gray-400">Free, Open Source & Ad-free</p>
+
       {/* File Upload */}
       <div
         className="mt-6 w-full max-w-3xl border-2 border-dashed border-gray-300 rounded-xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-[#9B4DF4] transition-colors"
@@ -51,10 +61,12 @@ export default function DocToPdfConverter() {
           type="file"
           ref={fileInputRef}
           onChange={handleFileChange}
-          accept=".docx"
+          accept=".html,.htm"
           className="hidden"
         />
-        <p className="text-gray-600 mb-2">Drag and drop your DOCX file here, or click to select (Max size 10MB)</p>
+        <p className="text-gray-600 mb-2">
+          Drag and drop your HTML file here, or click to select (Max size 10MB)
+        </p>
         <p className="text-gray-400">{fileName || "No file chosen"}</p>
       </div>
 
@@ -75,29 +87,19 @@ export default function DocToPdfConverter() {
           Download PDF
         </a>
       )}
-           {/* Short Description */}
-      <p className="text-gray-400 mt-5  ">
-        Fast, free, open source, ad-free tool. Convert DOCX files to PDF instantly and preview them.
+
+      {/* Short Description */}
+      <p className="text-gray-400 mt-5">
+        Convert your HTML files to PDF instantly. Maintain structure and text formatting inside a PDF.
       </p>
 
       {/* How to Use */}
-      <div className="mt-6 max-w-3xl w-full  p-6">
+      <div className="mt-6 max-w-3xl w-full p-6">
         <h2 className="text-xl font-semibold text-white mb-2">How to Use</h2>
         <ul className="list-disc list-inside text-gray-400 space-y-1">
-          <li>Upload your DOCX file by clicking the upload area below.</li>
-          <li>Preview the PDF directly on the page.</li>
+          <li>Upload your HTML file by clicking the upload area above.</li>
+          <li>Preview the converted PDF instantly in the browser.</li>
           <li>Download the PDF if satisfied.</li>
-        </ul>
-      </div>
-
-      {/* Benefits */}
-      <div className="mt-4 max-w-3xl w-full p-6 ">
-        <h2 className="text-xl font-semibold text-white mb-2">Benefits</h2>
-        <ul className="list-disc list-inside text-gray-400 space-y-1">
-          <li>Quick conversion without installing software.</li>
-          <li>Preview your PDF instantly.</li>
-          <li>Keep your formatting consistent.</li>
-          <li>Free and ad-free experience.</li>
         </ul>
       </div>
     </div>

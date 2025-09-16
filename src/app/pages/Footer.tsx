@@ -2,6 +2,7 @@
 import Link from "next/link";
 
 export default function Footer() {
+  const year = new Date().getFullYear();
   const toolsLinks = [
     { name: "CSV-TO-JSON", path: "/tools/csv-to-json" },
     { name: "Base64 Encode/Decode", path: "/tools/base64-tool" },
@@ -28,39 +29,33 @@ export default function Footer() {
     { name: "Lorem Ipsum Generator", path: "/tools/LoremIpsum" },
     { name: "WebP Converter", path: "/tools/WebPConverter" },
     { name: "SQL Minifier", path: "/tools/SQLMinifier" },
+    { name: "Docx to PDF", path: "/tools/DocToPdfConverter" },
   ];
 
   return (
-  <footer className="bg-[#181023] text-gray-300 px-6 py-10">
-  {/* Tools Section */}
-<div className="mb-6">
-  <h3 className="font-bold text-lg  text-white">Tools</h3>
-  <table className="w-full text-left border-collapse">
-    <tbody>
-      {Array.from({ length: Math.ceil(toolsLinks.length / 6) }).map((_, rowIdx) => (
-        <tr key={rowIdx}>
-          {toolsLinks
-            .slice(rowIdx * 6, rowIdx * 6 + 6) // 6 columns per row
-            .map((tool, colIdx) => (
-              <td key={colIdx} className="py-2 px-4">
-                <Link href={tool.path} className="hover:text-white transition-colors">
-                  {tool.name}
-                </Link>
-              </td>
-            ))}
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
+    <footer className="bg-gradient-to-r from-purple-600 to-purple-600 text-white px-6 py-10">
+      {/* Tools Section */}
+      <div className="mb-8">
+        <h3 className="font-bold text-lg mb-4">Tools</h3>
 
+        {/* Responsive grid: 2 cols on small, 3 on md, 4 on lg */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-6 gap-y-3">
+          {toolsLinks.map((tool, idx) => (
+            <Link
+              key={idx}
+              href={tool.path}
+              className="hover:text-gray-200 transition-colors font-medium text-sm"
+            >
+              {tool.name}
+            </Link>
+          ))}
+        </div>
+      </div>
 
-
-  {/* Footer Bottom */}
-  <div className="border-t border-gray-700 pt-4 text-center text-white text-sm">
-    &copy; {new Date().getFullYear()} My Next.js Website. All rights reserved.
-  </div>
-</footer>
-
+      {/* Footer Bottom */}
+      <div className="border-t border-purple-400 pt-4 text-center text-sm">
+        &copy; {year} Convex Converter. All rights reserved.
+      </div>
+    </footer>
   );
 }
