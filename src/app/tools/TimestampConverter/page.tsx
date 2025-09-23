@@ -3,12 +3,17 @@
 import { useState } from "react";
 import { ClipboardCopy, ClipboardCheck } from "lucide-react";
 import { Clock } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { ArrowLeft } from "lucide-react"; // icon for the button
+
 
 export default function TimestampConverterPage() {
   const [timestamp, setTimestamp] = useState("");
   const [utcDate, setUtcDate] = useState("");
   const [localDate, setLocalDate] = useState("");
   const [copied, setCopied] = useState(false);
+  const router = useRouter();
+
 
   // Convert timestamp to UTC & local date
   const convertTimestamp = (ts: string) => {
@@ -50,6 +55,17 @@ export default function TimestampConverterPage() {
 
   return (
     <div className="bg-[#181023] min-h-screen py-10">
+      {/* Back Button */}
+<div className="ps-6 flex justify-start">
+  <button
+    onClick={() => router.back()}
+    className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+  >
+    <ArrowLeft className="h-5 w-5" />
+    Back
+  </button>
+</div>
+
       <div className="container mx-auto max-w-5xl p-6 space-y-12">
         {/* Header */}
         <header className="text-center space-y-2">

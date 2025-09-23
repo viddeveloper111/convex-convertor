@@ -1,12 +1,15 @@
 "use client";
-import { Binary } from "lucide-react";
+
+import { Binary, ArrowLeft } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function NumberBaseChanger() {
   const [numberInput, setNumberInput] = useState("");
   const [fromBase, setFromBase] = useState(10);
   const [toBase, setToBase] = useState(2);
   const [result, setResult] = useState("");
+  const router = useRouter();
 
   // Auto convert when input or bases change
   useEffect(() => {
@@ -27,23 +30,32 @@ export default function NumberBaseChanger() {
   }, [numberInput, fromBase, toBase]);
 
   return (
-    <div className="bg-[#181023] min-h-screen flex items-center justify-center p-6">
-      {/* Container */}
+    <div className="bg-[#181023] min-h-screen flex justify-center p-6">
+      {/* Main Container */}
       <div className="w-full max-w-5xl space-y-8">
+
+        {/* Back Button */}
+        <div className="flex justify-start">
+          <button
+            onClick={() => router.back()}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+          >
+            <ArrowLeft className="h-5 w-5" />
+            Back
+          </button>
+        </div>
+
         {/* Header */}
         <header className="text-center space-y-2">
           <h1 className="flex justify-center items-center gap-2 text-3xl font-bold text-[#9B4DF4]">
-      <Binary className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
-      Number Base Changer
-    </h1>
-          <p className="text-gray-400">
-            Fast, free, open source, ad-free tools.
-          </p>
-          
+            <Binary className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
+            Number Base Changer
+          </h1>
+          <p className="text-gray-400">Fast, free, open source, ad-free tools.</p>
         </header>
 
         {/* Input Section */}
-        <section className="bg-black  rounded-2xl shadow p-6 space-y-4">
+        <section className="bg-black rounded-2xl shadow p-6 space-y-4">
           <label className="font-semibold text-white">Number</label>
           <input
             type="text"
@@ -93,7 +105,7 @@ export default function NumberBaseChanger() {
         </section>
 
         {/* How to Use */}
-        <section className=" p-6 space-y-2">
+        <section className="p-6 space-y-2">
           <h2 className="text-2xl font-bold text-white">How to Use the Number Base Changer</h2>
           <ul className="list-disc pl-6 space-y-1 text-gray-400">
             <li>Enter your number.</li>
@@ -112,7 +124,7 @@ export default function NumberBaseChanger() {
         </section>
 
         {/* FAQs */}
-        <section className=" p-6 space-y-2">
+        <section className="p-6 space-y-2">
           <h2 className="text-2xl font-bold text-white">FAQs</h2>
           <ul className="list-disc pl-6 space-y-1 text-gray-400">
             <li>What is a number base? It's the set of digits used to represent numbers in a system.</li>
@@ -121,8 +133,8 @@ export default function NumberBaseChanger() {
             <li>Is it suitable for Python coding? Yes, it helps convert number bases for code and data tasks.</li>
           </ul>
         </section>
+
       </div>
-      
     </div>
   );
 }

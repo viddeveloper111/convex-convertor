@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { FileText, DownloadCloud, Copy, Eye } from "lucide-react";
+import { FileText, DownloadCloud, Copy, Eye ,ArrowLeft } from "lucide-react";
 import { marked } from "marked";
 import DOMPurify from "dompurify";
+import { useRouter } from "next/navigation";
 
 /**
  * Markdown -> HTML Converter Component
@@ -27,6 +28,7 @@ export default function MarkdownToHtmlConverter() {
   const [downloadUrl, setDownloadUrl] = useState<string>("");
   const [fileName, setFileName] = useState<string>("markdown.html");
   const [dragOver, setDragOver] = useState<boolean>(false);
+    const router = useRouter();
 
   // Convert markdown to HTML and sanitize it
   useEffect(() => {
@@ -143,6 +145,16 @@ ${html}
 
   return (
     <div className="min-h-screen bg-[#0b1020] p-6 flex flex-col items-center text-white">
+         {/* Back Button */}
+        <div className="w-full flex justify-start mb-4">
+          <button
+            onClick={() => router.back()}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+          >
+            <ArrowLeft className="h-5 w-5" />
+            Back
+          </button>
+        </div>
       <header className="max-w-3xl w-full text-center mb-6">
         <h1 className="text-3xl md:text-4xl font-bold text-[#9B4DF4] flex items-center justify-center gap-3">
           <FileText className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />

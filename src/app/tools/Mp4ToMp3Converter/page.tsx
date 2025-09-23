@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { FileAudio, Download, Upload } from "lucide-react";
+import { FileAudio, Download, Upload ,ArrowLeft } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function Mp4ToMp3Converter() {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -10,6 +11,7 @@ export default function Mp4ToMp3Converter() {
   const [isConverting, setIsConverting] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   const audioRef = useRef<HTMLAudioElement | null>(null);
+    const router = useRouter();
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -216,10 +218,20 @@ export default function Mp4ToMp3Converter() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 to-indigo-800 p-6 flex flex-col items-center">
+    <div className="min-h-screen bg-black p-6 flex flex-col items-center">
+         {/* Back Button */}
+        <div className="w-full flex justify-start mb-4">
+          <button
+            onClick={() => router.back()}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+          >
+            <ArrowLeft className="h-5 w-5" />
+            Back
+          </button>
+        </div>
       <div className="w-full max-w-2xl bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-2xl mt-10">
-        <h1 className="text-3xl md:text-4xl font-bold text-white text-center flex items-center justify-center gap-3 mb-2">
-          <FileAudio className="w-10 h-10 p-2 bg-purple-500 text-white rounded-3xl" />
+        <h1 className="text-3xl md:text-4xl font-bold text-[#9B4DF4] text-center flex items-center justify-center gap-3 mb-2">
+          <FileAudio className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
           MP4 → Audio Converter
         </h1>
         <p className="text-gray-300 text-center mb-8">Free, Open Source & Ad-free</p>

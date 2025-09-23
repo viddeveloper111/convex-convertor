@@ -1,13 +1,15 @@
 "use client";
 
-import { useState, ChangeEvent } from "react";
-import { FileImage } from "lucide-react";
+import { useState, ChangeEvent} from "react";
+import { FileImage,ArrowLeft  } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function WebPConverterPage() {
   const [files, setFiles] = useState<File[]>([]);
   const [quality, setQuality] = useState(80);
   const [autoDownload, setAutoDownload] = useState(false);
   const [convertedFiles, setConvertedFiles] = useState<{ name: string; url: string }[]>([]);
+    const router = useRouter();
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -68,6 +70,16 @@ export default function WebPConverterPage() {
 
   return (
     <div className="bg-[#181023] min-h-screen flex flex-col items-center p-6">
+         {/* Back Button */}
+        <div className="w-full flex justify-start mb-4">
+          <button
+            onClick={() => router.back()}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+          >
+            <ArrowLeft className="h-5 w-5" />
+            Back
+          </button>
+        </div>
       <div className="container mx-auto max-w-5xl flex flex-col space-y-10">
 
         {/* Header */}

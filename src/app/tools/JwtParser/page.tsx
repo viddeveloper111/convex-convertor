@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ClipboardCopy, ClipboardCheck } from "lucide-react";
-import { ShieldCheck } from "lucide-react";
+import { ClipboardCopy, ClipboardCheck, ShieldCheck, ArrowLeft } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function JwtParserPage() {
   const [jwt, setJwt] = useState("");
@@ -12,6 +12,7 @@ export default function JwtParserPage() {
   const [copiedHeader, setCopiedHeader] = useState(false);
   const [copiedPayload, setCopiedPayload] = useState(false);
   const [copiedSignature, setCopiedSignature] = useState(false);
+  const router = useRouter();
 
   const parseJwt = (token: string) => {
     try {
@@ -42,15 +43,26 @@ export default function JwtParserPage() {
 
   return (
     <div className="bg-[#181023] min-h-screen flex flex-col items-center p-6">
+       {/* Back Button */}
+        <div className="w-full flex justify-start mb-4">
+          <button
+            onClick={() => router.back()}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+          >
+            <ArrowLeft className="h-5 w-5" />
+            Back
+          </button>
+        </div>
+
       <div className="container mx-auto max-w-4xl flex flex-col items-center space-y-10">
 
+       
         {/* Header */}
         <header className="text-center space-y-2">
-      
-<h1 className="flex items-center gap-2 text-4xl font-bold text-[#9B4DF4]">
-  <ShieldCheck className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
-  JWT Parser
-</h1>
+          <h1 className="flex items-center gap-2 text-4xl font-bold text-[#9B4DF4]">
+            <ShieldCheck className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
+            JWT Parser
+          </h1>
           <p className="text-gray-400">Fast, free, open source, ad-free tools.</p>
         </header>
 
@@ -77,7 +89,7 @@ export default function JwtParserPage() {
                 value={header}
                 readOnly
                 rows={4}
-                className="w-full ps-2  border rounded-lg bg-black text-[#9B4DF4] border-gray-700 focus:ring-2 hover:ring-[#9B4DF4] transition"
+                className="w-full p-2 border rounded-lg bg-black text-[#9B4DF4] border-gray-700 focus:ring-2 hover:ring-[#9B4DF4] transition"
               />
               <button
                 onClick={() => handleCopy(header, "header")}
@@ -95,7 +107,7 @@ export default function JwtParserPage() {
                 value={payload}
                 readOnly
                 rows={4}
-                className="w-full  border rounded-lg bg-black text-[#9B4DF4] border-gray-700 focus:ring-2 hover:ring-[#9B4DF4]  transition"
+                className="w-full p-2 border rounded-lg bg-black text-[#9B4DF4] border-gray-700 focus:ring-2 hover:ring-[#9B4DF4] transition"
               />
               <button
                 onClick={() => handleCopy(payload, "payload")}
@@ -113,7 +125,7 @@ export default function JwtParserPage() {
                 value={signature}
                 readOnly
                 rows={2}
-                className="w-full p-1 border rounded-lg bg-black text-[#9B4DF4] border-gray-700 focus:ring-2 hover:ring-[#9B4DF4]  transition"
+                className="w-full p-1 border rounded-lg bg-black text-[#9B4DF4] border-gray-700 focus:ring-2 hover:ring-[#9B4DF4] transition"
               />
               <button
                 onClick={() => handleCopy(signature, "signature")}
@@ -132,7 +144,7 @@ export default function JwtParserPage() {
             <p className="text-white">
               Our tools are free and open source. Feel free to contribute.
             </p>
-            <button className="px-4 py-2 border text-black border-gray-600 rounded-xl bg-[#9B4DF4] hover:bg-[#55179d]  hover:text-white transition">
+            <button className="px-4 py-2 border text-black border-gray-600 rounded-xl bg-[#9B4DF4] hover:bg-[#55179d] hover:text-white transition">
               Contribute
             </button>
           </div>
@@ -140,12 +152,11 @@ export default function JwtParserPage() {
             <p className="text-white">
               Auto-capture all the info engineers need to debug!
             </p>
-            <button className="px-4 py-2 border border-gray-600 text-black rounded-xl bg-[#9B4DF4] hover:bg-[#531896] hover:text-white  transition">
+            <button className="px-4 py-2 border border-gray-600 text-black rounded-xl bg-[#9B4DF4] hover:bg-[#531896] hover:text-white transition">
               Try Jam
             </button>
           </div>
         </div>
-
 
       </div>
     </div>

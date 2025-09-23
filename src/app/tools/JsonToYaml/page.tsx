@@ -1,14 +1,15 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ClipboardCopy, ClipboardCheck } from "lucide-react";
+import { ClipboardCopy, ClipboardCheck, FileJson, ArrowLeft } from "lucide-react";
+import { useRouter } from "next/navigation";
 import yaml from "js-yaml";
-import { FileJson } from "lucide-react";
 
 export default function JsonToYamlPage() {
   const [jsonInput, setJsonInput] = useState("");
   const [yamlOutput, setYamlOutput] = useState("");
   const [copied, setCopied] = useState(false);
+  const router = useRouter();
 
   // Auto convert when input changes
   useEffect(() => {
@@ -37,45 +38,48 @@ export default function JsonToYamlPage() {
 
   return (
     <div className="bg-[#181023] min-h-screen flex justify-center p-6">
-      {/* Container */}
       <div className="w-full max-w-5xl space-y-8">
+        {/* Back Button */}
+        <div className="mb-6 flex justify-start">
+          <button
+            onClick={() => router.back()}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+          >
+            <ArrowLeft className="h-5 w-5" />
+            Back
+          </button>
+        </div>
+
         {/* Header */}
         <header className="text-center space-y-2">
-              <h1 className="flex justify-center items-center gap-2 text-3xl font-bold text-[#9B4DF4]">
-      <FileJson className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
-      JSON to YAML Converter
-    </h1>
-          <p className="text-gray-400">
-            Free, Open Source & Ad-free
-          </p>
-         
+          <h1 className="flex justify-center items-center gap-2 text-3xl font-bold text-[#9B4DF4]">
+            <FileJson className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
+            JSON to YAML Converter
+          </h1>
+          <p className="text-gray-400">Free, Open Source & Ad-free</p>
         </header>
 
         {/* Input Section */}
         <section className="space-y-2 border p-5 bg-black rounded-2xl">
-          <label className="font-semibold text-white ">
-            JSON Input
-          </label>
+          <label className="font-semibold text-white">JSON Input</label>
           <textarea
             value={jsonInput}
             onChange={(e) => setJsonInput(e.target.value)}
             rows={8}
-            className="w-full p-3 border border-gray-300  rounded-lg bg-black text-white font-mono text-sm focus:ring-2 focus:ring-[#9B4DF4]"
+            className="w-full p-3 border border-gray-300 rounded-lg bg-black text-white font-mono text-sm focus:ring-2 focus:ring-[#9B4DF4]"
             placeholder='{"name":"John","age":30}'
           />
         </section>
 
         {/* Output Section */}
         <section className="space-y-2 relative">
-          <label className="font-semibold text-white">
-            YAML Output
-          </label>
-          <pre className="p-6 rounded-lg border border-gray-300  bg-black text-[#9B4DF4] font-mono text-sm whitespace-pre-wrap focus:ring-2 focus:ring-[#9B4DF4]">
+          <label className="font-semibold text-white">YAML Output</label>
+          <pre className="p-6 rounded-lg border border-gray-300 bg-black text-[#9B4DF4] font-mono text-sm whitespace-pre-wrap focus:ring-2 focus:ring-[#9B4DF4]">
             {yamlOutput}
           </pre>
           <button
             onClick={handleCopy}
-            className="absolute top-8 right-2 flex items-center gap-1 px-3 py-1 bg-[#9B4DF4] text-white rounded-lg hover:bg-[#501594] transition "
+            className="absolute top-8 right-2 flex items-center gap-1 px-3 py-1 bg-[#9B4DF4] text-white rounded-lg hover:bg-[#501594] transition"
           >
             {copied ? <ClipboardCheck size={16} /> : <ClipboardCopy size={16} />}
             {copied ? "Copied!" : "Copy"}
@@ -83,7 +87,7 @@ export default function JsonToYamlPage() {
         </section>
 
         {/* Description & Benefits */}
-        <section className=" p-6 space-y-4">
+        <section className="p-6 space-y-4">
           <p className="text-gray-400">
             This free tool quickly converts JSON to YAML. Ideal for configuration files, data, or web apps. Simply paste your JSON data and get the YAML result. Built with 💜 by the Jam developers, using the open-source <code>js-yaml</code> package.
           </p>
@@ -116,7 +120,7 @@ export default function JsonToYamlPage() {
         </section>
 
         {/* FAQs */}
-        <section className=" p-6 space-y-2">
+        <section className="p-6 space-y-2">
           <h2 className="text-2xl font-bold text-white">FAQs</h2>
           <ul className="list-disc pl-6 space-y-2 text-gray-400">
             <li>Can you turn JSON into YAML? Yes, easily and reliably.</li>

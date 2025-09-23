@@ -4,11 +4,16 @@ import { useState } from "react";
 import { ClipboardCopy, ClipboardCheck } from "lucide-react";
 import Link from "next/link";
 import { FileJson } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { ArrowLeft } from "lucide-react"; // icon for the button
+
 
 export default function JsonFormatterPage() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [copiedOutput, setCopiedOutput] = useState(false);
+  const router = useRouter();
+
 
   const handleFormat = (text?: string) => {
     const data = text ?? input;
@@ -21,7 +26,18 @@ export default function JsonFormatterPage() {
   };
 
   return (
-    <div className="bg-[#181023] min-h-screen flex flex-col items-center p-6 text-black">
+ <div className="bg-[#181023] min-h-screen p-6 text-black">
+      {/* Back Button */}
+<div className="mb-6 flex justify-start">
+  <button
+    onClick={() => router.back()}
+    className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+  >
+    <ArrowLeft className="h-5 w-5" />
+    Back
+  </button>
+</div>
+
       <div className="container mx-auto max-w-4xl flex flex-col items-center space-y-10">
         {/* Header */}
         <header className="text-center">

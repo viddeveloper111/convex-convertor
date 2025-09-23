@@ -1,11 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Database } from "lucide-react";
+import { Database,ArrowLeft  } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function SQLMinifier() {
   const [sqlInput, setSqlInput] = useState("");
   const [minifiedSQL, setMinifiedSQL] = useState("");
+    const router = useRouter();
+  
 
   // Automatically minify SQL on input change
   useEffect(() => {
@@ -19,6 +22,16 @@ export default function SQLMinifier() {
 
   return (
     <div className="min-h-screen p-6 bg-[#181023]">
+         {/* Back Button */}
+        <div className="w-full flex justify-start mb-4">
+          <button
+            onClick={() => router.back()}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+          >
+            <ArrowLeft className="h-5 w-5" />
+            Back
+          </button>
+        </div>
       <div className="max-w-5xl mx-auto space-y-12">
         {/* Hero */}
         <section className="bg-[#181023]  py-12">

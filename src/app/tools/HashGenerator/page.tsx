@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ClipboardCopy, ClipboardCheck } from "lucide-react";
-import { Fingerprint } from "lucide-react";
+import { ClipboardCopy, ClipboardCheck, Fingerprint, ArrowLeft } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function HashGeneratorPage() {
   const [text, setText] = useState("");
@@ -10,6 +10,7 @@ export default function HashGeneratorPage() {
   const [encoding, setEncoding] = useState<"hex" | "base64">("hex");
   const [hash, setHash] = useState("");
   const [copied, setCopied] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     if (!text) {
@@ -28,7 +29,6 @@ export default function HashGeneratorPage() {
           .map((b) => b.toString(16).padStart(2, "0"))
           .join("");
       } else {
-        // base64 encoding
         result = btoa(String.fromCharCode(...new Uint8Array(hashBuffer)));
       }
 
@@ -46,12 +46,26 @@ export default function HashGeneratorPage() {
 
   return (
     <div className="bg-[#181023] min-h-screen flex flex-col items-center p-6">
+        {/* Back Button */}
+        <div className="w-full flex justify-start mb-4">
+          <button
+            onClick={() => router.back()}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+          >
+            <ArrowLeft className="h-5 w-5" />
+            Back
+          </button>
+        </div>
       <div className="container mx-auto max-w-4xl flex flex-col items-center space-y-10">
+
+      
 
         {/* Header */}
         <header className="text-center space-y-2">
-        <h1 className="flex items-center gap-2 text-4xl font-bold text-[#9B4DF4]">
-  <Fingerprint className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" /> Hash Generator</h1>
+          <h1 className="flex items-center gap-2 text-4xl font-bold text-[#9B4DF4]">
+            <Fingerprint className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
+            Hash Generator
+          </h1>
           <p className="text-gray-400">Fast, free, open source, ad-free tools.</p>
         </header>
 
@@ -71,7 +85,7 @@ export default function HashGeneratorPage() {
 
           {/* Algorithm & Encoding */}
           <div className="flex gap-4 flex-wrap">
-            <div className="flex flex-col w-full ">
+            <div className="flex flex-col w-full">
               <label className="text-gray-800 dark:text-gray-200 font-semibold mb-1">Algorithm</label>
               <select
                 value={algorithm}
@@ -121,11 +135,13 @@ export default function HashGeneratorPage() {
         <div className="grid md:grid-cols-2 gap-6 w-full">
           <div className="bg-black p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
             <p className="text-white">Our tools are free and open source. Feel free to contribute.</p>
-            <button className="px-4 py-2 border text-black hover:text-white  border-gray-600 rounded-xl bg-[#9B4DF4] hover:bg-[#53129c] transition">Contribute</button>
+            <button className="px-4 py-2 border text-black hover:text-white border-gray-600 rounded-xl bg-[#9B4DF4] hover:bg-[#53129c] transition">
+              Contribute
+            </button>
           </div>
           <div className="bg-black p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
             <p className="text-white">Auto-capture all the info engineers need to debug!</p>
-            <button className="px-4 py-2 border border-gray-600 text-black rounded-xl bg-[#9B4DF4] hover:bg-[#55149f] transition hover:text-white ">Try Jam</button>
+            <button className="px-4 py-2 border border-gray-600 text-black rounded-xl bg-[#9B4DF4] hover:bg-[#55149f] transition hover:text-white">Try Jam</button>
           </div>
         </div>
 

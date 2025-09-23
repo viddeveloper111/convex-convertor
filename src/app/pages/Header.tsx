@@ -99,7 +99,7 @@ export default function Header({ onSearch, onCommandPalette }: HeaderProps) {
             </Button>
             <div
               className="
-                absolute left-1/2 mt-2 w-[60rem] rounded-xl bg-gray-900 border border-purple-400 shadow-lg
+                absolute left-1/2 w-[60rem] rounded-xl bg-gray-900 border border-purple-400 shadow-lg
                 -translate-x-1/2 opacity-0 scale-95 pointer-events-none
                 group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto
                 transition ease-out duration-150
@@ -182,7 +182,7 @@ export default function Header({ onSearch, onCommandPalette }: HeaderProps) {
 
               <div
                 className="
-                  absolute left-1/2 mt-2 w-[30rem] rounded-xl bg-gray-900 border border-purple-400 shadow-lg
+                  absolute left-1/2  w-[24rem] rounded-xl bg-gray-900 border border-purple-400 shadow-lg
                   -translate-x-1/2
                   opacity-0 scale-95 pointer-events-none
                   group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto
@@ -229,7 +229,7 @@ export default function Header({ onSearch, onCommandPalette }: HeaderProps) {
 
       <div
         className="
-          absolute left-1/2 mt-2 w-[28rem] rounded-xl bg-gray-900 border border-purple-400 shadow-lg
+          absolute left-1/2 w-[22rem] rounded-xl bg-gray-900 border border-purple-400 shadow-lg
           -translate-x-1/2
           opacity-0 scale-95 pointer-events-none
           group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto
@@ -267,7 +267,7 @@ export default function Header({ onSearch, onCommandPalette }: HeaderProps) {
 
       <div
         className="
-          absolute left-1/2 mt-2 w-[32rem] rounded-xl bg-gray-900 border border-purple-400 shadow-lg
+          absolute left-1/2  w-[28rem] rounded-xl bg-gray-900 border border-purple-400 shadow-lg
           -translate-x-1/2
           opacity-0 scale-95 pointer-events-none
           group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto

@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, ChangeEvent } from "react";
-import { Move } from "lucide-react";
+import { Move, ArrowLeft } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function ImageResizerPage() {
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -10,6 +11,7 @@ export default function ImageResizerPage() {
   const [preserveAspect, setPreserveAspect] = useState(true);
   const [format, setFormat] = useState("png");
   const [resizedUrl, setResizedUrl] = useState<string>("");
+  const router = useRouter();
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -48,17 +50,30 @@ export default function ImageResizerPage() {
 
   return (
     <div className="bg-[#181023] min-h-screen flex flex-col items-center p-6">
+        <div className="w-full flex justify-start mb-4">
+          <button
+            onClick={() => router.back()}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+          >
+            <ArrowLeft className="h-5 w-5" />
+            Back
+          </button>
+        </div>
+
       <div className="container mx-auto max-w-4xl flex flex-col items-center space-y-10">
 
+        {/* Back Button */}
+      
         {/* Header */}
         <header className="text-center space-y-2">
           <h1 className="flex items-center gap-2 text-4xl font-bold text-[#9B4DF4]">
-  <Move className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" /> Image Resizer</h1>
+            <Move className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" /> Image Resizer
+          </h1>
           <p className="text-gray-400">Fast, free, open source, ad-free tools.</p>
         </header>
 
         {/* Upload & Resize Section */}
-        <div className=" bg-black shadow-lg rounded-xl p-6 w-full flex flex-col gap-6">
+        <div className="bg-black shadow-lg rounded-xl p-6 w-full flex flex-col gap-6">
 
           {/* File Input */}
           <label className="w-full h-40 border-2 border-dashed border-gray-600 rounded-lg flex flex-col justify-center items-center text-gray-400 cursor-pointer hover:border-[#9B4DF4] transition">
@@ -115,24 +130,24 @@ export default function ImageResizerPage() {
             </div>
           </div>
 
-          {/* Resize Button */}
-          <div>
-          <button
-            onClick={handleResize}
-            className="px-6 py-2  bg-[#9B4DF4] text-white rounded-lg hover:bg-[#5916a5] transition"
-          >
-            Resize
-          </button>
-          <a
-                href={resizedUrl}
-                download={`resized-image.${format}`}
-                className="px-6 py-2  bg-[#9B4DF4] text-white rounded-lg hover:bg-[#501396] transition float-end"
-              >
-                Download Image
-              </a>
-              </div>
+          {/* Resize & Download */}
+          <div className="flex gap-4">
+            <button
+              onClick={handleResize}
+              className="px-6 py-2 bg-[#9B4DF4] text-white rounded-lg hover:bg-[#5916a5] transition"
+            >
+              Resize
+            </button>
+            <a
+              href={resizedUrl}
+              download={`resized-image.${format}`}
+              className="px-6 py-2 bg-[#9B4DF4] text-white rounded-lg hover:bg-[#501396] transition"
+            >
+              Download Image
+            </a>
+          </div>
 
-          {/* Resized Image Preview & Download */}
+          {/* Resized Image Preview */}
           {resizedUrl && (
             <div className="flex flex-col gap-3 items-center">
               <img
@@ -140,7 +155,6 @@ export default function ImageResizerPage() {
                 alt="Resized Preview"
                 className="border border-gray-700 rounded-lg max-w-full"
               />
-              
               <div className="text-gray-300 text-sm">
                 {format.toUpperCase()} - {width || "auto"} x {height || "auto"}
               </div>
@@ -152,17 +166,13 @@ export default function ImageResizerPage() {
         {/* Info / Contribution */}
         <div className="grid md:grid-cols-2 gap-6 w-full">
           <div className="bg-black p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
-            <p className="text-white">
-              Our tools are free and open source. Feel free to contribute.
-            </p>
+            <p className="text-white">Our tools are free and open source. Feel free to contribute.</p>
             <button className="px-4 py-2 border text-black border-gray-600 rounded-xl bg-[#9B4DF4] hover:bg-[#5b1ca3] hover:text-white transition">
               Contribute
             </button>
           </div>
           <div className="bg-black p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
-            <p className="text-white">
-              Auto-capture all the info engineers need to debug!
-            </p>
+            <p className="text-white">Auto-capture all the info engineers need to debug!</p>
             <button className="px-4 py-2 border border-gray-600 text-black rounded-xl bg-[#9B4DF4] hover:bg-[#5d249e] hover:text-white transition">
               Try Jam
             </button>

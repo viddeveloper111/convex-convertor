@@ -1,16 +1,16 @@
 "use client";
-
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Header from "./pages/Header";
 import { useSearch } from "./pages/SearchContext";
 import { ToolCard } from "./pages/ToolCard";
+import { ArrowLeft } from "lucide-react"; //
 import {
   FileJson,
   FileCode,
   FileType,
   FileSpreadsheet,
-  Link,
+  Link ,
   Clock,
   Braces,
   Hash,
@@ -27,6 +27,7 @@ import {
   Layers,
   Settings,
   FileText,
+  X,
 } from "lucide-react";
 
 /* ---------------------------------- Icon Map ---------------------------------- */
@@ -64,6 +65,11 @@ export default function JamToolsPage() {
   const { query } = useSearch();
   const [filter, setFilter] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
+    const handleSelect = (type: string) => {
+    setFilter(type);
+    setDropdownOpen(false);
+  };
+
 
   /* ------------------------------- Tools Array ------------------------------- */
   const tools = [
@@ -97,7 +103,11 @@ export default function JamToolsPage() {
     { name: "HTML to PDF", type: "Convert", desc: "Export HTML pages to PDF.", path: "/tools/HtmlToPdfConverter" },
     { name: "Excel to PDF", type: "XLSX", desc: "Transform Excel sheets to PDF.", path: "/tools/ExcelToPdfConverter" },
     { name: "PowerPoint to PDF", type: "PPT", desc: "Slides to PDF (one slide per page).", path: "/tools/PptToPdfConverter" },
-  ];
+    { name: "Heic to JPG",type: "Image", desc: "Convert HEIC images to JPG format.", path: "/tools/HeicToJpgConverter"},
+    { name: "Markdown to HTML", type: "Document",desc: "Convert Markdown files to HTML pages.",path: "/tools/MarkdownToHtmlConverter"},
+    { name: "Mp4 to Mp3",type: "Media", desc: "Extract audio from MP4 video as MP3 format.",path: "/tools/Mp4ToMp3Converter" },
+    { name: "PDF Lock/Unlock",type: "PDF",desc: "Lock or unlock PDF files with a password.", path: "/tools/PDFlockunlock" }
+    ];
 
   const toolTypes = Array.from(new Set(tools.map(t => t.type)));
 
@@ -108,10 +118,10 @@ export default function JamToolsPage() {
     return matchesSearch && matchesFilter;
   });
 
-  const handleSelect = (type: string) => {
-    setFilter(type);
-    setDropdownOpen(false);
-  };
+ const handleClick = () => {
+  router.push("/resume");
+};
+
 
   /* ------------------------------ UI Rendering ------------------------------- */
   return (
@@ -121,16 +131,17 @@ export default function JamToolsPage() {
       <main className="container mx-auto px-4 py-12">
         {/* Sticky top controls */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 sticky top-0 z-40 bg-gradient-to-b from-gray-900/80 to-gray-900/40 backdrop-blur-md p-4 rounded-xl">
+        <div>
           {/* Resume Button */}
-         <a
-  href="/resume/classic"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="inline-flex items-center gap-2 border border-purple-600 text-white px-5 py-2 rounded-lg shadow-md hover:shadow-purple-500/40 hover:scale-105 transition"
->
-  <FileText className="w-5 h-5" />
-  Build My Resume
-</a>
+          {/* <button
+      onClick={handleClick}
+      className="inline-flex items-center gap-2 border border-purple-600 text-white px-5 py-2 rounded-lg shadow-md hover:shadow-purple-500/40 hover:scale-105 transition"
+    >
+      <FileText className="w-5 h-5" />
+      Build My Resume
+    </button> */}
+
+    </div>
 
 
           {/* Dropdown */}

@@ -4,11 +4,16 @@ import { useState, useEffect } from "react";
 import { ClipboardCopy, ClipboardCheck } from "lucide-react";
 import yaml from "js-yaml";
 import { FileJson } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { ArrowLeft } from "lucide-react"; // icon for the button
+
 
 export default function YamlToJsonPage() {
   const [yamlInput, setYamlInput] = useState("");
   const [jsonOutput, setJsonOutput] = useState("[]");
   const [copied, setCopied] = useState(false);
+  const router = useRouter();
+
 
   // YAML → JSON conversion
 // YAML → JSON conversion
@@ -39,6 +44,17 @@ useEffect(() => {
 
   return (
     <div className="bg-[#181023]">
+      {/* Back Button */}
+<div className="p-6 flex justify-start">
+  <button
+    onClick={() => router.back()}
+    className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+  >
+    <ArrowLeft className="h-5 w-5" />
+    Back
+  </button>
+</div>
+
     <div className="mx-auto p-6 space-y-12 max-w-5xl">
       {/* Header */}
     <header className="text-center space-y-2">

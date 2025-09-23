@@ -3,6 +3,9 @@
 import React, { useMemo, useRef, useState,ChangeEvent,KeyboardEvent  } from "react";
 import Link from "next/link";
 import { FileJson } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { ArrowLeft } from "lucide-react"; // icon for the button
+
 
 export default function CsvToJsonPage() {
   const [csv, setCsv] = useState(
@@ -13,6 +16,8 @@ export default function CsvToJsonPage() {
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
      const [value, setValue] = useState<string>("");
+     const router = useRouter();
+
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
@@ -79,6 +84,17 @@ export default function CsvToJsonPage() {
 
   return (
     <div className="min-h-screen  px-4 py-8 bg-[#181023]">
+
+      {/* Back Button */}
+<div className="mb-6 flex justify-start">
+  <button
+    onClick={() => router.back()}
+    className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+  >
+    <ArrowLeft className="h-5 w-5" />
+    Back
+  </button>
+</div>
       <div className="max-w-6xl mx-auto container">
         <header className="mb-6 flex items-center justify-between gap-4">
          <div className="flex flex-col items-center text-center">

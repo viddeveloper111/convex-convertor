@@ -20,6 +20,7 @@ export default function Layout({ children }: LayoutProps) {
         className="flex flex-col min-h-screen bg-black text-white bg-gradient-to-br"
         suppressHydrationWarning
       >
+   
         {/* ✅ Wrap everything with SearchProvider */}
         <SearchProvider>
           <Header

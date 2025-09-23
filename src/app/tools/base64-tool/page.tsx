@@ -4,12 +4,15 @@ import { useState } from "react";
 import { ClipboardCopy, ClipboardCheck } from "lucide-react";
 import Link from "next/link";
 import { Binary } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
 
 export default function Base64ToolPage() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [copiedInput, setCopiedInput] = useState(false);
   const [copiedOutput, setCopiedOutput] = useState(false);
+    const router = useRouter();
 
 const copyToClipboard = (text: string, type: "input" | "output") => {
     if (!text) return;
@@ -51,11 +54,22 @@ const copyToClipboard = (text: string, type: "input" | "output") => {
   return (
     <div className="bg-[#181023] text-black min-h-screen flex flex-col items-center p-6">
       {/* Header */}
-      <header className="text-center mb-10">
-    <h1 className="flex items-center gap-2 text-4xl font-bold mb-3 text-[#9B4DF4]">
-  <Binary className="w-10 h-10 bg-[#9B4DF4] text-white rounded-2xl p-2" />
-  Base64 Encoder & Decoder
-</h1>
+ <div className="pt-6 flex justify-start">
+  <button
+    onClick={() => router.back()}
+    className="flex items-center gap-2 px-4 py-2 rounded bg-[#9B4DF4] text-white hover:bg-purple-700"
+  >
+    <ArrowLeft className="h-5 w-5" />
+    Back
+  </button>
+</div>
+
+      {/* Header Section */}
+      <header className="text-center mt-8 mb-10">
+        <h1 className="flex justify-center items-center gap-2 text-4xl font-bold mb-3 text-[#9B4DF4]">
+          <Binary className="w-10 h-10 bg-[#9B4DF4] text-white rounded-2xl p-2" />
+          Base64 Encoder & Decoder
+        </h1>
         <p className="text-gray-400">Free, Open Source & Ad-free</p>
       </header>
 

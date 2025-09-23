@@ -3,11 +3,16 @@
 import { useState } from "react";
 import { ClipboardCopy, ClipboardCheck } from "lucide-react";
 import { Link } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { ArrowLeft } from "lucide-react"; // icon for the button
+
 
 export default function UrlEncoderDecoderPage() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [copied, setCopied] = useState(false);
+  const router = useRouter();
+
 
   const handleChange = (text: string) => {
     setInput(text);
@@ -41,6 +46,17 @@ export default function UrlEncoderDecoderPage() {
   };
   return (
     <div className="bg-[#181023]">
+      {/* Back Button */}
+<div className="p-6 flex justify-start">
+  <button
+    onClick={() => router.back()}
+    className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+  >
+    <ArrowLeft className="h-5 w-5" />
+    Back
+  </button>
+</div>
+
     <div className=" mx-auto max-w-5xl p-6 space-y-12  text-center">
       {/* Header */}
       <header className="space-y-2">

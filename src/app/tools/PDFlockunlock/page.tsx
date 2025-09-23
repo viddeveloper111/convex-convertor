@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { Lock, Unlock, Upload, Download, Shield, FileText } from "lucide-react";
+import { Lock, Unlock, Upload, Download, Shield, FileText,ArrowLeft  } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function PdfLockUnlock() {
   const [activeTab, setActiveTab] = useState<"lock" | "unlock">("lock");
@@ -11,6 +12,7 @@ export default function PdfLockUnlock() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState("");
   const [fileName, setFileName] = useState("");
+    const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -86,10 +88,20 @@ export default function PdfLockUnlock() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 to-purple-800 p-6 flex flex-col items-center">
+    <div className="min-h-screen bg-black p-6 flex flex-col items-center">
+         {/* Back Button */}
+        <div className="w-full flex justify-start mb-4">
+          <button
+            onClick={() => router.back()}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+          >
+            <ArrowLeft className="h-5 w-5" />
+            Back
+          </button>
+        </div>
       <div className="w-full max-w-2xl bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-2xl mt-10">
-        <h1 className="text-3xl md:text-4xl font-bold text-white text-center flex items-center justify-center gap-3 mb-2">
-          <Shield className="w-10 h-10 p-2 bg-blue-500 text-white rounded-3xl" />
+        <h1 className="text-3xl md:text-4xl font-bold text-[#9B4DF4] text-center flex items-center justify-center gap-3 mb-2">
+          <Shield className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
           PDF Lock & Unlock Tool
         </h1>
         <p className="text-gray-300 text-center mb-8">
@@ -101,7 +113,7 @@ export default function PdfLockUnlock() {
           <button
             className={`flex items-center justify-center gap-2 py-3 px-6 rounded-lg flex-1 transition-colors ${
               activeTab === "lock"
-                ? "bg-blue-500 text-white"
+                ? "bg-[#9B4DF4] text-white"
                 : "text-gray-300 hover:text-white"
             }`}
             onClick={() => setActiveTab("lock")}
@@ -112,7 +124,7 @@ export default function PdfLockUnlock() {
           <button
             className={`flex items-center justify-center gap-2 py-3 px-6 rounded-lg flex-1 transition-colors ${
               activeTab === "unlock"
-                ? "bg-green-500 text-white"
+                ? "bg-[#9B4DF4] text-white"
                 : "text-gray-300 hover:text-white"
             }`}
             onClick={() => setActiveTab("unlock")}
@@ -124,7 +136,7 @@ export default function PdfLockUnlock() {
 
         {/* File Upload Area */}
         <div
-          className="border-2 border-dashed border-blue-400 rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer hover:bg-white/5 transition-all duration-300 mb-6"
+          className="border-2 border-dashed border-purple-700 rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer hover:bg-white/5 transition-all duration-300 mb-6"
           onClick={() => fileInputRef.current?.click()}
           onDragOver={handleDragOver}
           onDrop={handleDrop}
@@ -155,7 +167,7 @@ export default function PdfLockUnlock() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-700"
               placeholder="Enter password"
             />
           </div>
@@ -169,7 +181,7 @@ export default function PdfLockUnlock() {
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-700"
                 placeholder="Confirm password"
               />
             </div>
@@ -181,7 +193,7 @@ export default function PdfLockUnlock() {
           <button
             onClick={handleProcessPdf}
             disabled={isProcessing || !file}
-            className="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            className="flex-1 bg-[#9B4DF4] hover:bg-purple-800 text-white py-3 px-6 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
             {isProcessing ? (
               <>
@@ -236,7 +248,7 @@ export default function PdfLockUnlock() {
         )}
 
         {/* Information Section */}
-        <div className="mt-8 p-4 bg-blue-500/20 border border-blue-500 rounded-xl">
+        <div className="mt-8 p-4 bg-purple-700/20 border border-purple-700 rounded-xl">
           <h3 className="text-white font-semibold mb-2 flex items-center gap-2">
             <FileText className="w-5 h-5" />
             How it works:

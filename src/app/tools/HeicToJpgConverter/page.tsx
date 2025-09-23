@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { Image } from "lucide-react";
+import { Image,ArrowLeft  } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function HeicToJpgConverter() {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -9,6 +10,7 @@ export default function HeicToJpgConverter() {
   const [preview, setPreview] = useState<string>("");
   const [downloadUrl, setDownloadUrl] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+    const router = useRouter();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -56,6 +58,16 @@ export default function HeicToJpgConverter() {
 
   return (
     <div className="min-h-screen bg-[#181023] p-6 flex flex-col items-center text-white">
+         {/* Back Button */}
+        <div className="w-full flex justify-start mb-4">
+          <button
+            onClick={() => router.back()}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+          >
+            <ArrowLeft className="h-5 w-5" />
+            Back
+          </button>
+        </div>
       <h1 className="text-3xl md:text-4xl font-bold text-[#9B4DF4] flex items-center gap-2">
         <Image className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
         HEIC → JPG Converter

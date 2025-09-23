@@ -1,14 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { ClipboardCopy, ClipboardCheck, RefreshCw } from "lucide-react";
+import { ClipboardCopy, ClipboardCheck, RefreshCw ,ArrowLeft} from "lucide-react";
 import { Type } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function LoremIpsumPage() {
   const [paragraphs, setParagraphs] = useState(1);
   const [asHtml, setAsHtml] = useState(false);
   const [output, setOutput] = useState("");
   const [copied, setCopied] = useState(false);
+    const router = useRouter();
 
   const generateLoremIpsum = () => {
     const lorem = [
@@ -39,6 +41,16 @@ export default function LoremIpsumPage() {
 
   return (
     <div className="bg-[#181023] min-h-screen flex flex-col items-center p-6">
+         {/* Back Button */}
+        <div className="w-full flex justify-start mb-4">
+          <button
+            onClick={() => router.back()}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+          >
+            <ArrowLeft className="h-5 w-5" />
+            Back
+          </button>
+        </div>
       <div className="container mx-auto max-w-4xl flex flex-col items-center space-y-10">
         {/* Header */}
         <header className="text-center space-y-2">

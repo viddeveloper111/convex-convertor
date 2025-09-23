@@ -1,14 +1,15 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ClipboardCopy, ClipboardCheck } from "lucide-react";
-import { Braces } from "lucide-react";
+import { ClipboardCopy, ClipboardCheck, Braces, ArrowLeft } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function RegexTesterPage() {
   const [pattern, setPattern] = useState("");
   const [testString, setTestString] = useState("");
   const [result, setResult] = useState("Please fill out all required fields");
   const [copied, setCopied] = useState(false);
+  const router = useRouter();
 
   // Auto-test regex whenever pattern or testString changes
   useEffect(() => {
@@ -45,22 +46,35 @@ export default function RegexTesterPage() {
 
   return (
     <div className="bg-[#181023] min-h-screen flex flex-col items-center p-6">
+          <div className="w-full flex justify-start">
+          <button
+            onClick={() => router.back()}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+          >
+            <ArrowLeft className="h-5 w-5" />
+            Back
+          </button>
+        </div>
       <div className="container mx-auto max-w-4xl flex flex-col items-center space-y-10">
-        
+
+        {/* Back Button */}
+    
+
         {/* Header */}
         <header className="text-center space-y-2">
-         <h1 className="flex items-center gap-2 text-4xl font-bold text-[#9B4DF4]">
-  <Braces className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
-  Regex Tester
-</h1>
+          <h1 className="flex items-center gap-2 text-4xl font-bold text-[#9B4DF4]">
+            <Braces className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
+            Regex Tester
+          </h1>
           <p className="text-gray-400">Fast, free, open source, ad-free tools.</p>
         </header>
 
         {/* Regex Tool */}
         <div className="text-white bg-black shadow-lg rounded-xl p-6 w-full flex flex-col gap-6">
+
           {/* Pattern Input */}
           <div>
-            <h2 className="text-gray-800 dark:text-gray-200 font-semibold mb-2">Regex Pattern</h2>
+            <h2 className="text-gray-800 font-semibold mb-2">Regex Pattern</h2>
             <input
               type="text"
               value={pattern}
@@ -72,7 +86,7 @@ export default function RegexTesterPage() {
 
           {/* Test String Input */}
           <div>
-            <h2 className="text-gray-800 dark:text-gray-200 font-semibold mb-2">Test String</h2>
+            <h2 className="text-gray-800 font-semibold mb-2">Test String</h2>
             <textarea
               value={testString}
               onChange={(e) => setTestString(e.target.value)}
@@ -84,7 +98,7 @@ export default function RegexTesterPage() {
 
           {/* Result */}
           <div className="relative">
-            <h2 className="text-gray-800 dark:text-gray-200 font-semibold mb-2">Result</h2>
+            <h2 className="text-gray-800 font-semibold mb-2">Result</h2>
             <pre className="w-full p-3 rounded-lg border border-gray-700 bg-black text-[#9B4DF4] font-mono text-sm overflow-x-auto">
               {result}
             </pre>
@@ -96,10 +110,25 @@ export default function RegexTesterPage() {
               {copied ? <ClipboardCheck size={20} /> : <ClipboardCopy size={20} />}
             </button>
           </div>
+
         </div>
 
         {/* Info / Contribution */}
-       <div className="grid md:grid-cols-2 gap-6 w-full"> <div className="bg-black p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition"> <p className="text-white"> Our tools are free and open source. Feel free to contribute. </p> <button className="px-4 py-2 border text-black border-gray-600 rounded-xl bg-[#9B4DF4] hover:bg-[#480e8a] transition hover:text-white "> Contribute </button> </div> <div className="bg-black p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition"> <p className="text-white"> Auto-capture all the info engineers need to debug! </p> <button className="px-4 py-2 border border-gray-600 text-black rounded-xl bg-[#9B4DF4] hover:bg-[#490d8d] transition hover:text-white"> Try Jam </button> </div> </div>
+        <div className="grid md:grid-cols-2 gap-6 w-full">
+          <div className="bg-black p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
+            <p className="text-white"> Our tools are free and open source. Feel free to contribute. </p>
+            <button className="px-4 py-2 border text-black border-gray-600 rounded-xl bg-[#9B4DF4] hover:bg-[#480e8a] transition hover:text-white">
+              Contribute
+            </button>
+          </div>
+          <div className="bg-black p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
+            <p className="text-white"> Auto-capture all the info engineers need to debug! </p>
+            <button className="px-4 py-2 border border-gray-600 text-black rounded-xl bg-[#9B4DF4] hover:bg-[#490d8d] transition hover:text-white">
+              Try Jam
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
   );

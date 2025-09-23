@@ -1,26 +1,27 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ClipboardCopy, ClipboardCheck } from "lucide-react";
-import { Palette } from "lucide-react";
+import { ClipboardCopy, ClipboardCheck, Palette, ArrowLeft } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function HexToRgbPage() {
   const [hex, setHex] = useState("#000000");
   const [rgb, setRgb] = useState({ r: 0, g: 0, b: 0 });
   const [copied, setCopied] = useState(false);
+  const router = useRouter();
 
-  // Convert HEX → RGB
+  // HEX → RGB
   useEffect(() => {
     const hexValue = hex.replace("#", "");
     if (/^[0-9A-Fa-f]{6}$/.test(hexValue)) {
-      const r = parseInt(hexValue.substring(0, 2), 16);
-      const g = parseInt(hexValue.substring(2, 4), 16);
-      const b = parseInt(hexValue.substring(4, 6), 16);
+      const r = parseInt(hexValue.slice(0, 2), 16);
+      const g = parseInt(hexValue.slice(2, 4), 16);
+      const b = parseInt(hexValue.slice(4, 6), 16);
       setRgb({ r, g, b });
     }
   }, [hex]);
 
-  // Convert RGB → HEX whenever RGB changes
+  // RGB → HEX
   useEffect(() => {
     const rHex = rgb.r.toString(16).padStart(2, "0");
     const gHex = rgb.g.toString(16).padStart(2, "0");
@@ -40,16 +41,28 @@ export default function HexToRgbPage() {
   };
 
   return (
-    <div className="bg-[#181023] min-h-screen p-6 flex justify-center">
-      <div className="w-full max-w-5xl space-y-12">
-        {/* Header */}
-        <header className="text-center space-y-2">
-    <h1 className="flex items-center justify-center gap-2 text-3xl font-bold text-[#9B4DF4]">
-      <Palette className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
-      HEX to RGB Converter
-    </h1>
-          <p className="text-gray-400">Free, Open Source & Ad-free</p>
-        </header>
+    <div className="bg-[#181023] min-h-screen p-6">
+      {/* ✅ Back button pinned left */}
+      <div className="mb-6 flex justify-start">
+        <button
+          onClick={() => router.back()}
+          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+        >
+          <ArrowLeft className="h-5 w-5" />
+          Back
+        </button>
+      </div>
+
+       <div className="flex justify-center"> 
+    <div className="w-full max-w-5xl space-y-12">
+          {/* Header */}
+          <header className="text-center space-y-2">
+            <h1 className="flex items-center justify-center gap-2 text-3xl font-bold text-[#9B4DF4]">
+              <Palette className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
+              HEX to RGB Converter
+            </h1>
+            <p className="text-gray-400">Free, Open Source & Ad-free</p>
+          </header>
 
         {/* Converter */}
         <section className="bg-black rounded-2xl shadow-lg p-6 space-y-6">
@@ -158,6 +171,7 @@ export default function HexToRgbPage() {
   </p>
 </div>
 
+      </div>
       </div>
     </div>
   );

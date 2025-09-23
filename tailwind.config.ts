@@ -1,5 +1,5 @@
 import animate from "tailwindcss-animate";
-
+const { fontFamily } = require('tailwindcss/defaultTheme')
 
 export default {
   darkMode: ["class"],
@@ -8,6 +8,8 @@ export default {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
+
+    './pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
     container: {
@@ -16,6 +18,17 @@ export default {
       screens: {
         "2xl": "1400px",
       },
+       extend: {
+      colors: {
+        neutralBg: '#FAFAF9',   // soft ivory
+        neutralText: '#3E3E3E', // muted charcoal
+        accent: '#D3CFE2',      // optional dusty lavender
+      },
+      fontFamily: {
+        heading: ['"Playfair Display"', ...fontFamily.serif],
+        body: ['Inter', ...fontFamily.sans],
+      },
+    },
     },
     extend: {
       fontFamily: {
