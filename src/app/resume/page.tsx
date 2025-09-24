@@ -5,10 +5,19 @@ import TemplateCard from "./TemplateCard";
 import ResumePreview from "./ResumePreview";
 import ResumePDF from "./ResumePDF";
 
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  education: string;
+  experience: string;
+  skills: string;
+  address: string;
+}
+
 const templates = [
   { id: "celestial", name: "Celestial", preview: "/templates/celestial.webp" },
   { id: "modern", name: "Modern", preview: "/templates/modern.webp" },
-  // { id: "elegant", name: "Elegant", preview: "/templates/elegant.webp" },
   { id: "classic", name: "Classic", preview: "/templates/classic.webp" },
   { id: "minimal", name: "Minimal", preview: "/templates/minimal.webp" },
   { id: "creative", name: "Creative", preview: "/templates/creative.webp" },
@@ -17,8 +26,8 @@ const templates = [
 
 export default function ResumeBuilder() {
   const [step, setStep] = useState<1 | 2 | 3>(1);
-  const [template, setTemplate] = useState("celestial");
-  const [form, setForm] = useState({
+  const [template, setTemplate] = useState(templates[0].id);
+  const [form, setForm] = useState<FormData>({
     name: "",
     email: "",
     phone: "",
@@ -27,6 +36,8 @@ export default function ResumeBuilder() {
     skills: "",
     address: "",
   });
+
+  const selectedTemplate = templates.find((t) => t.id === template);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 font-sans text-gray-800">
@@ -65,24 +76,27 @@ export default function ResumeBuilder() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {["name", "email", "phone"].map((field) => (
+            {(["name", "email", "phone"] as const).map((field) => (
               <input
                 key={field}
                 className="border rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-purple-500"
                 placeholder={field[0].toUpperCase() + field.slice(1)}
-                value={(form as any)[field]}
+                value={form[field]}
                 onChange={(e) => setForm({ ...form, [field]: e.target.value })}
               />
             ))}
-            {["education", "experience", "skills", "address"].map((field) => (
-              <textarea
-                key={field}
-                className="border rounded-md p-3 w-full md:col-span-2 h-24 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                placeholder={field[0].toUpperCase() + field.slice(1)}
-                value={(form as any)[field]}
-                onChange={(e) => setForm({ ...form, [field]: e.target.value })}
-              />
-            ))}
+
+            {(["education", "experience", "skills", "address"] as const).map(
+              (field) => (
+                <textarea
+                  key={field}
+                  className="border rounded-md p-3 w-full md:col-span-2 h-24 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  placeholder={field[0].toUpperCase() + field.slice(1)}
+                  value={form[field]}
+                  onChange={(e) => setForm({ ...form, [field]: e.target.value })}
+                />
+              )
+            )}
           </div>
 
           <div className="flex justify-between pt-4">
@@ -103,7 +117,7 @@ export default function ResumeBuilder() {
       )}
 
       {/* STEP 3: Preview & Download */}
-      {step === 3 && (
+      {step === 3 && selectedTemplate && (
         <div className="space-y-10">
           <div className="text-center">
             <h2 className="text-4xl font-extrabold text-purple-700">
@@ -114,8 +128,11 @@ export default function ResumeBuilder() {
             </p>
           </div>
 
-          <div className="bg-white shadow-xl rounded-2xl p-6 border border-gray-200">
-            <ResumePreview template={template} data={form} />
+          <div
+            id="resume-content"
+            className="bg-white shadow-xl rounded-2xl p-6 border border-gray-200"
+          >
+            {/* <ResumePreview template={selectedTemplate.id} data={form} /> */}
           </div>
 
           <div className="flex flex-wrap justify-center gap-4">

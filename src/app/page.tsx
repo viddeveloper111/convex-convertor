@@ -133,13 +133,13 @@ export default function JamToolsPage() {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 sticky top-0 z-40 bg-gradient-to-b from-gray-900/80 to-gray-900/40 backdrop-blur-md p-4 rounded-xl">
         <div>
           {/* Resume Button */}
-          {/* <button
+          <button
       onClick={handleClick}
       className="inline-flex items-center gap-2 border border-purple-600 text-white px-5 py-2 rounded-lg shadow-md hover:shadow-purple-500/40 hover:scale-105 transition"
     >
       <FileText className="w-5 h-5" />
       Build My Resume
-    </button> */}
+    </button>
 
     </div>
 
