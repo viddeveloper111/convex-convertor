@@ -113,22 +113,6 @@ export default function RegexTesterPage() {
 
         </div>
 
-        {/* Info / Contribution */}
-        <div className="grid md:grid-cols-2 gap-6 w-full">
-          <div className="bg-black p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
-            <p className="text-white"> Our tools are free and open source. Feel free to contribute. </p>
-            <button className="px-4 py-2 border text-black border-gray-600 rounded-xl bg-[#9B4DF4] hover:bg-[#480e8a] transition hover:text-white">
-              Contribute
-            </button>
-          </div>
-          <div className="bg-black p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
-            <p className="text-white"> Auto-capture all the info engineers need to debug! </p>
-            <button className="px-4 py-2 border border-gray-600 text-black rounded-xl bg-[#9B4DF4] hover:bg-[#490d8d] transition hover:text-white">
-              Try Jam
-            </button>
-          </div>
-        </div>
-
       </div>
     </div>
   );

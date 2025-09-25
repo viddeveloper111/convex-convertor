@@ -187,27 +187,6 @@ export default function CsvToJsonPage() {
             </pre>
           </div>
         </div>
-     
-       <div className="grid md:grid-cols-2 gap-6 mt-8">
-  {/* Card 1: Contribute */}
-  <div className="bg-black p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
-    <p className="text-white ">
-      Our tools are free and open source. Feel free to contribute.
-    </p>
-    <button className="px-4 py-2 border border-gray-600 rounded-xl bg-[#9B4DF4] hover:bg-[#181023] transition hover:text-white">
-      Contribute
-    </button>
-  </div>
-
-  {/* Card 2: Try Jam */}
-  <div className="bg-black p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
-    <p className="text-white">
-      Auto-capture all the info engineers need to debug!
-    </p>
- <button className="px-4 py-2 border border-gray-600 rounded-xl bg-[#9B4DF4] hover:bg-[#181023] transition hover:text-white">      Try Jam
-    </button>
-  </div>
-</div>
 <div className="mt-8 text-gray-300 space-y-2 text-sm ">
   <p>You can convert CSV files into JSON online with this free tool. If you work with APIs, data, or web apps, you can use Jam's CSV to JSON converter to turn tabular data into JSON format.</p>
 </div>

@@ -60,7 +60,7 @@ const iconMap: Record<string, React.ElementType> = {
   PPT: FileType,
 };
 
-export default function JamToolsPage() {
+export default function  ConvexConverterToolsPage() {
   const router = useRouter();
   const { query } = useSearch();
   const [filter, setFilter] = useState("");
