@@ -106,7 +106,12 @@ export default function JamToolsPage() {
     { name: "Heic to JPG",type: "Image", desc: "Convert HEIC images to JPG format.", path: "/tools/HeicToJpgConverter"},
     { name: "Markdown to HTML", type: "Document",desc: "Convert Markdown files to HTML pages.",path: "/tools/MarkdownToHtmlConverter"},
     { name: "Mp4 to Mp3",type: "Media", desc: "Extract audio from MP4 video as MP3 format.",path: "/tools/Mp4ToMp3Converter" },
-    { name: "PDF Lock/Unlock",type: "PDF",desc: "Lock or unlock PDF files with a password.", path: "/tools/PDFlockunlock" }
+    { name: "PDF Lock/Unlock",type: "PDF",desc: "Lock or unlock PDF files with a password.", path: "/tools/PDFlockunlock" },
+    { name: "PDF to JPG",type: "PDF",desc: "Convert the first page of a PDF to a high-quality JPG instantly.", path: "/tools/PdfToJpgConverter" },
+     { name: "PDF to Word",type: "PDF",desc: "This component now correctly converts a PDF’s text into a downloadable Word (.docx) file.", path: "/tools/PdfToWordConverter" },
+     { name: "PDF to PowerPoint",type: "PDF",desc: "Converting PDF → PowerPoint (.pptx) is trickier than PPTX → PDF,", path: "/tools/PdfToPptConverter" },
+      { name: "PDF to Excel",type: "PDF",desc: "This gives you a full PDF → Excel converter", path: "/tools/PdfToExcelConverter" },
+      { name: "PDF to HTML",type: "PDF",desc: " Extract text from PDF and save it as a simple HTML file.", path: "/tools/PdfToHtmlConverter" },
     ];
 
   const toolTypes = Array.from(new Set(tools.map(t => t.type)));

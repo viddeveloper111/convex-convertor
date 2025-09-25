@@ -57,7 +57,7 @@ function Dropdown({
     if ((e.target as HTMLElement).closest("a")) {
       setHideOnClick(true);
       // Reset after short delay so hover can open it again
-      setTimeout(() => setHideOnClick(false), 10000);
+      setTimeout(() => setHideOnClick(false),3000);
     }
   };
 
@@ -218,11 +218,11 @@ export default function Header({ onSearch, onCommandPalette }: HeaderProps) {
       <div className="mb-2 text-xs font-semibold text-purple-300 uppercase tracking-wide">
         Convert From PDF
       </div>
-      <LinkItem href="/tools/pdf-to-jpg" icon={ImageIcon} label="PDF → JPG" />
-      <LinkItem href="/tools/pdf-to-word" icon={FileText} label="PDF → Word" />
-      <LinkItem href="/tools/pdf-to-powerpoint" icon={Presentation} label="PDF → PowerPoint" />
-      <LinkItem href="/tools/pdf-to-excel" icon={Table} label="PDF → Excel" />
-      <LinkItem href="/tools/pdf-to-pdfa" icon={FileCheck} label="PDF → PDF/A" />
+      <LinkItem href="/tools/PdfToJpgConverter" icon={ImageIcon} label="PDF → JPG" />
+      <LinkItem href="/tools/PdfToWordConverter" icon={FileText} label="PDF → Word" />
+      <LinkItem href="/tools/PdfToPptConverter" icon={Presentation} label="PDF → PowerPoint" />
+      <LinkItem href="/tools/PdfToExcelConverter" icon={Table} label="PDF → Excel" />
+      <LinkItem href="/tools/PdfToHtmlConverter" icon={FileCheck} label="PDF → HTML" />
     </div>
   </div>
 </Dropdown>
