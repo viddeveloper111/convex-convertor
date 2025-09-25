@@ -12,13 +12,13 @@ export default function PdfToExcelConverter() {
   const [excelUrl, setExcelUrl] = useState<string | null>(null);
   const router = useRouter();
 
-  // useEffect(() => {
-  //   // Only import pdfjs-dist in browser
-  //   import("pdfjs-dist/legacy/build/pdf").then((mod) => {
-  //     mod.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${mod.version}/pdf.worker.min.js`;
-  //     setPdfjsLib(mod);
-  //   });
-  // }, []);
+  useEffect(() => {
+    // Only import pdfjs-dist in browser
+    import("pdfjs-dist").then((mod) => {
+      mod.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${mod.version}/pdf.worker.min.js`;
+      setPdfjsLib(mod);
+    });
+  }, []);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!pdfjsLib) return;
