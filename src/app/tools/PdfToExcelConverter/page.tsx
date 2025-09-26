@@ -61,12 +61,12 @@ export default function PdfToExcelConverter() {
   if (!pdfjsLib) return <p>Loading PDF.js...</p>;
 
   return (
-    <div className="min-h-screen bg-[#181023] p-6 flex flex-col items-center">
+    <div className="min-h-screen bg-white p-6 flex flex-col items-center">
       {/* Back Button */}
       <div className="w-full flex justify-start mb-4">
         <button
           onClick={() => router.back()}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+          className="flex items-center gap-2 px-4 py-2 rounded-xl  bg-gray-200 text-black hover:bg-gray-500  transition"
         >
           <ArrowLeft className="h-5 w-5" />
           Back
@@ -110,14 +110,14 @@ export default function PdfToExcelConverter() {
       )}
 
       {/* Short Description */}
-      <p className="text-gray-400 mt-5">
+      <p className="text-black mt-5">
         Extract all text from a PDF and export each page’s content into an Excel sheet.
       </p>
 
       {/* How to Use */}
       <div className="mt-6 max-w-3xl w-full p-6">
-        <h2 className="text-xl font-semibold text-white mb-2">How to Use</h2>
-        <ul className="list-disc list-inside text-gray-400 space-y-1">
+        <h2 className="text-xl font-semibold text-black mb-2">How to Use</h2>
+        <ul className="list-disc list-inside text-black space-y-1">
           <li>Upload a PDF file.</li>
           <li>The app extracts text from every page.</li>
           <li>Download the generated Excel file.</li>

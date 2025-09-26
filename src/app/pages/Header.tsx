@@ -32,9 +32,9 @@ function LinkItem({
   return (
     <Link
       href={href}
-      className="flex items-center gap-2 px-2 py-2 text-sm text-white hover:bg-purple-600 rounded"
+      className="flex items-center gap-2 px-2 py-2 text-sm text-black hover:bg-white rounded"
     >
-      <Icon className="h-4 w-4 text-purple-400 shrink-0" />
+      <Icon className="h-4 w-4 text-purple-700 shrink-0" />
       {label}
     </Link>
   );
@@ -57,7 +57,7 @@ function Dropdown({
     if ((e.target as HTMLElement).closest("a")) {
       setHideOnClick(true);
       // Reset after short delay so hover can open it again
-      setTimeout(() => setHideOnClick(false),3000);
+      setTimeout(() => setHideOnClick(false));
     }
   };
 
@@ -65,13 +65,13 @@ function Dropdown({
     <div className="relative group focus-within:z-50" onClick={handleClickInside}>
       <Button
         variant="ghost"
-        className="flex items-center gap-1 text-white hover:bg-purple-600 focus:outline-none"
+        className="flex items-center gap-1 text-black hover:bg-gray-200 focus:outline-none"
       >
         {label}
         <ChevronDown />
       </Button>
       <div
-        className={`absolute left-1/2 ${width} -translate-x-1/2 rounded-xl bg-gray-900 border border-purple-400 shadow-lg
+        className={`absolute left-1/2 ${width} -translate-x-1/2 rounded-xl bg-gray-200 border border-gray-300  shadow-lg
           ${!hideOnClick ? "opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:scale-100" : "opacity-0 scale-95 pointer-events-none"}
           transition ease-out duration-150`}
       >
@@ -82,38 +82,31 @@ function Dropdown({
 }
 
 
-interface HeaderProps {
-  onSearch: (q: string) => void;
-  onCommandPalette: () => void;
-}
 
-export default function Header({ onSearch, onCommandPalette }: HeaderProps) {
-  const { query, setQuery } = useSearch();
+export default function Header( ) {
+ 
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
-    onSearch(e.target.value);
-  };
+ 
 
   // Cmd/Ctrl + K
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
-        onCommandPalette();
+       
       }
     };
     document.addEventListener("keydown", handler);
     return () => document.removeEventListener("keydown", handler);
-  }, [onCommandPalette]);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-purple-700 backdrop-blur-md shadow-lg border-b border-purple-600">
+    <header className="sticky top-0 z-50 w-full bg-gray-200 text-black backdrop-blur-md shadow-lg  ">
       <div className="mx-auto flex h-16 items-center justify-between px-4 lg:px-6">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <div className="h-12 w-12 rounded-lg bg-gray-900 flex items-center justify-center shadow-lg border border-gray-700">
+          <div className="h-12 w-12 rounded-lg bg-black flex items-center justify-center shadow-lg border border-gray-700">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 64 64"
@@ -125,19 +118,19 @@ export default function Header({ onSearch, onCommandPalette }: HeaderProps) {
               <path d="M52 8l-4 4 2 2-8 8 4 4 8-8 2 2 4-4-8-8z" />
             </svg>
           </div>
-          <Link href="/" className="text-lg md:text-xl font-extrabold text-white tracking-wide">
+          <Link href="/" className="text-lg md:text-xl font-extrabold text-black tracking-wide">
             Convex Converter
           </Link>
         </div>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-4">
-         <Dropdown label="ALL CONVERT TOOLS" width="w-[45rem]">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 divide-x divide-purple-500/40">
+         <Dropdown label="ALL CONVERT TOOLS" width="w-[57rem]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 divide-x divide-gray-400/40">
           
           {/* Column 1 */}
           <div className="p-4">
-            <div className="mb-2 text-xs font-semibold text-purple-300 uppercase tracking-wide">
+            <div className="mb-2 text-xs font-bold text-black  uppercase tracking-wide">
               Convert Tools
             </div>
             <LinkItem href="/tools/JpgToPdfConverter" icon={ImageIcon} label="JPG → PDF" />
@@ -154,7 +147,7 @@ export default function Header({ onSearch, onCommandPalette }: HeaderProps) {
 
           {/* Column 2 */}
           <div className="p-4">
-            <div className="mb-2 text-xs font-semibold text-purple-300 uppercase tracking-wide">
+            <div className="mb-2 text-xs font-bold text-black uppercase tracking-wide">
               Convert Tools
             </div>
             <LinkItem href="/tools/csv-to-json" icon={FileText} label="CSV → JSON" />
@@ -171,7 +164,7 @@ export default function Header({ onSearch, onCommandPalette }: HeaderProps) {
 
           {/* Column 3 */}
           <div className="p-4">
-            <div className="mb-2 text-xs font-semibold text-purple-300 uppercase tracking-wide">
+            <div className="mb-2 text-xs font-bold text-black uppercase tracking-wide">
               Convert Tools
             </div>
             <LinkItem href="/tools/JsonToCsv" icon={FileText} label="JSON → CSV" />
@@ -188,7 +181,7 @@ export default function Header({ onSearch, onCommandPalette }: HeaderProps) {
 
           {/* Column 4 */}
           <div className="p-4">
-            <div className="mb-2 text-xs font-semibold text-purple-300 uppercase tracking-wide">
+            <div className="mb-2 text-xs font-bold text-black uppercase tracking-wide">
               Convert Tools
             </div>
             <LinkItem href="/tools/UuidGenerator" icon={FileText} label="UUID GENERATOR" />
@@ -200,10 +193,10 @@ export default function Header({ onSearch, onCommandPalette }: HeaderProps) {
         </div>
       </Dropdown>
          <Dropdown label="CONVERT PDF" width="w-[24rem]">
-  <div className="grid grid-cols-2 divide-x divide-purple-500/40">
+  <div className="grid grid-cols-2 divide-x divide-gray-400/40 ">
     {/* Left column – Convert TO PDF */}
     <div className="p-4">
-      <div className="mb-2 text-xs font-semibold text-purple-300 uppercase tracking-wide">
+      <div className="mb-2 text-xs font-bold text-black uppercase tracking-wide">
         Convert To PDF
       </div>
       <LinkItem href="/tools/JpgToPdfConverter" icon={ImageIcon} label="JPG → PDF" />
@@ -215,7 +208,7 @@ export default function Header({ onSearch, onCommandPalette }: HeaderProps) {
 
     {/* Right column – Convert FROM PDF */}
     <div className="p-4">
-      <div className="mb-2 text-xs font-semibold text-purple-300 uppercase tracking-wide">
+      <div className="mb-2 text-xs font-bold text-black  uppercase tracking-wide">
         Convert From PDF
       </div>
       <LinkItem href="/tools/PdfToJpgConverter" icon={ImageIcon} label="PDF → JPG" />
@@ -228,10 +221,10 @@ export default function Header({ onSearch, onCommandPalette }: HeaderProps) {
 </Dropdown>
 
          <Dropdown label="IMAGE TOOLS" width="w-[22rem]">
-  <div className="grid grid-cols-2 divide-x divide-purple-500/40">
+  <div className="grid grid-cols-2 divide-x divide-gray-400/40">
     {/* Left column – Optimize / Convert */}
     <div className="p-4">
-      <div className="mb-2 text-xs font-semibold text-purple-300 uppercase tracking-wide">
+      <div className="mb-2 text-xs font-bold text-black  uppercase tracking-wide">
         Optimize / Convert
       </div>
       <LinkItem href="/tools/ImageResizer" icon={ImageIcon} label="Image Resizer" />
@@ -241,7 +234,7 @@ export default function Header({ onSearch, onCommandPalette }: HeaderProps) {
 
     {/* Right column – Misc */}
     <div className="p-4">
-      <div className="mb-2 text-xs font-semibold text-purple-300 uppercase tracking-wide">
+      <div className="mb-2 text-xs font-bold text-black uppercase tracking-wide">
         Misc
       </div>
       <LinkItem href="/tools/SvgViewer" icon={ImageIcon} label="SVG Viewer" />
@@ -250,10 +243,10 @@ export default function Header({ onSearch, onCommandPalette }: HeaderProps) {
 </Dropdown>
 
          <Dropdown label="DEVELOPER TOOLS" width="w-[28rem]">
-  <div className="grid grid-cols-2 divide-x divide-purple-500/40">
+  <div className="grid grid-cols-2  divide-x divide-gray-400/40">
     {/* Left column – Format / Encode */}
     <div className="p-4">
-      <div className="mb-2 text-xs font-semibold text-purple-300 uppercase tracking-wide">
+      <div className="mb-2 text-xs font-bold text-black  uppercase tracking-wide">
         Format / Encode
       </div>
       <LinkItem href="/tools/JsonFormatterCard" icon={FileText} label="JSON Formatter" />
@@ -265,7 +258,7 @@ export default function Header({ onSearch, onCommandPalette }: HeaderProps) {
 
     {/* Right column – Utilities */}
     <div className="p-4">
-      <div className="mb-2 text-xs font-semibold text-purple-300 uppercase tracking-wide">
+      <div className="mb-2 text-xs font-bold text-black  uppercase tracking-wide">
         Utilities
       </div>
       <LinkItem href="/tools/RegexTester" icon={Code} label="Regex Tester" />
@@ -276,25 +269,24 @@ export default function Header({ onSearch, onCommandPalette }: HeaderProps) {
   </div>
 </Dropdown>
 
+
+
         </nav>
+        <div>
+ {/* Build Resume Button */}
+  <Link href="/">
+    <button className="inline-flex items-center gap-2 border border-gray-400 text-black px-4 py-2 rounded-lg shadow-md hover:shadow-gray-500/40 hover:scale-105 transition" >
+    <FileText className=" h-5" />
+    Build My Resume
+  </button>
 
-        {/* Desktop Search */}
-        <div className="hidden md:block relative">
-          <Search className="absolute left-3 top-1/2 h-4 -translate-y-1/2 text-purple-400" />
-          <Input
-            id="global-search"
-            placeholder="Search tools..."
-            value={query}
-            onChange={handleSearchChange}
-            className=" pl-10 pr-4 bg-gray-900 border-2 border-purple-400 rounded-md text-sm text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-400 transition"
-          />
-        </div>
-
+  </Link>
+  </div>
         {/* Mobile Menu Button */}
         <button
           aria-label="Toggle menu"
           onClick={() => setMobileOpen((o) => !o)}
-          className="md:hidden p-2 text-white"
+          className="md:hidden p-2 text-black"
         >
           {mobileOpen ? <X /> : <Menu />}
         </button>
@@ -302,23 +294,8 @@ export default function Header({ onSearch, onCommandPalette }: HeaderProps) {
 
       {/* Mobile Drawer */}
       {mobileOpen && (
-        <div className="md:hidden max-h-[calc(100vh-4rem)] overflow-y-auto bg-gray-900 border-t border-purple-600 px-4 py-4 space-y-4">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-purple-400" />
-            <Input
-              placeholder="Search tools..."
-              value={query}
-              onChange={handleSearchChange}
-              className="w-full pl-10 pr-4 bg-gray-800 border-2 border-purple-400 rounded-md text-sm text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-400"
-            />
-          </div>
-          <Link href="/tools/JpgToPdfConverter" className="block text-white hover:text-purple-300">
-            JPG → PDF
-          </Link>
-          <Link href="/tools/pdf-to-jpg" className="block text-white hover:text-purple-300">
-            PDF → JPG
-          </Link>
-          {/* add more quick links if needed */}
+        <div className="md:hidden max-h-[calc(100vh-4rem)] overflow-y-auto px-4 py-4 space-y-4">
+
         </div>
       )}
     </header>

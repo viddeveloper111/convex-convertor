@@ -22,7 +22,7 @@ import { useRouter } from "next/navigation";
 export default function MarkdownToHtmlConverter() {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [markdown, setMarkdown] = useState<string>(
-    `# Hello from Jam Tools\n\nWrite Markdown here and see HTML preview — **bold**, _italic_, \`code\`, lists, links, images, etc.\n\n- Item 1\n- Item 2\n\n\`\`\`js\nconsole.log("hello");\n\`\`\`\n`
+    `# Hello from  Convex Converter Tools\n\nWrite Markdown here and see HTML preview — **bold**, _italic_, \`code\`, lists, links, images, etc.\n\n- Item 1\n- Item 2\n\n\`\`\`js\nconsole.log("hello");\n\`\`\`\n`
   );
   const [html, setHtml] = useState<string>("");
   const [downloadUrl, setDownloadUrl] = useState<string>("");
@@ -144,12 +144,12 @@ ${html}
   };
 
   return (
-    <div className="min-h-screen bg-[#0b1020] p-6 flex flex-col items-center text-white">
+    <div className="min-h-screen bg-white p-6 flex flex-col items-center text-white">
          {/* Back Button */}
         <div className="w-full flex justify-start mb-4">
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-200 text-black hover:bg-gray-500 transition"
           >
             <ArrowLeft className="h-5 w-5" />
             Back
@@ -212,7 +212,7 @@ ${html}
           <textarea
             value={markdown}
             onChange={(e) => setMarkdown(e.target.value)}
-            className="w-full h-[420px] p-4 rounded-xl bg-[#07102a] border border-gray-700 text-white resize-none"
+            className="w-full h-[420px] p-4 rounded-xl bg-gray-200 border  text-black resize-none"
             placeholder="Write Markdown here..."
           />
 
@@ -253,7 +253,7 @@ ${html}
             </button>
           </div>
 
-          <p className="text-gray-400 mt-3 text-sm max-w-xl">
+          <p className="text-black mt-3 text-sm max-w-xl">
             Tip: You can include images with Markdown `![](/path/to/image.jpg)` — if images use relative paths they won't be embedded in the downloaded HTML.
           </p>
         </div>
@@ -262,7 +262,7 @@ ${html}
         <div>
           <div className="w-full h-[80px] flex items-center justify-between mb-3">
             <h2 className="text-lg font-semibold">Preview (sanitized)</h2>
-            <span className="text-sm text-gray-400">Rendered HTML</span>
+            <span className="text-sm text-black">Rendered HTML</span>
           </div>
 
           <div className="bg-white text-black rounded-xl p-4 h-[560px] overflow-auto border border-gray-200">

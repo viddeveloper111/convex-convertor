@@ -33,7 +33,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-gradient-to-r from-purple-600 to-purple-600 text-white px-6 py-10">
+    <footer className="bg-gray-200 text-black px-6 py-10 border-t border-gray-200">
       {/* Tools Section */}
       <div className="mb-8">
         <h3 className="font-bold text-lg mb-4">Tools</h3>
@@ -44,7 +44,7 @@ export default function Footer() {
             <Link
               key={idx}
               href={tool.path}
-              className="hover:text-gray-200 transition-colors font-medium text-sm"
+              className="hover:text-purple-600 transition-colors font-medium text-sm"
             >
               {tool.name}
             </Link>
@@ -53,7 +53,7 @@ export default function Footer() {
       </div>
 
       {/* Footer Bottom */}
-      <div className="border-t border-purple-400 pt-4 text-center text-sm">
+      <div className="border-t border-gray-200 pt-4 text-center text-sm">
         &copy; {year} Convex Converter. All rights reserved.
       </div>
     </footer>

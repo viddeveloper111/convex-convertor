@@ -39,58 +39,57 @@ export default function HashGeneratorPage() {
   }, [text, algorithm, encoding]);
 
   const handleCopy = () => {
+    if (!hash) return;
     navigator.clipboard.writeText(hash);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
   return (
-    <div className="bg-[#181023] min-h-screen flex flex-col items-center p-6">
-        {/* Back Button */}
-        <div className="w-full flex justify-start mb-4">
-          <button
-            onClick={() => router.back()}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
-          >
-            <ArrowLeft className="h-5 w-5" />
-            Back
-          </button>
-        </div>
+    <div className="bg-white min-h-screen flex flex-col items-center p-6">
+      {/* Back Button */}
+      <div className="w-full flex justify-start mb-6">
+        <button
+          onClick={() => router.back()}
+          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-200 text-black hover:bg-gray-500 transition"
+        >
+          <ArrowLeft className="h-5 w-5" />
+          Back
+        </button>
+      </div>
+
       <div className="container mx-auto max-w-4xl flex flex-col items-center space-y-10">
-
-      
-
         {/* Header */}
         <header className="text-center space-y-2">
           <h1 className="flex items-center gap-2 text-4xl font-bold text-[#9B4DF4]">
             <Fingerprint className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
             Hash Generator
           </h1>
-          <p className="text-gray-400">Fast, free, open source, ad-free tools.</p>
+          <p className="text-gray-500">Fast, free, open-source, ad-free tool.</p>
         </header>
 
         {/* Tool Card */}
-        <div className="bg-black shadow-lg rounded-xl p-6 w-full flex flex-col gap-6">
+        <div className="bg-gray-200 shadow-lg rounded-2xl p-6 w-full flex flex-col gap-6">
           {/* Input Text */}
           <div>
-            <label className="text-gray-800 dark:text-gray-200 font-semibold mb-2">Text</label>
+            <label className="text-black font-semibold mb-2">Text</label>
             <textarea
               value={text}
               onChange={(e) => setText(e.target.value)}
               placeholder="Enter text to hash"
               rows={4}
-              className="w-full p-4 border rounded-lg bg-black text-white border-gray-700 focus:ring-2 focus:ring-[#9B4DF4] transition"
+              className="w-full p-4 border rounded-lg bg-white text-black border-gray-300 focus:ring-2 focus:ring-[#9B4DF4] transition"
             />
           </div>
 
           {/* Algorithm & Encoding */}
           <div className="flex gap-4 flex-wrap">
-            <div className="flex flex-col w-full">
-              <label className="text-gray-800 dark:text-gray-200 font-semibold mb-1">Algorithm</label>
+            <div className="flex flex-col w-full sm:w-1/2">
+              <label className="text-black font-semibold mb-1">Algorithm</label>
               <select
                 value={algorithm}
                 onChange={(e) => setAlgorithm(e.target.value as typeof algorithm)}
-                className="p-2 rounded-lg border bg-black text-white border-gray-700 focus:ring-2 focus:ring-[#9B4DF4] transition"
+                className="p-2 rounded-lg border bg-white text-black border-gray-300 focus:ring-2 focus:ring-[#9B4DF4] transition"
               >
                 <option value="SHA-256">SHA-256</option>
                 <option value="SHA-1">SHA-1</option>
@@ -98,12 +97,12 @@ export default function HashGeneratorPage() {
               </select>
             </div>
 
-            <div className="flex flex-col w-full">
-              <label className="text-gray-800 dark:text-gray-200 font-semibold mb-1">Output Encoding</label>
+            <div className="flex flex-col w-full sm:w-1/2">
+              <label className="text-black font-semibold mb-1">Output Encoding</label>
               <select
                 value={encoding}
                 onChange={(e) => setEncoding(e.target.value as typeof encoding)}
-                className="p-2 rounded-lg border bg-black text-white border-gray-700 focus:ring-2 focus:ring-[#9B4DF4] transition"
+                className="p-2 rounded-lg border bg-white text-black border-gray-300 focus:ring-2 focus:ring-[#9B4DF4] transition"
               >
                 <option value="hex">Hex</option>
                 <option value="base64">Base64</option>
@@ -113,24 +112,23 @@ export default function HashGeneratorPage() {
 
           {/* Output */}
           <div className="relative">
-            <label className="text-gray-800 dark:text-gray-200 font-semibold mb-1">Generated Hash</label>
+            <label className="text-black font-semibold mb-1">Generated Hash</label>
             <textarea
               value={hash}
               readOnly
               rows={4}
               placeholder="Generated hash will appear here"
-              className="w-full p-4 border rounded-lg bg-black text-[#9B4DF4] border-gray-700 focus:ring-2 focus:ring-[#9B4DF4] transition"
+              className="w-full p-4 border rounded-lg bg-white text-[#9B4DF4] border-gray-300 focus:ring-2 focus:ring-[#9B4DF4] transition"
             />
             <button
               onClick={handleCopy}
-              className="absolute top-10 right-2 p-1 rounded-full bg-[#9B4DF4] text-white hover:bg-[#5916a5] transition"
+              className="absolute top-10 right-2 p-1 rounded-full bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
               title="Copy Hash"
             >
               {copied ? <ClipboardCheck size={20} /> : <ClipboardCopy size={20} />}
             </button>
           </div>
         </div>
-
       </div>
     </div>
   );

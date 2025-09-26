@@ -41,12 +41,12 @@ export default function HexToRgbPage() {
   };
 
   return (
-    <div className="bg-[#181023] min-h-screen p-6">
+    <div className="bg-white min-h-screen p-6">
       {/* ✅ Back button pinned left */}
       <div className="mb-6 flex justify-start">
         <button
           onClick={() => router.back()}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-200 text-black hover:bg-gray-500 transition"
         >
           <ArrowLeft className="h-5 w-5" />
           Back
@@ -61,27 +61,27 @@ export default function HexToRgbPage() {
               <Palette className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
               HEX to RGB Converter
             </h1>
-            <p className="text-gray-400">Free, Open Source & Ad-free</p>
+            <p className="text-black">Free, Open Source & Ad-free</p>
           </header>
 
         {/* Converter */}
-        <section className="bg-black rounded-2xl shadow-lg p-6 space-y-6">
+        <section className="bg-gray-200 rounded-2xl shadow-lg p-6 space-y-6">
           <div className="grid gap-6">
             {/* HEX Input */}
             <div className="space-y-2">
-              <h2 className="font-semibold text-white">HEX Value</h2>
+              <h2 className="font-semibold text-black">HEX Value</h2>
               <input
                 type="text"
                 value={hex}
                 onChange={(e) => setHex(e.target.value)}
                 placeholder="#FF5733"
-                className="w-full p-3 rounded-lg border  bg-black text-white font-mono text-sm  outline-none focus:ring-2 focus:ring-[#9B4DF4]"
+                className="w-full p-3 rounded-lg border  bg-white text-black font-mono text-sm  outline-none "
               />
             </div>
 
             {/* RGB Inputs */}
             <div className="space-y-4">
-              <h2 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">RGB Output</h2>
+              <h2 className="font-semibold text-black mb-2">RGB Output</h2>
               <div className="flex gap-4 text-sm font-medium">
                 <div>
                   <label className="block text-red-400">Red:</label>
@@ -89,7 +89,7 @@ export default function HexToRgbPage() {
                     type="number"
                     value={rgb.r}
                     onChange={(e) => handleRgbChange("r", Number(e.target.value))}
-                    className="w-20 p-1 rounded border  bg-black text-white text-sm font-mono focus:ring-2 focus:ring-[#9B4DF4]"
+                    className="w-20 p-1 rounded border  bg-white text-black text-sm font-mono"
                     min={0}
                     max={255}
                   />
@@ -100,7 +100,7 @@ export default function HexToRgbPage() {
                     type="number"
                     value={rgb.g}
                     onChange={(e) => handleRgbChange("g", Number(e.target.value))}
-                    className="w-20 p-1 rounded border border-gray-400 bg-black text-white text-sm font-mono focus:ring-2 focus:ring-[#9B4DF4]"
+                    className="w-20 p-1 rounded border  bg-white text-black text-sm font-mono"
                     min={0}
                     max={255}
                   />
@@ -111,7 +111,7 @@ export default function HexToRgbPage() {
                     type="number"
                     value={rgb.b}
                     onChange={(e) => handleRgbChange("b", Number(e.target.value))}
-                    className="w-20 p-1 rounded border border-gray-400 bg-black text-white text-sm font-mono focus:ring-2 focus:ring-[#9B4DF4]"
+                    className="w-20 p-1 rounded border bg-white text-black text-sm font-mono "
                     min={0}
                     max={255}
                   />
@@ -123,7 +123,7 @@ export default function HexToRgbPage() {
             <div>
               <h2 className="font-semibold text-black mb-2">CSS / Platform Codes</h2>
               <div className="flex items-start gap-4">
-                <pre className="flex-1 max-h-40 overflow-y-auto p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-black text-[#9B4DF4] font-mono text-sm">
+                <pre className="flex-1 max-h-40 overflow-y-auto p-3 rounded-lg border bg-white text-[#9B4DF4] font-mono text-sm">
                   CSS: rgba({rgb.r}, {rgb.g}, {rgb.b}, 1){"\n"}
                   Obj C: [UIColor colorWithRed: {(rgb.r / 255).toFixed(2)} green: {(rgb.g / 255).toFixed(2)} blue: {(rgb.b / 255).toFixed(2)} alpha: 1.0]{"\n"}
                   Swift: UIColor(red: {(rgb.r / 255).toFixed(2)}, green: {(rgb.g / 255).toFixed(2)}, blue: {(rgb.b / 255).toFixed(2)}, alpha: 1.0){"\n"}
@@ -145,20 +145,20 @@ export default function HexToRgbPage() {
 
         {/* Intro */}
         <section className="p-6">
-          <p className="text-white">
+          <p className="text-black">
             Easily convert HEX CSS/HTML color codes to RGB for CSS, Objective-C, Swift, or Android.
           </p>
         </section>
 
         {/* How to Use */}
         <section className=" p-6">
-          <h2 className="text-2xl font-bold text-white mb-2">How to Use</h2>
-          <ol className="list-decimal pl-6 space-y-2 text-gray-400">
+          <h2 className="text-2xl font-bold text-black mb-2">How to Use</h2>
+          <ol className="list-decimal pl-6 space-y-2 text-black">
             <li>Enter your HEX color code.</li>
             <li>Copy the resulting RGB color code or platform-specific code.</li>
           </ol>
         </section>
-        <div className="p-4 rounded-lg text-gray-400">
+        <div className="p-4 rounded-lg text-black">
   <p>
     The CSS color converter works by taking your hexadecimal color code (HEX) 
     and converting it into the corresponding RGB values, which represent the 

@@ -41,12 +41,12 @@ export default function QueryParamsToJsonPage() {
   };
 
   return (
-    <div className="bg-[#181023] min-h-screen py-10">
+    <div className="bg-white min-h-screen py-10">
       {/* Back Button */}
 <div className="ps-6 flex justify-start">
   <button
     onClick={() => router.back()}
-    className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+    className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-200 text-black hover:bg-gray-500 transition"
   >
     <ArrowLeft className="h-5 w-5" />
     Back
@@ -66,11 +66,11 @@ export default function QueryParamsToJsonPage() {
         </header>
 
         {/* Converter Tool */}
-        <section className="bg-black rounded-2xl shadow p-6 space-y-6">
+        <section className="bg-gray-200 rounded-2xl shadow p-6 space-y-6">
           <div className="grid md:grid-cols-2 gap-6">
             {/* Input */}
             <div>
-              <h2 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">
+              <h2 className="font-semibold text-black mb-2">
                 URL Query Parameters
               </h2>
               <textarea
@@ -78,7 +78,7 @@ export default function QueryParamsToJsonPage() {
                 onChange={handleChange}
                 placeholder="Paste your query string here"
                 rows={12}
-                className="w-full p-3 rounded-lg border border-gray-300  bg-black text-white font-mono text-sm focus:ring-2 focus:ring-[#9B4DF4]"
+                className="w-full p-3 rounded-lg border   bg-white text-black font-mono text-sm "
               />
             </div>
 
@@ -87,7 +87,7 @@ export default function QueryParamsToJsonPage() {
               <h2 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">
                 JSON Output
               </h2>
-              <pre className="w-full h-[290px] p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#9B4DF4] bg-black text-[#9B4DF4] font-mono text-sm overflow-x-auto">
+              <pre className="w-full h-[290px] p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#9B4DF4] bg-white text-[#9B4DF4] font-mono text-sm overflow-x-auto">
                 {jsonOutput}
               </pre>
               <button
@@ -103,21 +103,21 @@ export default function QueryParamsToJsonPage() {
 
         {/* Intro */}
         <section className=" p-6 space-y-3">
-          <p className="text-gray-400">
+          <p className="text-black">
             Convert URL query parameters into JSON format quickly and easily.
             Ideal for web applications, APIs, or data manipulation.
           </p>
-          <p className="text-gray-400">
-            Made with 💜 by the developers building Jam.
+          <p className="text-black">
+            Made with 💜 by the developers building  Convex Converter.
           </p>
         </section>
 
         {/* How to Use */}
         <section className="p-6">
-          <h2 className="text-2xl font-bold text-white mb-2">
+          <h2 className="text-2xl font-bold text-black mb-2">
             How to Use the Query Params to JSON Converter
           </h2>
-          <ol className="list-decimal pl-6 space-y-2 text-gray-400">
+          <ol className="list-decimal pl-6 space-y-2 text-black">
             <li>Paste your URL query string into the input box.</li>
             <li>JSON output is generated instantly.</li>
             <li>Copy the JSON output for further use in your project.</li>
@@ -126,8 +126,8 @@ export default function QueryParamsToJsonPage() {
 
         {/* Use Cases */}
         <section className="p-6 space-y-3">
-          <h2 className="text-2xl font-bold text-white">Use Cases</h2>
-          <ul className="list-disc pl-6 text-gray-400 space-y-1">
+          <h2 className="text-2xl font-bold text-black">Use Cases</h2>
+          <ul className="list-disc pl-6 text-black space-y-1">
             <li><b>Data Integration:</b> Merge data from query strings easily.</li>
             <li><b>Data Processing:</b> Convert query data into JSON for processing in multiple languages.</li>
             <li><b>Data Sharing:</b> Structured JSON makes it easier to share and exchange data.</li>
@@ -136,8 +136,8 @@ export default function QueryParamsToJsonPage() {
 
         {/* FAQs */}
         <section className="p-6 space-y-2">
-          <h2 className="text-2xl font-bold text-white mb-2">FAQs</h2>
-          <ul className="list-disc pl-6 text-gray-400 space-y-1">
+          <h2 className="text-2xl font-bold text-black mb-2">FAQs</h2>
+          <ul className="list-disc pl-6 text-black space-y-1">
             <li><b>How to convert URL into JSON?</b> Paste your query string; output is JSON.</li>
             <li><b>Can JSON be passed as a query parameter?</b> Yes, encode JSON as a string.</li>
             <li><b>How to pass parameters in JSON format?</b> Encode object as a string in the query string.</li>

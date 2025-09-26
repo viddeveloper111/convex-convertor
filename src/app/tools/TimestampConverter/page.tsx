@@ -54,12 +54,12 @@ export default function TimestampConverterPage() {
   };
 
   return (
-    <div className="bg-[#181023] min-h-screen py-10">
+    <div className="bg-white min-h-screen py-10">
       {/* Back Button */}
 <div className="ps-6 flex justify-start">
   <button
     onClick={() => router.back()}
-    className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+    className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-200 text-black hover:bg-gray-500 transition"
   >
     <ArrowLeft className="h-5 w-5" />
     Back
@@ -73,15 +73,15 @@ export default function TimestampConverterPage() {
       <Clock className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
       Timestamp to Date Converter
     </h1>
-          <p className="text-gray-400">Free, Open Source & Ad-free</p>
+          <p className="text-gray-500">Free, Open Source & Ad-free</p>
         </header>
 
         {/* Converter Tool */}
-        <section className="bg-black rounded-2xl shadow p-6 space-y-6">
+        <section className="bg-gray-200 rounded-2xl shadow p-6 space-y-6">
           <div className="grid md:grid-cols-2 gap-6">
             {/* Input */}
             <div>
-              <h2 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">
+              <h2 className="font-semibold text-black mb-2">
                 Timestamp (milliseconds or seconds)
               </h2>
               <input
@@ -89,23 +89,23 @@ export default function TimestampConverterPage() {
                 value={timestamp}
                 onChange={handleChange}
                 placeholder="Paste here"
-                className="w-full p-3 rounded-lg border border-gray-300  bg-black text-white font-mono text-sm  focus:ring-2 focus:ring-[#9B4DF4]"
+                className="w-full p-3 rounded-lg border   bg-white text-black font-mono text-sm "
               />
             </div>
 
             {/* Output */}
             <div className="space-y-2">
-              <h2 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">
+              <h2 className="font-semibold text-black mb-2">
                 Date (UTC)
               </h2>
-              <pre className="w-full p-3 rounded-lg border border-gray-300  bg-black text-[#9B4DF4] font-mono text-sm overflow-x-auto  focus:ring-2 focus:ring-[#9B4DF4]">
+              <pre className="w-full p-3 rounded-lg border   bg-white text-black font-mono text-sm overflow-x-auto ">
                 {utcDate || "—"}
               </pre>
 
-              <h2 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">
+              <h2 className="font-semibold text-black mb-2">
                 Date (Local)
               </h2>
-              <pre className="w-full p-3 rounded-lg border border-gray-300  bg-black text-[#9B4DF4] font-mono text-sm overflow-x-auto  focus:ring-2 focus:ring-[#9B4DF4]">
+              <pre className="w-full p-3 rounded-lg border  bg-white text-[#9B4DF4] font-mono text-sm">
                 {localDate || "—"}
               </pre>
 
@@ -122,27 +122,27 @@ export default function TimestampConverterPage() {
 
         {/* Intro */}
         <section className="p-6 space-y-3">
-          <p className="text-gray-400">
+          <p className="text-black">
             Easily convert Unix timestamps into human-readable dates. Ideal for debugging logs, analyzing datasets, or working on web development projects.
           </p>
         </section>
 
         {/* Features */}
         <section className=" p-6 space-y-3">
-          <h2 className="text-2xl font-bold text-white">Features</h2>
-          <ul className="list-disc pl-6 space-y-1 text-white">
+          <h2 className="text-2xl font-bold text-black">Features</h2>
+          <ul className="list-disc pl-6 space-y-1 text-black">
             <li><b>Instant Conversion:</b> Converts timestamps automatically.</li>
             <li><b>Accurate Results:</b> Shows both UTC and local time.</li>
-            <li><b>Open Source:</b> Made with 💜 by Jam.dev.</li>
+            <li><b>Open Source:</b> Made with 💜 by  Convex Converter.dev.</li>
           </ul>
         </section>
 
         {/* How to Use */}
         <section className=" p-6">
-          <h2 className="text-2xl font-bold text-white mb-2">
-            How to Use Jam's Timestamp Converter
+          <h2 className="text-2xl font-bold text-black mb-2">
+            How to Use  Convex Converter's Timestamp Converter
           </h2>
-          <ol className="list-decimal pl-6 space-y-2 text-gray-400">
+          <ol className="list-decimal pl-6 space-y-2 text-black">
             <li>Input the timestamp in seconds or milliseconds.</li>
             <li>Your date is displayed instantly in UTC and local time.</li>
             <li>Copy the result for further use.</li>
@@ -151,18 +151,18 @@ export default function TimestampConverterPage() {
 
         {/* Explanation */}
         <section className=" p-6 space-y-3">
-          <h2 className="text-2xl font-bold text-white">What is a Unix Timestamp?</h2>
-          <p className="text-gray-400">
+          <h2 className="text-2xl font-bold text-black">What is a Unix Timestamp?</h2>
+          <p className="text-black">
             A Unix timestamp represents the number of seconds since January 1st, 1970 UTC. It’s widely used for logging, file systems, and computing.
           </p>
-          <p className="text-gray-400">
+          <p className="text-black">
             The Year 2038 problem affects 32-bit integers and can cause overflow; using 64-bit integers solves this limitation.
           </p>
         </section>
 
         {/* Code Snippet */}
         <section className=" p-6">
-          <h2 className="text-2xl font-bold text-white mb-2">Example Code (JS/TS)</h2>
+          <h2 className="text-2xl font-bold text-black mb-2">Example Code (JS/TS)</h2>
           <pre className=" text-green-600 p-4 rounded-lg overflow-x-auto text-sm font-mono">
 {`function convertTimestampToDate(timestamp: string) {
   let date: Date;
@@ -184,8 +184,8 @@ export default function TimestampConverterPage() {
 
         {/* FAQs */}
         <section className=" p-6 space-y-2">
-          <h2 className="text-2xl font-bold text-white mb-2">FAQs</h2>
-          <ul className="list-disc pl-6 text-gray-400 space-y-1">
+          <h2 className="text-2xl font-bold text-black mb-2">FAQs</h2>
+          <ul className="list-disc pl-6 text-black space-y-1">
             <li><b>Accuracy:</b> Both UTC and local times are precise.</li>
             <li><b>Suitable for all timestamps:</b> Works for seconds and milliseconds.</li>
             <li><b>Ease of use:</b> Instant conversion; copy-ready output.</li>

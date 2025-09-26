@@ -37,10 +37,10 @@ export default function ImageResizerPage() {
       }
 
       const canvas = document.createElement("canvas");
-      canvas.width = w;
-      canvas.height = h;
+      canvas.width = w as number;
+      canvas.height = h as number;
       const ctx = canvas.getContext("2d");
-      if (ctx) ctx.drawImage(img, 0, 0, w, h);
+      if (ctx) ctx.drawImage(img, 0, 0, w as number, h as number);
 
       setResizedUrl(canvas.toDataURL(`image/${format}`));
     };
@@ -49,66 +49,64 @@ export default function ImageResizerPage() {
   };
 
   return (
-    <div className="bg-[#181023] min-h-screen flex flex-col items-center p-6">
-        <div className="w-full flex justify-start mb-4">
-          <button
-            onClick={() => router.back()}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
-          >
-            <ArrowLeft className="h-5 w-5" />
-            Back
-          </button>
-        </div>
+    <div className="bg-white min-h-screen flex flex-col items-center p-6">
+      {/* Back Button */}
+      <div className="w-full flex justify-start mb-6">
+        <button
+          onClick={() => router.back()}
+          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-200 text-black hover:bg-gray-400 transition"
+        >
+          <ArrowLeft className="h-5 w-5" />
+          Back
+        </button>
+      </div>
 
       <div className="container mx-auto max-w-4xl flex flex-col items-center space-y-10">
-
-        {/* Back Button */}
-      
         {/* Header */}
         <header className="text-center space-y-2">
           <h1 className="flex items-center gap-2 text-4xl font-bold text-[#9B4DF4]">
-            <Move className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" /> Image Resizer
+            <Move className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
+            Image Resizer
           </h1>
-          <p className="text-gray-400">Fast, free, open source, ad-free tools.</p>
+          <p className="text-gray-500">Fast, free, open source, ad-free tool.</p>
         </header>
 
         {/* Upload & Resize Section */}
-        <div className="bg-black shadow-lg rounded-xl p-6 w-full flex flex-col gap-6">
-
+        <div className="bg-gray-100 shadow rounded-2xl p-6 w-full flex flex-col gap-6">
           {/* File Input */}
-          <label className="w-full h-40 border-2 border-dashed border-gray-600 rounded-lg flex flex-col justify-center items-center text-gray-400 cursor-pointer hover:border-[#9B4DF4] transition">
+          <label className="w-full h-40 border-2 border-dashed border-gray-400 rounded-lg flex flex-col justify-center items-center text-gray-600 cursor-pointer hover:border-[#9B4DF4] transition">
             {imageFile ? imageFile.name : "Drag and drop your image here, or click to select"}
             <input type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
-            <p className="text-sm mt-2">Max size 40MB</p>
+            <p className="text-sm mt-2">Max size 40 MB</p>
           </label>
 
-          {/* Width/Height */}
+          {/* Width / Height */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="text-gray-800 dark:text-gray-200 font-semibold">Width (px)</label>
+              <label className="text-black font-semibold">Width (px)</label>
               <input
                 type="number"
                 value={width}
                 onChange={(e) => setWidth(Number(e.target.value))}
                 placeholder="Enter width"
-                className="w-full p-3 border rounded-lg bg-black text-white border-gray-700 focus:ring-2 focus:ring-[#9B4DF4] transition"
+                className="w-full p-3 border rounded-lg bg-white text-black border-gray-300 focus:ring-2 focus:ring-[#9B4DF4]"
               />
             </div>
             <div>
-              <label className="text-gray-800 dark:text-gray-200 font-semibold">Height (px)</label>
+              <label className="text-black font-semibold">Height (px)</label>
               <input
                 type="number"
                 value={height}
                 onChange={(e) => setHeight(Number(e.target.value))}
                 placeholder="Enter height"
-                className="w-full p-3 border rounded-lg bg-black text-white border-gray-700 focus:ring-2 focus:ring-[#9B4DF4] transition"
+                className="w-full p-3 border rounded-lg bg-white text-black border-gray-300 focus:ring-2 focus:ring-[#9B4DF4]"
               />
             </div>
           </div>
 
           {/* Options */}
-          <div className="flex items-center gap-6">
-            <label className="flex items-center gap-2 text-gray-400">
+          <div className="flex flex-wrap items-center gap-6">
+            <label className="flex items-center gap-2 text-gray-700">
               <input
                 type="checkbox"
                 checked={preserveAspect}
@@ -117,11 +115,11 @@ export default function ImageResizerPage() {
               Preserve Aspect Ratio
             </label>
             <div>
-              <label className="text-gray-800 dark:text-gray-200 font-semibold">Format</label>
+              <label className="text-black font-semibold">Format</label>
               <select
                 value={format}
                 onChange={(e) => setFormat(e.target.value)}
-                className="p-2 rounded-lg bg-black text-white border border-gray-700 focus:ring-2 focus:ring-[#9B4DF4] transition"
+                className="p-2 rounded-lg bg-white text-black border border-gray-300 focus:ring-2 focus:ring-[#9B4DF4]"
               >
                 <option value="png">PNG</option>
                 <option value="jpeg">JPEG</option>
@@ -134,51 +132,35 @@ export default function ImageResizerPage() {
           <div className="flex gap-4">
             <button
               onClick={handleResize}
-              className="px-6 py-2 bg-[#9B4DF4] text-white rounded-lg hover:bg-[#5916a5] transition"
+              className="px-6 py-2 bg-[#9B4DF4] text-white rounded-lg hover:bg-[#6d28d9] transition"
             >
               Resize
             </button>
-            <a
-              href={resizedUrl}
-              download={`resized-image.${format}`}
-              className="px-6 py-2 bg-[#9B4DF4] text-white rounded-lg hover:bg-[#501396] transition"
-            >
-              Download Image
-            </a>
+            {resizedUrl && (
+              <a
+                href={resizedUrl}
+                download={`resized-image.${format}`}
+                className="px-6 py-2 bg-[#9B4DF4] text-white rounded-lg hover:bg-[#6d28d9] transition"
+              >
+                Download Image
+              </a>
+            )}
           </div>
 
-          {/* Resized Image Preview */}
+          {/* Preview */}
           {resizedUrl && (
             <div className="flex flex-col gap-3 items-center">
               <img
                 src={resizedUrl}
                 alt="Resized Preview"
-                className="border border-gray-700 rounded-lg max-w-full"
+                className="border border-gray-300 rounded-lg max-w-full"
               />
-              <div className="text-gray-300 text-sm">
-                {format.toUpperCase()} - {width || "auto"} x {height || "auto"}
+              <div className="text-gray-600 text-sm">
+                {format.toUpperCase()} – {width || "auto"} × {height || "auto"}
               </div>
             </div>
           )}
-
         </div>
-
-        {/* Info / Contribution */}
-        <div className="grid md:grid-cols-2 gap-6 w-full">
-          <div className="bg-black p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
-            <p className="text-white">Our tools are free and open source. Feel free to contribute.</p>
-            <button className="px-4 py-2 border text-black border-gray-600 rounded-xl bg-[#9B4DF4] hover:bg-[#5b1ca3] hover:text-white transition">
-              Contribute
-            </button>
-          </div>
-          <div className="bg-black p-6 rounded-2xl shadow-md border border-gray-800 flex flex-col items-start gap-3 hover:shadow-lg transition">
-            <p className="text-white">Auto-capture all the info engineers need to debug!</p>
-            <button className="px-4 py-2 border border-gray-600 text-black rounded-xl bg-[#9B4DF4] hover:bg-[#5d249e] hover:text-white transition">
-              Try Jam
-            </button>
-          </div>
-        </div>
-
       </div>
     </div>
   );

@@ -29,65 +29,65 @@ export default function CssInlinerPage() {
   };
 
   return (
-    <div className="bg-[#181023] min-h-screen flex flex-col items-center p-6">
-        {/* Back Button */}
-        <div className="w-full flex justify-start mb-4">
-          <button
-            onClick={() => router.back()}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
-          >
-            <ArrowLeft className="h-5 w-5" />
-            Back
-          </button>
-        </div>
+    <div className="bg-white min-h-screen flex flex-col items-center p-6">
+      {/* Back Button */}
+      <div className="w-full flex justify-start mb-6">
+        <button
+          onClick={() => router.back()}
+          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-200 text-black hover:bg-gray-500 transition"
+        >
+          <ArrowLeft className="h-5 w-5" />
+          Back
+        </button>
+      </div>
+
       <div className="container mx-auto max-w-4xl flex flex-col items-center space-y-10">
-
-      
-
         {/* Header */}
         <header className="text-center space-y-2">
           <h1 className="flex justify-center items-center gap-2 text-4xl font-bold text-[#9B4DF4]">
             <Mail className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
             CSS Inliner for Email
           </h1>
-          <p className="text-gray-400">Convert your CSS to inline styles quickly and easily.</p>
+          <p className="text-gray-400">
+            Convert your CSS to inline styles quickly and easily.
+          </p>
         </header>
 
         {/* Tool Inputs */}
-        <div className="bg-black shadow-lg rounded-xl p-6 w-full flex flex-col gap-6">
+        <div className="w-full space-y-6 border p-6 bg-gray-100 rounded-2xl shadow">
           {/* HTML Input */}
           <div>
-            <h2 className="text-gray-800 dark:text-gray-200 font-semibold mb-2">HTML</h2>
+            <h2 className="font-semibold text-black mb-2">HTML</h2>
             <textarea
               value={html}
               onChange={(e) => setHtml(e.target.value)}
               placeholder="Paste HTML here"
               rows={6}
-              className="w-full p-4 border rounded-lg bg-black text-white focus:ring-2 focus:ring-[#9B4DF4] transition"
+              className="w-full p-4 border rounded-lg bg-white text-black font-mono text-sm focus:ring-2 focus:ring-[#9B4DF4]"
             />
           </div>
 
           {/* CSS Input */}
           <div>
-            <h2 className="text-gray-800 dark:text-gray-200 font-semibold mb-2">CSS</h2>
+            <h2 className="font-semibold text-black mb-2">CSS</h2>
             <textarea
               value={css}
               onChange={(e) => setCss(e.target.value)}
               placeholder="Paste CSS here"
               rows={4}
-              className="w-full p-4 border rounded-lg bg-black text-white border-gray-700 focus:ring-2 focus:ring-[#9B4DF4] transition"
+              className="w-full p-4 border rounded-lg bg-white text-black font-mono text-sm focus:ring-2 focus:ring-[#9B4DF4]"
             />
           </div>
 
           {/* Output */}
           <div className="relative">
-            <h2 className="text-gray-800 dark:text-gray-200 font-semibold mb-2">Inlined HTML</h2>
+            <h2 className="font-semibold text-black mb-2">Inlined HTML</h2>
             <textarea
               value={inlinedHtml}
               readOnly
               rows={6}
               placeholder="Your inlined HTML will appear here"
-              className="w-full p-4 border rounded-lg bg-black text-[#9B4DF4] border-gray-700 focus:ring-2 focus:ring-[#9B4DF4] transition"
+              className="w-full p-4 border rounded-lg bg-white text-[#9B4DF4] font-mono text-sm focus:ring-2 focus:ring-[#9B4DF4]"
             />
             <button
               onClick={handleCopy}
@@ -98,8 +98,6 @@ export default function CssInlinerPage() {
             </button>
           </div>
         </div>
-
-
       </div>
     </div>
   );

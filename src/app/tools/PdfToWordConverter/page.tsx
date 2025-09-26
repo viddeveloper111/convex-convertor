@@ -51,12 +51,12 @@ export default function PdfToWordConverter() {
   };
 
   return (
-    <div className="min-h-screen bg-[#181023] p-6 flex flex-col items-center">
+    <div className="min-h-screen bg-white p-6 flex flex-col items-center">
       {/* Back Button */}
       <div className="w-full flex justify-start mb-4">
         <button
           onClick={() => router.back()}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+          className="flex items-center gap-2 px-4 py-2 rounded-xl  bg-gray-200 text-black hover:bg-gray-500  transition"
         >
           <ArrowLeft className="h-5 w-5" />
           Back
@@ -92,7 +92,7 @@ export default function PdfToWordConverter() {
         <a
           href={docxUrl}
           download={fileName.replace(/\.[^/.]+$/, ".docx")}
-          className="mt-6 bg-[#9B4DF4] text-white px-6 py-3 rounded-xl hover:bg-[#7a35c9] font-semibold"
+          className="mt-6 bg-[#9B4DF4] text-black px-6 py-3 rounded-xl hover:bg-[#7a35c9] font-semibold"
         >
           Download Word File
         </a>

@@ -1,16 +1,17 @@
 "use client";
-import React, { useState } from "react";
+
+import React, { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Header from "./pages/Header";
-import { useSearch } from "./pages/SearchContext";
+import { Search } from "lucide-react";
 import { ToolCard } from "./pages/ToolCard";
-import { ArrowLeft } from "lucide-react"; //
+import { Input } from "./pages/Input";
+import { useSearch } from "./pages/SearchContext";
 import {
   FileJson,
   FileCode,
   FileType,
   FileSpreadsheet,
-  Link ,
+  Link,
   Clock,
   Braces,
   Hash,
@@ -27,10 +28,8 @@ import {
   Layers,
   Settings,
   FileText,
-  X,
 } from "lucide-react";
 
-/* ---------------------------------- Icon Map ---------------------------------- */
 const iconMap: Record<string, React.ElementType> = {
   CSV: FileSpreadsheet,
   Base64: FileCode,
@@ -60,19 +59,35 @@ const iconMap: Record<string, React.ElementType> = {
   PPT: FileType,
 };
 
-export default function  ConvexConverterToolsPage() {
+export default function JamToolsPage() {
   const router = useRouter();
-  const { query } = useSearch();
+  const { query, setQuery } = useSearch();
   const [filter, setFilter] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
-    const handleSelect = (type: string) => {
+
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const handleSelect = (type: string) => {
     setFilter(type);
     setDropdownOpen(false);
   };
 
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+  };
 
-  /* ------------------------------- Tools Array ------------------------------- */
-  const tools = [
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+ const tools = [
     { name: "CSV to JSON", type: "CSV", desc: "Easily convert CSV data to JSON format.", path: "/tools/csv-to-json" },
     { name: "Base64 Encode/Decode", type: "Base64", desc: "Encode and decode Base64 data safely.", path: "/tools/base64-tool" },
     { name: "JSON Formatter", type: "JSON", desc: "Beautify and format JSON for readability.", path: "/tools/JsonFormatterCard" },
@@ -123,37 +138,27 @@ export default function  ConvexConverterToolsPage() {
     return matchesSearch && matchesFilter;
   });
 
- const handleClick = () => {
-  router.push("/resume");
-};
-
-
-  /* ------------------------------ UI Rendering ------------------------------- */
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-800 text-white">
-      {/* Optional site header */}
-
+    <div className="min-h-screen bg-white text-black">
       <main className="container mx-auto px-4 py-12">
         {/* Sticky top controls */}
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 sticky top-0 z-40 bg-gradient-to-b from-gray-900/80 to-gray-900/40 backdrop-blur-md p-4 rounded-xl">
-        <div>
-          {/* Resume Button */}
-          {/* <button
-      onClick={handleClick}
-      className="inline-flex items-center gap-2 border border-purple-600 text-white px-5 py-2 rounded-lg shadow-md hover:shadow-purple-500/40 hover:scale-105 transition"
-    >
-      <FileText className="w-5 h-5" />
-      Build My Resume
-    </button> */}
-
-    </div>
-
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 sticky top-0 z-40 backdrop-blur-md p-4 rounded-xl">
+          {/* Search Input */}
+         <div className="relative w-full md:w-[30%]">
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-black" />
+            <Input
+              placeholder="Search tools..."
+              value={query}
+              onChange={handleSearchChange}
+              className="pl-10 pr-4 bg-white border-2 border-gray-400 rounded-md text-sm  placeholder-black focus:ring-1 focus:ring-gray-400"
+            />
+          </div>
 
           {/* Dropdown */}
-          <div className="relative w-full md:w-60">
+          <div ref={dropdownRef} className="relative w-full md:w-60">
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="w-full flex items-center justify-between px-4 py-2 bg-black/40 text-white rounded-lg border border-purple-600 shadow-md hover:bg-black/60 focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+              className="w-full flex items-center justify-between px-4 py-2 bg-white text-black rounded-lg border border-gray-400 shadow-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-400 transition"
             >
               <span className="flex items-center gap-2">
                 {filter ? React.createElement(iconMap[filter] ?? FileText, { className: "w-4 h-4" }) : <FileText className="w-4 h-4" />}
@@ -163,10 +168,10 @@ export default function  ConvexConverterToolsPage() {
             </button>
 
             {dropdownOpen && (
-              <ul className="absolute z-50 mt-2 w-full bg-black/70 backdrop-blur-lg border border-gray-700 rounded-lg shadow-xl max-h-60 overflow-auto">
+              <ul className="absolute z-50 mt-2 w-full bg-white backdrop-blur-lg border border-gray-700 rounded-lg shadow-xl max-h-60 overflow-auto">
                 <li
                   onClick={() => handleSelect("")}
-                  className="flex items-center gap-2 px-4 py-2 hover:bg-purple-600/30 cursor-pointer transition"
+                  className="flex items-center gap-2 px-4 py-2 hover:bg-gray-200 cursor-pointer transition"
                 >
                   <FileText className="w-4 h-4 text-purple-400" />
                   <span>All Categories</span>
@@ -177,7 +182,7 @@ export default function  ConvexConverterToolsPage() {
                     <li
                       key={type}
                       onClick={() => handleSelect(type)}
-                      className="flex items-center gap-2 px-4 py-2 hover:bg-purple-600/30 cursor-pointer transition"
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-200 cursor-pointer transition"
                     >
                       <Icon className="w-4 h-4 text-purple-400" />
                       <span>{type}</span>
@@ -190,7 +195,7 @@ export default function  ConvexConverterToolsPage() {
         </div>
 
         {/* Tools Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10 ">
           {filteredTools.length > 0 ? (
             filteredTools.map((tool, idx) => {
               const Icon = iconMap[tool.type] || FileText;

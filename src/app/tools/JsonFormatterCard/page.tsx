@@ -26,12 +26,12 @@ export default function JsonFormatterPage() {
   };
 
   return (
- <div className="bg-[#181023] min-h-screen p-6 text-black">
+ <div className="bg-white min-h-screen p-6 text-black">
       {/* Back Button */}
 <div className="mb-6 flex justify-start">
   <button
     onClick={() => router.back()}
-    className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+    className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-200 text-black hover:bg-gray-500 transition"
   >
     <ArrowLeft className="h-5 w-5" />
     Back
@@ -42,13 +42,13 @@ export default function JsonFormatterPage() {
         {/* Header */}
         <header className="text-center">
 <h1 className="flex items-center gap-2 text-4xl font-bold mb-3 text-[#9B4DF4]">
-  <FileJson className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl " />
+  <FileJson className="w-10 h-10 p-2 bg-[#9B4DF4]  text-white rounded-3xl " />
   JSON Formatter
 </h1>          <p className="text-gray-400">Fast, free, open source, ad-free tools.</p>
         </header>
 
         {/* Formatter Card */}
-        <div className="bg-black  shadow-lg rounded-xl p-6 w-full flex flex-col gap-6">
+        <div className="bg-gray-200  shadow-lg rounded-xl p-6 w-full flex flex-col gap-6">
           {/* Input */}
           <textarea
             value={input}
@@ -65,7 +65,7 @@ export default function JsonFormatterPage() {
             }}
             placeholder="Paste your JSON here..."
             rows={6}
-            className="w-full p-4 border rounded-lg bg-black text-white border-gray-400 focus:ring-2 focus:ring-[#9B4DF4]  transition"
+            className="w-full p-4 border rounded-lg bg-white text-black  transition"
           />
 
           {/* Output */}
@@ -75,7 +75,7 @@ export default function JsonFormatterPage() {
               placeholder="Formatted JSON will appear here..."
               rows={6}
               readOnly
-              className="w-full p-4 border rounded-lg bg-black text-white border-gray-400 focus:ring-2 focus:ring-[#9B4DF4]   transition"
+              className="w-full p-4 border rounded-lg bg-white text-black    transition"
             />
             <button
               onClick={() => {
@@ -83,7 +83,7 @@ export default function JsonFormatterPage() {
                 setCopiedOutput(true);
                 setTimeout(() => setCopiedOutput(false), 2000);
               }}
-              className="absolute top-2 right-2 p-1 rounded-full bg-[#9B4DF4] text-white hover:bg-[#3e0d77] transition"
+              className="absolute top-2 right-2 p-1 rounded-full bg-[#9B4DF4]  text-white hover:bg-[#3e0d77] transition"
               title="Copy Output"
             >
               {copiedOutput ? <ClipboardCheck size={20} /> : <ClipboardCopy size={20} />}
@@ -93,14 +93,14 @@ export default function JsonFormatterPage() {
 
         {/* Info Sections */}
        {/* Info Sections */}
-<div className="w-full flex flex-col items-center space-y-10 text-gray-300">
+<div className="w-full flex flex-col items-center space-y-10  text-black">
   <p className="w-full max-w-4xl text-left">
-    You can use this <span className="font-semibold">JSON formatter</span> to beautify your JSON and make it easier to read. Just paste your minified JSON and get the formatted result. Made with 💜 by the developers building Jam
+    You can use this <span className="font-semibold">JSON formatter</span> to beautify your JSON and make it easier to read. Just paste your minified JSON and get the formatted result. Made with 💜 by the developers building  Convex Converter
   </p>
 
   {/* How to Use */}
   <section className="w-full max-w-4xl text-left">
-    <h2 className="text-xl font-bold text-white mb-2">
+    <h2 className="text-xl font-bold  text-black mb-2">
       How to Use JSON Online Formatter
     </h2>
     <p className="mb-2">
@@ -113,7 +113,7 @@ export default function JsonFormatterPage() {
 
   {/* Benefits */}
   <section className="w-full max-w-4xl text-left">
-    <h2 className="text-xl font-bold text-white mb-2">
+    <h2 className="text-xl font-bold  text-black mb-2">
       Benefits of Formatting JSON
     </h2>
     <p className="mb-4">
@@ -128,7 +128,7 @@ export default function JsonFormatterPage() {
 
   {/* More Tools */}
   <section className="w-full max-w-4xl text-left">
-    <h2 className="text-xl font-bold text-white mb-2">
+    <h2 className="text-xl font-bold  text-black mb-2">
       More JSON Conversion Tools
     </h2>
     <ul className="list-disc list-inside space-y-2">
@@ -152,21 +152,21 @@ export default function JsonFormatterPage() {
 
   {/* FAQs */}
   <section className="w-full max-w-4xl text-left">
-    <h2 className="text-xl font-bold text-white mb-2">FAQs</h2>
+    <h2 className="text-xl font-bold  text-black mb-2">FAQs</h2>
     <dl className="space-y-3">
       <div>
-        <dt className="font-bold text-white">
+        <dt className="font-bold  text-black">
           How accurate is the formatter?
         </dt>
-        <dd className="text-gray-300">
+        <dd className=" text-black">
           Our tool guarantees precise data integrity during the JSON formatting process.
         </dd>
       </div>
       <div>
-        <dt className="font-bold text-gray-300">
+        <dt className="font-bold  text-black">
           How to format JSON using a code editor?
         </dt>
-        <dd className="text-gray-300">
+        <dd className=" text-black">
           Use a code editor like VSCode with extensions, or use this online formatter for quick results.
         </dd>
       </div>

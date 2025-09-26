@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ClipboardCopy, ClipboardCheck, RefreshCw ,ArrowLeft} from "lucide-react";
-import { Type } from "lucide-react";
+import { ClipboardCopy, ClipboardCheck, RefreshCw, ArrowLeft, Type } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function LoremIpsumPage() {
@@ -10,7 +9,7 @@ export default function LoremIpsumPage() {
   const [asHtml, setAsHtml] = useState(false);
   const [output, setOutput] = useState("");
   const [copied, setCopied] = useState(false);
-    const router = useRouter();
+  const router = useRouter();
 
   const generateLoremIpsum = () => {
     const lorem = [
@@ -40,39 +39,39 @@ export default function LoremIpsumPage() {
   };
 
   return (
-    <div className="bg-[#181023] min-h-screen flex flex-col items-center p-6">
-         {/* Back Button */}
-        <div className="w-full flex justify-start mb-4">
-          <button
-            onClick={() => router.back()}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
-          >
-            <ArrowLeft className="h-5 w-5" />
-            Back
-          </button>
-        </div>
+    <div className="bg-white min-h-screen flex flex-col items-center p-6">
+      {/* Back Button */}
+      <div className="w-full flex justify-start mb-6">
+        <button
+          onClick={() => router.back()}
+          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-200 text-black hover:bg-gray-500 transition"
+        >
+          <ArrowLeft className="h-5 w-5" />
+          Back
+        </button>
+      </div>
+
       <div className="container mx-auto max-w-4xl flex flex-col items-center space-y-10">
         {/* Header */}
         <header className="text-center space-y-2">
-            <h1 className="flex justify-center items-center gap-2 text-4xl font-bold text-[#9B4DF4]">
-      <Type className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
-      Lorem Ipsum Generator
-    </h1>
-          <p className="text-gray-400">Fast, free, open source, ad-free tools.</p>
-        
+          <h1 className="flex justify-center items-center gap-2 text-4xl font-bold text-[#9B4DF4]">
+            <Type className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
+            Lorem Ipsum Generator
+          </h1>
+          <p className="text-gray-500">Fast, free, open source, ad-free tool.</p>
         </header>
 
         {/* Controls */}
-        <div className="bg-black shadow-lg rounded-xl p-6 w-full flex flex-col gap-6">
+        <div className="bg-gray-200 shadow-lg rounded-2xl p-6 w-full flex flex-col gap-6">
           <div className="flex flex-col md:flex-row gap-4 items-center">
             <div>
-              <label className="text-gray-800 dark:text-gray-200 font-semibold mr-2">Amount</label>
+              <label className="text-black font-semibold mr-2">Amount</label>
               <input
                 type="number"
                 min={1}
                 value={paragraphs}
                 onChange={(e) => setParagraphs(Number(e.target.value))}
-                className="w-20 p-2 border rounded-lg bg-black text-white border-[#9B4DF4]"
+                className="w-20 p-2 border rounded-lg bg-white text-black border-[#9B4DF4]"
               />
               <span className="ml-2 text-gray-500">Paragraphs</span>
             </div>
@@ -85,12 +84,12 @@ export default function LoremIpsumPage() {
                 id="asHtml"
                 className="w-4 h-4 accent-[#9B4DF4]"
               />
-              <label htmlFor="asHtml" className="text-gray-800 dark:text-gray-200">As HTML</label>
+              <label htmlFor="asHtml" className="text-black">As HTML</label>
             </div>
 
             <button
               onClick={generateLoremIpsum}
-              className="px-4 py-2 bg-[#9B4DF4] text-white rounded-lg hover:bg-[#5f18b0] transition flex items-center gap-2"
+              className="px-4 py-2 bg-[#9B4DF4] text-white rounded-lg hover:bg-purple-700 transition flex items-center gap-2"
             >
               Generate <RefreshCw size={16} />
             </button>
@@ -103,69 +102,36 @@ export default function LoremIpsumPage() {
               readOnly
               rows={6}
               placeholder="Generated Lorem Ipsum will appear here"
-              className="w-full p-4 border rounded-lg text-white bg-black border-gray-700 focus:ring-2 focus:ring-[#9B4DF4] transition"
+              className="w-full p-4 border rounded-lg text-black bg-white border-gray-300 focus:ring-2 focus:ring-[#9B4DF4] transition"
             />
             <button
               onClick={handleCopy}
-              className="absolute top-2 right-2 p-1 rounded-full bg-[#9B4DF4] text-white hover:bg-[#9B4DF4] transition"
+              className="absolute top-2 right-2 p-1 rounded-full bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
               title="Copy Output"
             >
               {copied ? <ClipboardCheck size={20} /> : <ClipboardCopy size={20} />}
             </button>
           </div>
         </div>
-       <div className="grid md:grid-cols-2 gap-6 w-full">
-         <div className="bg-black p-6 rounded-2xl shadow-md border border-gray-700 flex flex-col items-start gap-3 hover:shadow-lg transition">
-              <p className="text-white">
-                Our tools are free and open source. Feel free to contribute.
-              </p>
-              <button className="px-4 py-2 border text-black border-gray-600 rounded-xl bg-[#9B4DF4] hover:bg-[#5e21a3]  hover:text-white transition">
-                Contribute
-              </button>
-            </div>
-           <div className=" p-6 rounded-2xl bg-black shadow-md border border-gray-700 flex flex-col items-start gap-3 hover:shadow-lg transition">
-              <p className="text-white">
-                Auto-capture all the info engineers need to debug!
-              </p>
-              <button className="px-4 py-2 border border-gray-600 text-black rounded-xl bg-[#9B4DF4] hover:bg-[#581f98] hover:text-white transition">
-                Try Jam
-              </button>
-            </div>
-        </div>
-          
-          
-        {/* Footer / Info */}
-        <div className="text-gray-400  max-w-5xl">
+
+        {/* Info Section */}
+        <div className="text-black max-w-5xl space-y-4">
           <p>
-            Quickly generate random placeholder text with our Lorem Ipsum Generator. Whether you're a web developer, graphic designer or content creator, Jam's free Lorem Ipsum tool makes it easy to generate filler text.
+            Quickly generate random placeholder text with our Lorem Ipsum Generator. Whether you're a web developer, graphic designer, or content creator, this free tool makes it easy to generate filler text.
           </p>
-    
-            </div>
-            <section className=" p-6 mt-10 max-w-5xl w-full mx-auto space-y-4">
-      <h2 className="text-2xl font-bold text-white">
-        How to use the Lorem Ipsum Generator
-      </h2>
-      <ol className="list-decimal pl-6 space-y-2 text-gray-400">
-        <li>
-          Choose the number of <b>paragraphs</b>, <b>sentences</b>, or <b>words</b> you need.
-        </li>
-        <li>
-          Copy the generated text and paste it into your design or content project.
-        </li>
-      </ol>
-    
-      <h2 className="text-2xl font-bold text-white mt-6">
-        How the Lorem Ipsum Generator works
-      </h2>
-      <p className="text-gray-400">
-        This tool generates dummy text in the form of Lorem Ipsum, which is a popular placeholder text used in the design industry. Lorem Ipsum mimics natural language patterns, making it a great option for creating realistic-looking placeholder content for websites. It helps designers focus on layout and visual elements without being distracted by real content.
-      </p>
-    
-      <p className="text-gray-400">
-        Need more customization? You can adjust the amount of text to better suit your needs.
-      </p>
-    </section>
-          </div>
+
+          <h2 className="text-2xl font-bold text-black">How to use the Lorem Ipsum Generator</h2>
+          <ol className="list-decimal pl-6 space-y-2">
+            <li>Choose the number of <b>paragraphs</b> you need.</li>
+            <li>Copy the generated text and paste it into your design or content project.</li>
+          </ol>
+
+          <h2 className="text-2xl font-bold text-black mt-6">How it works</h2>
+          <p>
+            This tool generates dummy text in the form of Lorem Ipsum, which mimics natural language patterns, making it ideal for creating realistic placeholder content. Adjust the amount of text as needed.
+          </p>
         </div>
+      </div>
+    </div>
   );
 }

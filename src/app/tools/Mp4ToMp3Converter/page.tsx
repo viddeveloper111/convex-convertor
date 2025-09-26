@@ -218,12 +218,12 @@ export default function Mp4ToMp3Converter() {
   };
 
   return (
-    <div className="min-h-screen bg-black p-6 flex flex-col items-center">
+    <div className="min-h-screen bg-white p-6 flex flex-col items-center">
          {/* Back Button */}
         <div className="w-full flex justify-start mb-4">
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-200 text-black hover:bg-gray-500 transition"
           >
             <ArrowLeft className="h-5 w-5" />
             Back
@@ -234,7 +234,7 @@ export default function Mp4ToMp3Converter() {
           <FileAudio className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
           MP4 → Audio Converter
         </h1>
-        <p className="text-gray-300 text-center mb-8">Free, Open Source & Ad-free</p>
+        <p className="text-gray-500 text-center mb-8">Free, Open Source & Ad-free</p>
 
         <div
           className="border-2 border-dashed border-purple-400 rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer hover:bg-white/5 transition-all duration-300"
@@ -250,10 +250,10 @@ export default function Mp4ToMp3Converter() {
             className="hidden"
           />
           <Upload className="w-12 h-12 text-purple-300 mb-4" />
-          <p className="text-gray-300 text-center mb-2">
+          <p className="text-black text-center mb-2">
             Drag and drop your MP4 file here, or click to select
           </p>
-          <p className="text-gray-400 text-sm">(Max size 100MB)</p>
+          <p className="text-gray-500 text-sm">(Max size 100MB)</p>
           <p className="text-purple-300 font-medium mt-4">{fileName || "No file chosen"}</p>
         </div>
 
@@ -300,8 +300,8 @@ export default function Mp4ToMp3Converter() {
         )}
 
         <div className="mt-8 p-4 bg-black/20 rounded-xl">
-          <h3 className="text-white font-semibold mb-2">How it works:</h3>
-          <ul className="text-gray-300 text-sm list-disc list-inside space-y-1">
+          <h3 className="text-black font-semibold mb-2">How it works:</h3>
+          <ul className="text-black text-sm list-disc list-inside space-y-1">
             <li>Upload an MP4 video file (max 100MB)</li>
             <li>The audio is extracted and converted to audio format</li>
             <li>Download your converted audio file</li>
@@ -310,7 +310,7 @@ export default function Mp4ToMp3Converter() {
         </div>
 
         <div className="mt-4 p-4 bg-yellow-500/20 border border-yellow-500 rounded-xl">
-          <p className="text-yellow-200 text-sm">
+          <p className="text-yellow-500 text-sm">
             <strong>Note:</strong> For longer videos, the conversion might take some time. 
             The resulting file will be in a web-compatible audio format.
           </p>

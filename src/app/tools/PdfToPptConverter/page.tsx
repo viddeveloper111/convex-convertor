@@ -59,11 +59,11 @@ export default function PdfToPptConverter() {
   };
 
   return (
-    <div className="min-h-screen bg-[#181023] p-6 flex flex-col items-center">
+    <div className="min-h-screen bg-white p-6 flex flex-col items-center">
       <div className="w-full flex justify-start mb-4">
         <button
           onClick={() => router.back()}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#9B4DF4] text-white hover:bg-purple-700 transition"
+          className="flex items-center gap-2 px-4 py-2 rounded-xl  bg-gray-200 text-black hover:bg-gray-500  transition"
         >
           <ArrowLeft className="h-5 w-5" />
           Back
