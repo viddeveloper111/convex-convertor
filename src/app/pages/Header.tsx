@@ -133,7 +133,7 @@ export default function Header( ) {
             <div className="mb-2 text-xs font-bold text-black  uppercase tracking-wide">
               Convert Tools
             </div>
-            <LinkItem href="/tools/JpgToPdfConverter" icon={ImageIcon} label="JPG → PDF" />
+            <LinkItem href="/tools/JpgToPdfConverter" icon={ImageIcon} label="JPG → PDF"/>
             <LinkItem href="/tools/DocToPdfConverter" icon={FileText} label="Word → PDF" />
             <LinkItem href="/tools/PptToPdfConverter" icon={Presentation} label="PowerPoint → PDF" />
             <LinkItem href="/tools/ExcelToPdfConverter" icon={Table} label="Excel → PDF" />

@@ -59,6 +59,9 @@ export default function PdfToJpgConverter() {
 
     reader.readAsArrayBuffer(file);
   };
+      useEffect(() => {
+      document.title = "Pdf to Jpg Converter";
+    }, []);
 
   return (
     <div className="min-h-screen bg-white p-6 flex flex-col items-center">

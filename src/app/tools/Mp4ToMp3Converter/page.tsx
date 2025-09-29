@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState,useEffect } from "react";
 import { FileAudio, Download, Upload ,ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -216,6 +216,9 @@ export default function Mp4ToMp3Converter() {
       view.setUint8(offset + i, str.charCodeAt(i));
     }
   };
+       useEffect(() => {
+      document.title = "Mp4 to Mp3 Converter";
+    }, []);
 
   return (
     <div className="min-h-screen bg-white p-6 flex flex-col items-center">

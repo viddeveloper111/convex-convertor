@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useMemo, useRef, useState,ChangeEvent,KeyboardEvent  } from "react";
+import React, { useMemo, useRef, useState,ChangeEvent,KeyboardEvent,useEffect  } from "react";
 import Link from "next/link";
 import { FileJson } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { ArrowLeft } from "lucide-react"; // icon for the button
+import { useRouter} from "next/navigation";
+import { ArrowLeft } from "lucide-react"; 
+
 
 
 export default function CsvToJsonPage() {
@@ -81,6 +82,9 @@ export default function CsvToJsonPage() {
     a.remove();
     URL.revokeObjectURL(url);
   }
+    useEffect(() => {
+    document.title = "CSV to JSON Converter";
+  }, []);
 
   return (
     <div className="min-h-screen px-4 py-8 bg-white">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState,useEffect } from "react";
 import JSZip from "jszip";
 import { jsPDF } from "jspdf";
 import { Presentation, ArrowLeft } from "lucide-react";
@@ -72,6 +72,9 @@ export default function PptToPdfConverter() {
       alert("Please upload a PPTX (PowerPoint) file.");
     }
   };
+       useEffect(() => {
+      document.title = "PowerPoint to Pdf Converter";
+    }, []);
 
   return (
     <div className="min-h-screen p-6 bg-white flex flex-col items-center">

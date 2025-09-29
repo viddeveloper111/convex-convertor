@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef ,useEffect} from "react";
 import { Lock, Unlock, Upload, Download, Shield, FileText, ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -82,6 +82,9 @@ export default function PdfLockUnlock() {
     setFileName("");
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
+       useEffect(() => {
+      document.title = "PDFLockunlock Converter";
+    }, []);
 
   return (
     <div className="min-h-screen bg-white p-6 flex flex-col items-center">

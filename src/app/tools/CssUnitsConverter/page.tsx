@@ -39,6 +39,9 @@ export default function CssUnitsConverterPage() {
       setTimeout(() => setCopied(false), 2000);
     }
   };
+      useEffect(() => {
+      document.title = "Css Units Converter";
+    }, []);
 
   return (
     <div className="bg-white min-h-screen flex flex-col items-center p-6">

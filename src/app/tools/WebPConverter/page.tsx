@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent,useEffect } from "react";
 import { FileImage, ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -66,6 +66,9 @@ export default function WebPConverterPage() {
     }
     setConvertedFiles(converted);
   };
+      useEffect(() => {
+      document.title = "Webp Converter";
+    }, []);
 
   return (
     <div className="bg-white min-h-screen flex flex-col items-center p-6">

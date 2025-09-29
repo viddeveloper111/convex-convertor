@@ -18,6 +18,7 @@ export default function PdfToExcelConverter() {
       mod.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${mod.version}/pdf.worker.min.js`;
       setPdfjsLib(mod);
     });
+     document.title = "Pdf to Excel Converter";
   }, []);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,6 +60,10 @@ export default function PdfToExcelConverter() {
   };
 
   if (!pdfjsLib) return <p>Loading PDF.js...</p>;
+
+    //    useEffect(() => {
+    //   document.title = "Pdf to Excel Converter";
+    // }, []);
 
   return (
     <div className="min-h-screen bg-white p-6 flex flex-col items-center">

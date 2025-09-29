@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState ,useEffect} from "react";
 import { Image, ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -53,6 +53,9 @@ export default function HeicToJpgConverter() {
 
     setLoading(false);
   };
+       useEffect(() => {
+      document.title = "Heic to Jpg Converter";
+    }, []);
 
   return (
     <div className="min-h-screen p-6 bg-white flex flex-col items-center">

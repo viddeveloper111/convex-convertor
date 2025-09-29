@@ -35,6 +35,9 @@ export default function JsonToYamlPage() {
       setTimeout(() => setCopied(false), 1500);
     }
   };
+      useEffect(() => {
+      document.title = "JSON to YAML Converter";
+    }, []);
 
   return (
     <div className="bg-white min-h-screen flex justify-center p-6">

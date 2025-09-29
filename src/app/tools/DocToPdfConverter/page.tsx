@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState ,useEffect} from "react";
 import { jsPDF } from "jspdf";
 import * as mammoth from "mammoth";
 import { FileText, ArrowLeft } from "lucide-react";
@@ -33,6 +33,9 @@ export default function DocToPdfConverter() {
       alert("Please upload a DOCX file");
     }
   };
+      useEffect(() => {
+      document.title = "Word to Pdf Converter";
+    }, []);
 
   return (
     <div className="min-h-screen p-6 bg-white flex flex-col items-center">

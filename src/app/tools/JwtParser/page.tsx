@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { ClipboardCopy, ClipboardCheck, ShieldCheck, ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -33,6 +33,9 @@ export default function JwtParserPage() {
     setCopied({ type });
     setTimeout(() => setCopied({ type: null }), 2000);
   };
+      useEffect(() => {
+      document.title = "JWT Parser Converter";
+    }, []);
 
   return (
     <div className="bg-white min-h-screen flex flex-col items-center p-6">

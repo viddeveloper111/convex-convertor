@@ -37,6 +37,9 @@ export default function RegexTesterPage() {
       setTimeout(() => setCopied(false), 2000);
     }
   };
+      useEffect(() => {
+      document.title = "Regex Tester Converter";
+    }, []);
 
   return (
     <div className="bg-white min-h-screen flex flex-col items-center p-6">

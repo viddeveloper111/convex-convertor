@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState,useEffect } from "react";
 import { jsPDF } from "jspdf";
 import { Image as ImageIcon, ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -41,6 +41,9 @@ export default function JpgToPdfConverter() {
       alert("Please upload a JPG or PNG file");
     }
   };
+       useEffect(() => {
+      document.title = "Jpg to Pdf Converter";
+    }, []);
 
   return (
     <div className="min-h-screen p-6 bg-white flex flex-col items-center">

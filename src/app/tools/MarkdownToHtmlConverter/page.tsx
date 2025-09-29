@@ -142,6 +142,9 @@ ${html}
     // using generated downloadUrl from effect
     // anchor uses downloadFilename
   };
+       useEffect(() => {
+      document.title = "Markdown to HtmlConverter";
+    }, []);
 
   return (
     <div className="min-h-screen bg-white p-6 flex flex-col items-center text-white">

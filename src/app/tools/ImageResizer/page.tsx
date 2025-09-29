@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent,useEffect } from "react";
 import { Move, ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -47,6 +47,9 @@ export default function ImageResizerPage() {
 
     img.src = URL.createObjectURL(imageFile);
   };
+      useEffect(() => {
+      document.title = "Image Resizer Converter";
+    }, []);
 
   return (
     <div className="bg-white min-h-screen flex flex-col items-center p-6">

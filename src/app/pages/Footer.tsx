@@ -46,7 +46,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-gray-200 text-black px-6 py-10 border-t border-gray-200">
+    <footer className="bg-gray-200 text-black px-6 py-6 border-t border-gray-200">
       {/* Tools Section */}
       <div className="mb-8">
         <h3 className="font-bold text-lg mb-4 underline">Tools :-</h3>
@@ -66,7 +66,7 @@ export default function Footer() {
       </div>
 
       {/* Footer Bottom */}
-      <div className="border-t border-gray-200 pt-4 text-center text-lg ">
+      <div className="border-t border-gray-200 pt-3 text-center text-lg ">
         &copy; {year} Convex Converter. All rights reserved.
       </div>
     </footer>

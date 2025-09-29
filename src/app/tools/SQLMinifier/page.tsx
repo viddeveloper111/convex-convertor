@@ -18,6 +18,9 @@ export default function SQLMinifier() {
       .trim();
     setMinifiedSQL(minified);
   }, [sqlInput]);
+      useEffect(() => {
+      document.title = "SQL Minifier Converter";
+    }, []);
 
   return (
     <div className="min-h-screen p-6 bg-white flex flex-col items-center">

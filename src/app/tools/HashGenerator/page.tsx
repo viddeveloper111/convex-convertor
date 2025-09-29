@@ -44,6 +44,9 @@ export default function HashGeneratorPage() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
+      useEffect(() => {
+      document.title = "Hash Genertor Converter";
+    }, []);
 
   return (
     <div className="bg-white min-h-screen flex flex-col items-center p-6">

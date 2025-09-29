@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState ,useEffect } from "react";
 import { ClipboardCopy, ClipboardCheck } from "lucide-react";
 import { Braces } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -39,6 +39,9 @@ export default function QueryParamsToJsonPage() {
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
   };
+      useEffect(() => {
+      document.title = "QueryParams to JSON Converter";
+    }, []);
 
   return (
     <div className="bg-white min-h-screen py-10">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState,useEffect } from "react";
 import { FileCode, ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { getDocument, GlobalWorkerOptions } from "pdfjs-dist";
@@ -52,6 +52,9 @@ export default function PdfToHtmlConverter() {
       alert("Failed to convert PDF to HTML. Make sure the PDF is valid.");
     }
   };
+      useEffect(() => {
+      document.title = "Pdf to Html Converter";
+    }, []);
 
   return (
     <div className="min-h-screen bg-white p-6 flex flex-col items-center">

@@ -27,6 +27,9 @@ export default function CssInlinerPage() {
       setTimeout(() => setCopied(false), 2000);
     }
   };
+      useEffect(() => {
+      document.title = "CssInliners Converter";
+    }, []);
 
   return (
     <div className="bg-white min-h-screen flex flex-col items-center p-6">

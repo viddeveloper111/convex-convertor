@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState ,useEffect} from "react";
 import { ArrowLeft, Presentation } from "lucide-react";
 import { useRouter } from "next/navigation";
 import PptxGenJS from "pptxgenjs";
@@ -57,6 +57,9 @@ export default function PdfToPptConverter() {
       alert("Failed to convert PDF. Check console for details.");
     }
   };
+      useEffect(() => {
+        document.title = "Pdf to PowerPoint Converter";
+      }, []);
 
   return (
     <div className="min-h-screen bg-white p-6 flex flex-col items-center">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState ,useEffect } from "react";
 import { Image, ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -18,6 +18,10 @@ export default function ImageToBase64Page() {
     };
     reader.readAsDataURL(file);
   };
+
+      useEffect(() => {
+      document.title = "Image to Base64 Converter";
+    }, []);
 
   return (
     <div className="bg-white min-h-screen p-6">

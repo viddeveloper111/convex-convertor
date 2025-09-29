@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ClipboardCopy, ClipboardCheck, ArrowLeft, FileJson } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Papa from "papaparse";
@@ -34,6 +34,9 @@ export default function JsonToCsvPage() {
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
   };
+      useEffect(() => {
+      document.title = "JSON to CSV Converter";
+    }, []);
 
   return (
     <div className="bg-white min-h-screen p-6">

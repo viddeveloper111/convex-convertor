@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState,useEffect } from "react";
 import { ArrowLeft, FileText } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Document, Packer, Paragraph, TextRun } from "docx";
@@ -49,6 +49,9 @@ export default function PdfToWordConverter() {
     const url = URL.createObjectURL(blob);
     setDocxUrl(url);
   };
+      useEffect(() => {
+      document.title = "Pdf to Word Converter";
+    }, []);
 
   return (
     <div className="min-h-screen bg-white p-6 flex flex-col items-center">

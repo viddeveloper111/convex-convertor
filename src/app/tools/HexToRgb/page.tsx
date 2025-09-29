@@ -39,6 +39,9 @@ export default function HexToRgbPage() {
     const clamped = Math.min(255, Math.max(0, value));
     setRgb((prev) => ({ ...prev, [channel]: clamped }));
   };
+      useEffect(() => {
+      document.title = "HEX to RGB Converter";
+    }, []);
 
   return (
     <div className="bg-white min-h-screen p-6">

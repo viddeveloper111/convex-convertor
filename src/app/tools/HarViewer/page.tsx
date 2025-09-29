@@ -1,10 +1,14 @@
 "use client";
 
 import { FileSearch, ArrowLeft } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation"; 
+import { useEffect } from "react";
 
 export default function HarViewerPage() {
   const router = useRouter();
+      useEffect(() => {
+      document.title = "Har Viewer Converter";
+    }, []);
 
   return (
     <div className="bg-white min-h-screen p-6">

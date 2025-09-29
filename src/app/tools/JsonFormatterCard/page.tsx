@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { ClipboardCopy, ClipboardCheck } from "lucide-react";
 import Link from "next/link";
 import { FileJson } from "lucide-react";
@@ -24,6 +24,9 @@ export default function JsonFormatterPage() {
       setOutput("Invalid JSON! ❌");
     }
   };
+      useEffect(() => {
+      document.title = "JSON Formatter Converter";
+    }, []);
 
   return (
  <div className="bg-white min-h-screen p-6 text-black">

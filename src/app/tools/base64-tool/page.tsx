@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { ClipboardCopy, ClipboardCheck } from "lucide-react";
 import Link from "next/link";
 import { Binary } from "lucide-react";
@@ -50,6 +50,9 @@ const copyToClipboard = (text: string, type: "input" | "output") => {
       setOutput("⚠️ Invalid input");
     }
   };
+      useEffect(() => {
+      document.title = "Base64 Encode/Decode Converter";
+    }, []);
  
   return (
     <div className="bg-white text-black min-h-screen flex flex-col items-center p-6">

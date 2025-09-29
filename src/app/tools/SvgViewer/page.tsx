@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent,useEffect } from "react";
 import { ClipboardCopy, ClipboardCheck, ArrowLeft, Image } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -25,6 +25,9 @@ export default function SvgViewerPage() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
+      useEffect(() => {
+      document.title = "SVG Viewer Converter";
+    }, []);
 
   return (
     <div className="bg-white min-h-screen flex flex-col items-center p-6">

@@ -28,6 +28,10 @@ export default function NumberBaseChanger() {
     }
   }, [numberInput, fromBase, toBase]);
 
+      useEffect(() => {
+      document.title = "NumberBaseChanger Converter";
+    }, []);
+
   return (
     <div className="bg-white min-h-screen flex justify-center p-6">
       <div className="w-full max-w-5xl space-y-8">

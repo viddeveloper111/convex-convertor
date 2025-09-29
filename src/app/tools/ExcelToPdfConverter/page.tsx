@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState,useEffect } from "react";
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
 import * as XLSX from "xlsx";
@@ -63,6 +63,9 @@ export default function ExcelToPdfConverter() {
       alert("Please upload an Excel file (.xlsx or .xls)");
     }
   };
+       useEffect(() => {
+      document.title = "Excel to Pdf Converter";
+    }, []);
 
   return (
     <div className="min-h-screen p-6 bg-white flex flex-col items-center">

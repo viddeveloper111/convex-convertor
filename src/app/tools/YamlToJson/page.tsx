@@ -41,6 +41,9 @@ useEffect(() => {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
+      useEffect(() => {
+      document.title = "YAML to JSON Converter";
+    }, []);
 
   return (
     <div className="bg-white">

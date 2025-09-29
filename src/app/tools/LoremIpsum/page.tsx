@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ClipboardCopy, ClipboardCheck, RefreshCw, ArrowLeft, Type } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -37,6 +37,9 @@ export default function LoremIpsumPage() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
+      useEffect(() => {
+      document.title = "Loram Ipsum Converter";
+    }, []);
 
   return (
     <div className="bg-white min-h-screen flex flex-col items-center p-6">

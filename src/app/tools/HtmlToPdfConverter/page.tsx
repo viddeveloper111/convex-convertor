@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState,useEffect } from "react";
 import { jsPDF } from "jspdf";
 import { Code2, ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -44,6 +44,9 @@ export default function HtmlToPdfConverter() {
       alert("Please upload a valid HTML file");
     }
   };
+       useEffect(() => {
+      document.title = "Html to Pdf Converter";
+    }, []);
 
   return (
     <div className="min-h-screen p-6 bg-white flex flex-col items-center">

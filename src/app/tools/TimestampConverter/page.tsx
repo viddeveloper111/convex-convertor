@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import { ClipboardCopy, ClipboardCheck } from "lucide-react";
 import { Clock } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -52,6 +52,9 @@ export default function TimestampConverterPage() {
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
   };
+      useEffect(() => {
+      document.title = "Timestamp Converter";
+    }, []);
 
   return (
     <div className="bg-white min-h-screen py-10">

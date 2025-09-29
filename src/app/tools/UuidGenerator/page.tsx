@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { ClipboardCopy, ClipboardCheck, ArrowLeft, Fingerprint } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -17,6 +17,9 @@ export default function UuidGeneratorPage() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
+      useEffect(() => {
+      document.title = "Uuid GenertorConverter";
+    }, []);
 
   return (
     <div className="bg-white min-h-screen flex flex-col items-center p-6">

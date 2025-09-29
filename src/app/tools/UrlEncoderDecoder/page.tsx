@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { ClipboardCopy, ClipboardCheck } from "lucide-react";
 import { Link } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -44,6 +44,9 @@ export default function UrlEncoderDecoderPage() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
+      useEffect(() => {
+      document.title = "URL Encode/Decode Converter";
+    }, []);
   return (
     <div className="bg-white">
       {/* Back Button */}
