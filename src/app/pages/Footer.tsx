@@ -49,7 +49,7 @@ export default function Footer() {
     <footer className="bg-gray-200 text-black px-6 py-10 border-t border-gray-200">
       {/* Tools Section */}
       <div className="mb-8">
-        <h3 className="font-bold text-lg mb-4">Tools</h3>
+        <h3 className="font-bold text-lg mb-4 underline">Tools :-</h3>
 
         {/* Responsive grid: 2 cols on small, 3 on md, 4 on lg */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-6 gap-y-3">
@@ -66,7 +66,7 @@ export default function Footer() {
       </div>
 
       {/* Footer Bottom */}
-      <div className="border-t border-gray-200 pt-4 text-center text-sm">
+      <div className="border-t border-gray-200 pt-4 text-center text-lg ">
         &copy; {year} Convex Converter. All rights reserved.
       </div>
     </footer>
