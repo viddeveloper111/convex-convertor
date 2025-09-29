@@ -138,11 +138,11 @@ export default function Header( ) {
             <LinkItem href="/tools/PptToPdfConverter" icon={Presentation} label="PowerPoint → PDF" />
             <LinkItem href="/tools/ExcelToPdfConverter" icon={Table} label="Excel → PDF" />
             <LinkItem href="/tools/HtmlToPdfConverter" icon={Code} label="HTML → PDF" />
-            <LinkItem href="/tools/pdf-to-jpg" icon={ImageIcon} label="PDF → JPG" />
-            <LinkItem href="/tools/pdf-to-word" icon={FileText} label="PDF → Word" />
-            <LinkItem href="/tools/pdf-to-powerpoint" icon={Presentation} label="PDF → PowerPoint" />
-            <LinkItem href="/tools/pdf-to-excel" icon={Table} label="PDF → Excel" />
-            <LinkItem href="/tools/pdf-to-pdfa" icon={FileCheck} label="PDF → PDF/A" />
+            <LinkItem href="/tools/PdfToJpgConverter" icon={ImageIcon} label="PDF → JPG" />
+            <LinkItem href="/tools/PdfToWordConverter" icon={FileText} label="PDF → Word" />
+            <LinkItem href="/tools/PdfToPptConverter" icon={Presentation} label="PDF → PowerPoint" />
+            <LinkItem href="/tools/PdfToExcelConverter" icon={Table} label="PDF → Excel" />
+            <LinkItem href="/tools/PdfToHtmlConverter" icon={FileCheck} label="PDF → HTML" />
           </div>
 
           {/* Column 2 */}

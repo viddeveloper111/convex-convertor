@@ -29,7 +29,20 @@ export default function Footer() {
     { name: "Lorem Ipsum Generator", path: "/tools/LoremIpsum" },
     { name: "WebP Converter", path: "/tools/WebPConverter" },
     { name: "SQL Minifier", path: "/tools/SQLMinifier" },
-    { name: "Docx to PDF", path: "/tools/DocToPdfConverter" },
+    { name: "Word to PDF", path: "/tools/DocToPdfConverter" },
+    { name: "JPG to PDF", path: "/tools/JpgToPdfConverter" },
+    { name: "Html to PDF", path: "/tools/HtmlToPdfConverter" },
+    { name: "Excel to PDF", path: "/tools/ExcelToPdfConverter" },
+    { name: "PowerPoint to PDF", path: "/tools/PptToPdfConverter" },
+    { name: "PDF to Excel", path: "/tools/PdfToExcelConverter" },
+    { name: "PDF to Html", path: "/tools/PdfToHtmlConverter" },
+    { name: "PDF to Jpg", path: "/tools/PdfToJpgConverter" },
+    { name: "PDF to PowerPoint", path: "/tools/PdfToPptConverter" },
+    { name: "PDF to Word", path: "/tools/PdfToWordConverter" },
+    { name: "PdfLockUnlock", path: "/tools/PDFlockunlock" },
+    { name: "Markdown to Html", path: "/tools/MarkdownToHtmlConverter" },
+    { name: "Mp4 to Mp3", path: "/tools/Mp4ToMp3Converter" },
+    { name: "Heic to Jpg", path: "/tools/HeicToJpgConverter" },
   ];
 
   return (

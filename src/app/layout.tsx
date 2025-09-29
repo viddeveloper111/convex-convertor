@@ -5,7 +5,7 @@ import Footer from "./pages/Footer";
 import { SearchProvider } from "./pages/SearchContext";
 
 export const metadata = {
-  title: "My App",
+  title: "Convex Converter",
   description: "Next.js App",
 };
 
