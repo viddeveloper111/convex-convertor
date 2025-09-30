@@ -56,7 +56,7 @@ export default function QueryParamsToJsonPage() {
   </button>
 </div>
 
-      <div className="container mx-auto max-w-5xl p-6 space-y-12">
+      <div className="container mx-auto max-w-8xl p-6 space-y-12">
         {/* Header */}
         <header className="text-center space-y-2">
           <h1 className="flex items-center justify-center gap-2 text-3xl font-bold text-[#9B4DF4]">

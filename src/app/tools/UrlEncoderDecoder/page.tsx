@@ -60,7 +60,7 @@ export default function UrlEncoderDecoderPage() {
   </button>
 </div>
 
-    <div className=" mx-auto max-w-5xl p-6 space-y-12  text-center">
+    <div className=" mx-auto max-w-7xl p-6 space-y-12  text-center">
       {/* Header */}
       <header className="space-y-2">
         <h1 className="flex items-center justify-center gap-2 text-3xl font-bold text-[#9B4DF4]">

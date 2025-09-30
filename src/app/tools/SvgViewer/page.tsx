@@ -42,7 +42,7 @@ export default function SvgViewerPage() {
         </button>
       </div>
 
-      <div className="container mx-auto max-w-4xl flex flex-col items-center space-y-10">
+      <div className="container mx-auto max-w-7xl flex flex-col items-center space-y-10">
         {/* Header */}
         <header className="text-center space-y-2">
           <h1 className="flex justify-center items-center gap-2 text-4xl font-bold text-[#9B4DF4]">

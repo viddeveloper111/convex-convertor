@@ -99,7 +99,7 @@ export default function CsvToJsonPage() {
         </button>
       </div>
 
-      <div className="max-w-6xl mx-auto container">
+      <div className="max-w-8xl mx-auto container">
         {/* Header */}
         <header className="mb-6 flex items-center justify-between gap-4">
           <div className="flex flex-col items-center text-center">

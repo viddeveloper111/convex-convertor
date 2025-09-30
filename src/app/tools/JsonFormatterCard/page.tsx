@@ -41,7 +41,7 @@ export default function JsonFormatterPage() {
   </button>
 </div>
 
-      <div className="container mx-auto max-w-4xl flex flex-col items-center space-y-10">
+      <div className="container mx-auto max-w-7xl flex flex-col items-center space-y-10">
         {/* Header */}
         <header className="text-center">
 <h1 className="flex items-center gap-2 text-4xl font-bold mb-3 text-[#9B4DF4]">
@@ -97,12 +97,12 @@ export default function JsonFormatterPage() {
         {/* Info Sections */}
        {/* Info Sections */}
 <div className="w-full flex flex-col items-center space-y-10  text-black">
-  <p className="w-full max-w-4xl text-left">
+  <p className="w-full max-w-7xl text-left">
     You can use this <span className="font-semibold">JSON formatter</span> to beautify your JSON and make it easier to read. Just paste your minified JSON and get the formatted result. Made with 💜 by the developers building  Convex Converter
   </p>
 
   {/* How to Use */}
-  <section className="w-full max-w-4xl text-left">
+  <section className="w-full max-w-7xl text-left">
     <h2 className="text-xl font-bold  text-black mb-2">
       How to Use JSON Online Formatter
     </h2>
@@ -115,7 +115,7 @@ export default function JsonFormatterPage() {
   </section>
 
   {/* Benefits */}
-  <section className="w-full max-w-4xl text-left">
+  <section className="w-full max-w-7xl text-left">
     <h2 className="text-xl font-bold  text-black mb-2">
       Benefits of Formatting JSON
     </h2>
@@ -130,7 +130,7 @@ export default function JsonFormatterPage() {
   </section>
 
   {/* More Tools */}
-  <section className="w-full max-w-4xl text-left">
+  <section className="w-full max-w-7xl text-left">
     <h2 className="text-xl font-bold  text-black mb-2">
       More JSON Conversion Tools
     </h2>
@@ -154,7 +154,7 @@ export default function JsonFormatterPage() {
   </section>
 
   {/* FAQs */}
-  <section className="w-full max-w-4xl text-left">
+  <section className="w-full max-w-7xl text-left">
     <h2 className="text-xl font-bold  text-black mb-2">FAQs</h2>
     <dl className="space-y-3">
       <div>

@@ -35,7 +35,7 @@ export default function SQLMinifier() {
         </button>
       </div>
 
-      <div className="max-w-5xl w-full space-y-12">
+      <div className="max-w-7xl w-full space-y-12">
         {/* Header */}
         <section className="text-center space-y-4">
           <h1 className="flex justify-center items-center gap-2 text-4xl font-bold text-[#9B4DF4]">

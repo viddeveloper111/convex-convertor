@@ -41,9 +41,9 @@ export default function JsonToYamlPage() {
 
   return (
     <div className="bg-white min-h-screen flex justify-center p-6">
-      <div className="w-full max-w-5xl space-y-8">
+      <div className="w-full max-w-7xl space-y-8">
         {/* Back Button */}
-        <div className="mb-6 flex justify-start">
+        <div className="mb-3 flex justify-start">
           <button
             onClick={() => router.back()}
             className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-200 text-black hover:bg-gray-500 transition"

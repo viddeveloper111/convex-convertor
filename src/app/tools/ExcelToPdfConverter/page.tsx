@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState,useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
 import * as XLSX from "xlsx";
@@ -17,6 +17,12 @@ export default function ExcelToPdfConverter() {
     const file = e.target.files?.[0];
     if (!file) return;
 
+    // ✅ File size validation (10MB)
+    if (file.size > 10 * 1024 * 1024) {
+      alert("File size must be less than 10MB.");
+      return;
+    }
+
     setFileName(file.name);
 
     if (
@@ -24,48 +30,54 @@ export default function ExcelToPdfConverter() {
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
       file.type === "application/vnd.ms-excel"
     ) {
-      const data = await file.arrayBuffer();
-      const workbook = XLSX.read(data, { type: "array" });
+      try {
+        const data = await file.arrayBuffer();
+        const workbook = XLSX.read(data, { type: "array" });
 
-      const sheetName = workbook.SheetNames[0];
-      const worksheet = workbook.Sheets[sheetName];
-      const sheetData: (string | number)[][] = XLSX.utils.sheet_to_json(
-        worksheet,
-        { header: 1 }
-      );
+        const sheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[sheetName];
+        const sheetData: (string | number)[][] = XLSX.utils.sheet_to_json(
+          worksheet,
+          { header: 1 }
+        );
 
-      if (sheetData.length === 0) {
-        alert("Excel file is empty.");
-        return;
+        if (sheetData.length === 0) {
+          alert("Excel file is empty.");
+          return;
+        }
+
+        const pdf = new jsPDF({
+          orientation: "landscape",
+          unit: "pt",
+          format: "a4",
+        });
+
+        pdf.setFont("Times", "normal");
+        pdf.setFontSize(12);
+
+        autoTable(pdf, {
+          head: [sheetData[0] as string[]],
+          body: sheetData.slice(1) as (string | number)[][],
+          startY: 40,
+          styles: { fontSize: 10, cellPadding: 4 },
+          headStyles: { fillColor: [155, 77, 244] },
+        });
+
+        const pdfBlob = pdf.output("blob");
+        const url = URL.createObjectURL(pdfBlob);
+        setPdfUrl(url);
+      } catch (err) {
+        console.error("Error processing Excel file:", err);
+        alert("Failed to process Excel file.");
       }
-
-      const pdf = new jsPDF({
-        orientation: "landscape",
-        unit: "pt",
-        format: "a4",
-      });
-
-      pdf.setFont("Times", "normal");
-      pdf.setFontSize(12);
-
-      autoTable(pdf, {
-        head: [sheetData[0] as string[]],
-        body: sheetData.slice(1) as (string | number)[][],
-        startY: 40,
-        styles: { fontSize: 10, cellPadding: 4 },
-        headStyles: { fillColor: [155, 77, 244] },
-      });
-
-      const pdfBlob = pdf.output("blob");
-      const url = URL.createObjectURL(pdfBlob);
-      setPdfUrl(url);
     } else {
       alert("Please upload an Excel file (.xlsx or .xls)");
     }
   };
-       useEffect(() => {
-      document.title = "Excel to Pdf Converter";
-    }, []);
+
+  useEffect(() => {
+    document.title = "Excel to Pdf Converter";
+  }, []);
 
   return (
     <div className="min-h-screen p-6 bg-white flex flex-col items-center">
@@ -91,7 +103,7 @@ export default function ExcelToPdfConverter() {
 
       {/* File Upload */}
       <div
-        className="w-full max-w-5xl border-2 border-dashed border-gray-300 rounded-2xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-[#9B4DF4] transition-colors mb-6"
+        className="w-full max-w-7xl border-2 border-dashed border-gray-300 rounded-2xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-[#9B4DF4] transition-colors mb-6"
         onClick={() => fileInputRef.current?.click()}
       >
         <input
@@ -109,7 +121,7 @@ export default function ExcelToPdfConverter() {
 
       {/* PDF Preview */}
       {pdfUrl && (
-        <div className="w-full max-w-5xl h-[600px] border rounded-2xl overflow-hidden shadow-md mb-4">
+        <div className="w-full max-w-7xl h-[600px] border rounded-2xl overflow-hidden shadow-md mb-4">
           <iframe src={pdfUrl} width="100%" height="100%" />
         </div>
       )}
@@ -126,12 +138,12 @@ export default function ExcelToPdfConverter() {
       )}
 
       {/* Description */}
-      <p className="text-gray-500 max-w-5xl text-center mb-6">
+      <p className="text-gray-500 max-w-7xl text-center mb-6">
         Convert your Excel sheets into PDF instantly. Tables are preserved inside a clean PDF format.
       </p>
 
       {/* How to Use */}
-      <section className="max-w-5xl w-full p-6 mb-6 bg-gray-100 rounded-2xl shadow-md">
+      <section className="max-w-7xl w-full p-6 mb-6 bg-gray-100 rounded-2xl shadow-md">
         <h2 className="text-2xl font-bold text-black mb-4">How to Use</h2>
         <ul className="list-disc list-inside text-black space-y-2">
           <li>Upload your Excel file (.xlsx or .xls).</li>
@@ -141,7 +153,7 @@ export default function ExcelToPdfConverter() {
       </section>
 
       {/* Benefits */}
-      <section className="max-w-5xl w-full p-6 bg-gray-100 rounded-2xl shadow-md">
+      <section className="max-w-7xl w-full p-6 bg-gray-100 rounded-2xl shadow-md">
         <h2 className="text-2xl font-bold text-black mb-4">Benefits</h2>
         <ul className="list-disc list-inside text-black space-y-2">
           <li>Quick conversion without installing software.</li>

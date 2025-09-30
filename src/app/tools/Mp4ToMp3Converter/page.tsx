@@ -232,7 +232,7 @@ export default function Mp4ToMp3Converter() {
             Back
           </button>
         </div>
-      <div className="w-full max-w-2xl bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-2xl mt-10">
+      <div className="w-full max-w-7xl bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-2xl mt-10">
         <h1 className="text-3xl md:text-4xl font-bold text-[#9B4DF4] text-center flex items-center justify-center gap-3 mb-2">
           <FileAudio className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
           MP4 → Audio Converter

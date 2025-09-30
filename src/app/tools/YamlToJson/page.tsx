@@ -58,7 +58,7 @@ useEffect(() => {
   </button>
 </div>
 
-    <div className="mx-auto p-6 space-y-12 max-w-5xl">
+    <div className="mx-auto p-6 space-y-12 max-w-7xl">
       {/* Header */}
     <header className="text-center space-y-2">
   <h1 className="flex justify-center items-center gap-2 text-3xl font-bold text-[#9B4DF4]">

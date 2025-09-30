@@ -34,7 +34,7 @@ export default function NumberBaseChanger() {
 
   return (
     <div className="bg-white min-h-screen flex justify-center p-6">
-      <div className="w-full max-w-5xl space-y-8">
+      <div className="w-full max-w-7xl space-y-8">
         {/* Back Button */}
         <div className="flex justify-start">
           <button

@@ -57,7 +57,7 @@ export default function HexToRgbPage() {
       </div>
 
        <div className="flex justify-center"> 
-    <div className="w-full max-w-5xl space-y-12">
+    <div className="w-full max-w-7xl space-y-12">
           {/* Header */}
           <header className="text-center space-y-2">
             <h1 className="flex items-center justify-center gap-2 text-3xl font-bold text-[#9B4DF4]">

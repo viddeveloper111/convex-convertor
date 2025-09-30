@@ -81,7 +81,7 @@ export default function HeicToJpgConverter() {
 
       {/* Upload Panel */}
       <div
-        className="w-full max-w-3xl border-2 border-dashed border-gray-300 rounded-2xl p-6 flex flex-col items-center cursor-pointer hover:border-[#9B4DF4] transition-colors mb-6 shadow-md"
+        className="w-full max-w-7xl border-2 border-dashed border-gray-300 rounded-2xl p-6 flex flex-col items-center cursor-pointer hover:border-[#9B4DF4] transition-colors mb-6 shadow-md"
         onClick={() => fileInputRef.current?.click()}
       >
         <input
@@ -99,7 +99,7 @@ export default function HeicToJpgConverter() {
 
       {/* Preview Panel */}
       {preview && (
-        <div className="w-full max-w-4xl flex justify-center mb-6">
+        <div className="w-full max-w-7xl flex justify-center mb-6">
           <img
             src={preview}
             alt="HEIC Preview"
@@ -129,7 +129,7 @@ export default function HeicToJpgConverter() {
       )}
 
       {/* How to Use */}
-      <section className="max-w-3xl w-full p-6 mt-6 bg-gray-100 rounded-2xl shadow-md">
+      <section className="max-w-7xl w-full p-6 mt-6 bg-gray-100 rounded-2xl shadow-md">
         <h2 className="text-2xl font-bold text-black mb-4">How to Use</h2>
         <ul className="list-disc list-inside text-black space-y-2">
           <li>Upload your HEIC image file.</li>

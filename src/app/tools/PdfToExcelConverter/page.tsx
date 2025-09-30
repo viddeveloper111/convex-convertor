@@ -61,9 +61,6 @@ export default function PdfToExcelConverter() {
 
   if (!pdfjsLib) return <p>Loading PDF.js...</p>;
 
-    //    useEffect(() => {
-    //   document.title = "Pdf to Excel Converter";
-    // }, []);
 
   return (
     <div className="min-h-screen bg-white p-6 flex flex-col items-center">
@@ -87,7 +84,7 @@ export default function PdfToExcelConverter() {
 
       {/* File Upload */}
       <div
-        className="mt-6 w-full max-w-3xl border-2 border-dashed border-gray-300 rounded-xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-[#9B4DF4] transition-colors"
+        className="mt-6 w-full max-w-7xl border-2 border-dashed border-gray-300 rounded-xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-[#9B4DF4] transition-colors"
         onClick={() => fileInputRef.current?.click()}
       >
         <input
@@ -120,7 +117,7 @@ export default function PdfToExcelConverter() {
       </p>
 
       {/* How to Use */}
-      <div className="mt-6 max-w-3xl w-full p-6">
+      <div className="mt-6 max-w-7xl w-full p-6">
         <h2 className="text-xl font-semibold text-black mb-2">How to Use</h2>
         <ul className="list-disc list-inside text-black space-y-1">
           <li>Upload a PDF file.</li>

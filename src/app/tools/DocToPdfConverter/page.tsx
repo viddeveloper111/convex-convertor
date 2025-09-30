@@ -61,7 +61,7 @@ export default function DocToPdfConverter() {
 
       {/* File Upload */}
       <div
-        className="w-full max-w-5xl border-2 border-dashed border-gray-300 rounded-2xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-[#9B4DF4] transition-colors mb-6"
+        className="w-full max-w-7xl border-2 border-dashed border-gray-300 rounded-2xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-[#9B4DF4] transition-colors mb-6"
         onClick={() => fileInputRef.current?.click()}
       >
         <input
@@ -77,7 +77,7 @@ export default function DocToPdfConverter() {
 
       {/* PDF Preview */}
       {pdfUrl && (
-        <div className="w-full max-w-5xl h-[600px] border rounded-2xl overflow-hidden shadow-md mb-4">
+        <div className="w-full max-w-7xl h-[600px] border rounded-2xl overflow-hidden shadow-md mb-4">
           <iframe src={pdfUrl} width="100%" height="100%" />
         </div>
       )}
@@ -94,12 +94,12 @@ export default function DocToPdfConverter() {
       )}
 
       {/* Description */}
-      <p className="text-gray-500 max-w-5xl text-center mb-6">
+      <p className="text-gray-500 max-w-7xl text-center mb-6">
         Fast, free, open source, ad-free tool. Convert DOCX files to PDF instantly and preview them.
       </p>
 
       {/* How to Use */}
-      <section className="max-w-5xl w-full p-6 mb-6 bg-gray-100 rounded-2xl shadow-md">
+      <section className="max-w-7xl w-full p-6 mb-6 bg-gray-100 rounded-2xl shadow-md">
         <h2 className="text-2xl font-bold text-black mb-4">How to Use</h2>
         <ul className="list-disc list-inside text-black space-y-2">
           <li>Upload your DOCX file by clicking the upload area above.</li>
@@ -109,7 +109,7 @@ export default function DocToPdfConverter() {
       </section>
 
       {/* Benefits */}
-      <section className="max-w-5xl w-full p-6 bg-gray-100 rounded-2xl shadow-md">
+      <section className="max-w-7xl w-full p-6 bg-gray-100 rounded-2xl shadow-md">
         <h2 className="text-2xl font-bold text-black mb-4">Benefits</h2>
         <ul className="list-disc list-inside text-black space-y-2">
           <li>Quick conversion without installing software.</li>

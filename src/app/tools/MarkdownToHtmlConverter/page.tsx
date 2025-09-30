@@ -158,7 +158,7 @@ ${html}
             Back
           </button>
         </div>
-      <header className="max-w-3xl w-full text-center mb-6">
+      <header className="max-w-7xl w-full text-center mb-6">
         <h1 className="text-3xl md:text-4xl font-bold text-[#9B4DF4] flex items-center justify-center gap-3">
           <FileText className="w-10 h-10 p-2 bg-[#9B4DF4] text-white rounded-3xl" />
           Markdown → HTML
@@ -166,7 +166,7 @@ ${html}
         <p className="text-gray-400 mt-2">Convert Markdown to sanitized HTML instantly — client-side, no uploads.</p>
       </header>
 
-      <main className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <main className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left: Editor + Controls */}
         <div>
           {/* Upload / Drag area */}
@@ -256,7 +256,7 @@ ${html}
             </button>
           </div>
 
-          <p className="text-black mt-3 text-sm max-w-xl">
+          <p className="text-black mt-3 text-sm max-w-7xl">
             Tip: You can include images with Markdown `![](/path/to/image.jpg)` — if images use relative paths they won't be embedded in the downloaded HTML.
           </p>
         </div>

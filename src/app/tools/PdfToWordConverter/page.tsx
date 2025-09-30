@@ -74,7 +74,7 @@ export default function PdfToWordConverter() {
 
       {/* Upload Area */}
       <div
-        className="mt-6 w-full max-w-3xl border-2 border-dashed border-gray-300 rounded-xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-[#9B4DF4]"
+        className="mt-6 w-full max-w-7xl border-2 border-dashed border-gray-300 rounded-xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-[#9B4DF4]"
         onClick={() => fileInputRef.current?.click()}
       >
         <input

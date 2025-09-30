@@ -54,7 +54,7 @@ export default function LoremIpsumPage() {
         </button>
       </div>
 
-      <div className="container mx-auto max-w-4xl flex flex-col items-center space-y-10">
+      <div className="container mx-auto max-w-7xl flex flex-col items-center space-y-10">
         {/* Header */}
         <header className="text-center space-y-2">
           <h1 className="flex justify-center items-center gap-2 text-4xl font-bold text-[#9B4DF4]">
@@ -118,7 +118,7 @@ export default function LoremIpsumPage() {
         </div>
 
         {/* Info Section */}
-        <div className="text-black max-w-5xl space-y-4">
+        <div className="text-black max-w-7xl space-y-4">
           <p>
             Quickly generate random placeholder text with our Lorem Ipsum Generator. Whether you're a web developer, graphic designer, or content creator, this free tool makes it easy to generate filler text.
           </p>
