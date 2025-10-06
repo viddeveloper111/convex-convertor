@@ -1,8 +1,7 @@
-//layout.tsx
 import "./globals.css";
 import Header from "./pages/Header";
 import Footer from "./pages/Footer";
-import { SearchProvider } from "./pages/SearchContext";
+import { SearchProvider } from "./pages/SearchContext"; 
 
 export const metadata = {
   title: "Convex Converter",

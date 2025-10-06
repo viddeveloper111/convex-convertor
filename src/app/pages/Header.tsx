@@ -1,9 +1,7 @@
-
 "use client";
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useSearch } from "./SearchContext";
 import {
   Search,
   ChevronDown,
@@ -17,7 +15,6 @@ import {
   X,
 } from "lucide-react";
 import { Button } from "./Button";
-import { Input } from "./Input";
 
 /* Small link helper */
 function LinkItem({
@@ -53,25 +50,23 @@ function Dropdown({
   const [hideOnClick, setHideOnClick] = useState(false);
 
   const handleClickInside = (e: React.MouseEvent<HTMLDivElement>) => {
-    // If a link (<a>) inside is clicked
     if ((e.target as HTMLElement).closest("a")) {
       setHideOnClick(true);
-      // Reset after short delay so hover can open it again
-      setTimeout(() => setHideOnClick(false));
+      setTimeout(() => setHideOnClick(false), 100);
     }
   };
 
   return (
-    <div className="relative group focus-within:z-50" onClick={handleClickInside}>
+    <div className="relative group focus-within:z-50 w-full" onClick={handleClickInside}>
       <Button
         variant="ghost"
         className="flex items-center gap-1 text-black hover:bg-gray-200 focus:outline-none"
       >
         {label}
-        <ChevronDown />
+        <ChevronDown className="h-4 w-4" />
       </Button>
       <div
-        className={`absolute left-1/2 ${width} -translate-x-1/2 rounded-xl bg-gray-200 border border-gray-300  shadow-lg
+        className={`absolute left-1/2 ${width} -translate-x-1/2 rounded-xl bg-gray-200 border border-gray-300 shadow-lg
           ${!hideOnClick ? "opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:scale-100" : "opacity-0 scale-95 pointer-events-none"}
           transition ease-out duration-150`}
       >
@@ -81,28 +76,23 @@ function Dropdown({
   );
 }
 
-
-
-export default function Header( ) {
- 
+export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
- 
-
-  // Cmd/Ctrl + K
+  // Cmd/Ctrl + K shortcut
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
-       
+        console.log("Cmd/Ctrl + K pressed");
       }
     };
-    document.addEventListener("keydown", handler);
-    return () => document.removeEventListener("keydown", handler);
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-gray-200 text-black backdrop-blur-md shadow-lg  ">
+    <header className="sticky top-0 z-50 w-full bg-gray-200 text-black backdrop-blur-md shadow-lg overflow-visible">
       <div className="mx-auto flex h-16 items-center justify-between px-4 lg:px-6">
         {/* Logo */}
         <div className="flex items-center gap-2">
@@ -118,17 +108,31 @@ export default function Header( ) {
               <path d="M52 8l-4 4 2 2-8 8 4 4 8-8 2 2 4-4-8-8z" />
             </svg>
           </div>
-          <Link href="/" className="text-lg md:text-xl font-extrabold text-black tracking-wide">
+          <Link
+            href="/"
+            className="text-lg md:text-xl font-extrabold text-black tracking-wide"
+          >
             Convex Converter
           </Link>
         </div>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-4">
+        {/* Desktop nav */}
+        <nav className="hidden md:flex items-center gap-4 relative overflow-visible">
+          {/* Example dropdown */}
+          <Dropdown label="SIZE REDUCER" width="w-64">
+            <div className="grid grid-cols-1 divide-y divide-gray-400/40">
+              <div className="p-4">
+                <LinkItem href="/size/ImageSize" icon={ImageIcon} label="Image Size" />
+                <LinkItem href="/size/PdfSize" icon={ImageIcon} label="PDF Size" />
+                <LinkItem href="/size/WordSize" icon={ImageIcon} label="Word Size" />
+              </div>
+            </div>
+          </Dropdown>
+
+
          <Dropdown label="ALL CONVERT TOOLS" width="w-[57rem]">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 divide-x divide-gray-400/40">
           
-          {/* Column 1 */}
           <div className="p-4">
             <div className="mb-2 text-xs font-bold text-black  uppercase tracking-wide">
               Convert Tools
@@ -145,7 +149,7 @@ export default function Header( ) {
             <LinkItem href="/tools/PdfToHtmlConverter" icon={FileCheck} label="PDF → HTML" />
           </div>
 
-          {/* Column 2 */}
+    
           <div className="p-4">
             <div className="mb-2 text-xs font-bold text-black uppercase tracking-wide">
               Convert Tools
@@ -162,7 +166,6 @@ export default function Header( ) {
             <LinkItem href="/tools/ImageToBase64" icon={ImageIcon} label="IMAGE → BASE64" />
           </div>
 
-          {/* Column 3 */}
           <div className="p-4">
             <div className="mb-2 text-xs font-bold text-black uppercase tracking-wide">
               Convert Tools
@@ -179,7 +182,7 @@ export default function Header( ) {
             <LinkItem href="/tools/HashGenerator" icon={FileCheck} label="HASH GENERATOR" />
           </div>
 
-          {/* Column 4 */}
+        
           <div className="p-4">
             <div className="mb-2 text-xs font-bold text-black uppercase tracking-wide">
               Convert Tools
@@ -194,7 +197,7 @@ export default function Header( ) {
       </Dropdown>
          <Dropdown label="CONVERT PDF" width="w-[24rem]">
   <div className="grid grid-cols-2 divide-x divide-gray-400/40 ">
-    {/* Left column – Convert TO PDF */}
+
     <div className="p-4">
       <div className="mb-2 text-xs font-bold text-black uppercase tracking-wide">
         Convert To PDF
@@ -206,7 +209,7 @@ export default function Header( ) {
       <LinkItem href="/tools/HtmlToPdfConverter" icon={Code} label="HTML → PDF" />
     </div>
 
-    {/* Right column – Convert FROM PDF */}
+
     <div className="p-4">
       <div className="mb-2 text-xs font-bold text-black  uppercase tracking-wide">
         Convert From PDF
@@ -222,7 +225,7 @@ export default function Header( ) {
 
          <Dropdown label="IMAGE TOOLS" width="w-[22rem]">
   <div className="grid grid-cols-2 divide-x divide-gray-400/40">
-    {/* Left column – Optimize / Convert */}
+   
     <div className="p-4">
       <div className="mb-2 text-xs font-bold text-black  uppercase tracking-wide">
         Optimize / Convert
@@ -232,7 +235,7 @@ export default function Header( ) {
       <LinkItem href="/tools/ImageToBase64" icon={ImageIcon} label="Image → Base64" />
     </div>
 
-    {/* Right column – Misc */}
+
     <div className="p-4">
       <div className="mb-2 text-xs font-bold text-black uppercase tracking-wide">
         Misc
@@ -244,7 +247,7 @@ export default function Header( ) {
 
          <Dropdown label="DEVELOPER TOOLS" width="w-[28rem]">
   <div className="grid grid-cols-2  divide-x divide-gray-400/40">
-    {/* Left column – Format / Encode */}
+ 
     <div className="p-4">
       <div className="mb-2 text-xs font-bold text-black  uppercase tracking-wide">
         Format / Encode
@@ -256,7 +259,7 @@ export default function Header( ) {
       <LinkItem href="/tools/base64-tool" icon={Code} label="Base64 Encode/Decode" />
     </div>
 
-    {/* Right column – Utilities */}
+   
     <div className="p-4">
       <div className="mb-2 text-xs font-bold text-black  uppercase tracking-wide">
         Utilities
