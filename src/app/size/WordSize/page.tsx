@@ -5,8 +5,9 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import JSZip from "jszip";
 import { PDFDocument } from "pdf-lib";
+import toast, { Toaster } from "react-hot-toast";
 
-export default function WordCompressor() {
+export default function FileCompressor() {
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -18,7 +19,7 @@ export default function WordCompressor() {
   const [unit, setUnit] = useState<"KB" | "MB">("KB");
   const [loading, setLoading] = useState<boolean>(false);
 
-  // Handle file upload
+  // --- Handle File Change ---
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -27,123 +28,124 @@ export default function WordCompressor() {
     setOriginalSize(file.size);
     setCompressedFile(null);
     setCompressedSize(null);
+
+    toast.success(`✅ ${file.name} selected`);
   };
 
-  // Handle unit change
+  // --- Handle Unit Change ---
   const handleUnitChange = (newUnit: "KB" | "MB") => {
     if (targetSize !== null) {
-      if (unit === "KB" && newUnit === "MB") setTargetSize(targetSize / 1024);
-      else if (unit === "MB" && newUnit === "KB") setTargetSize(targetSize * 1024);
+      const newSize =
+        unit === "KB" && newUnit === "MB"
+          ? targetSize / 1024
+          : unit === "MB" && newUnit === "KB"
+          ? targetSize * 1024
+          : targetSize;
+      setTargetSize(Number(newSize.toFixed(2)));
     }
     setUnit(newUnit);
   };
 
-  // Compress Word file
+  // --- Compression Methods ---
   const compressWord = async (file: File) => {
-    const arrayBuffer = await file.arrayBuffer();
-    const zip = await JSZip.loadAsync(arrayBuffer);
-    const compressedBlob = await zip.generateAsync({
-      type: "blob",
-      compression: "DEFLATE",
-      compressionOptions: { level: 9 },
-    });
-    return compressedBlob;
+    try {
+      const arrayBuffer = await file.arrayBuffer();
+      const zip = await JSZip.loadAsync(arrayBuffer);
+      return await zip.generateAsync({
+        type: "blob",
+        compression: "DEFLATE",
+        compressionOptions: { level: 9 },
+      });
+    } catch {
+      throw new Error("Invalid or corrupted Word file.");
+    }
   };
 
-  // Compress PDF file
-const compressPDF = async (file: File) => {
-  const arrayBuffer = await file.arrayBuffer();
-  const pdfDoc = await PDFDocument.load(arrayBuffer);
+  const compressPDF = async (file: File) => {
+    try {
+      const arrayBuffer = await file.arrayBuffer();
+      const pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
+      const compressedBytes = await pdfDoc.save({
+        useObjectStreams: true,
+        addDefaultPage: false,
+      });
+      return new Blob([new Uint8Array(compressedBytes)], { type: "application/pdf" });
+    } catch {
+      throw new Error("Invalid or corrupted PDF file.");
+    }
+  };
 
-  // Save as Uint8Array
-  const compressedBytes = await pdfDoc.save({ useObjectStreams: true });
+  // --- Main Compression ---
+  const compressFile = async () => {
+    if (!originalFile) return;
 
-  // Convert to Blob
-  return new Blob([new Uint8Array(compressedBytes)], { type: "application/pdf" });
-};
+    const latestTargetSize = targetSize;
+    const latestUnit = unit;
+    const latestOriginalSize = originalFile.size;
 
-
-  // Main compress function
- const compressFile = async () => {
-  // Ensure we have a file and a valid target size
-  if (!originalFile) return;
-
-  // Read latest values from state
-  const latestTargetSize = targetSize;
-  const latestUnit = unit;
-  const latestOriginalSize = originalFile.size;
-
-  if (!latestTargetSize || latestTargetSize <= 0) {
-    alert("⚠️ Please enter a valid target size.");
-    return;
-  }
-
-  const targetBytes =
-    latestTargetSize * (latestUnit === "KB" ? 1024 : 1024 * 1024);
-
-  if (targetBytes >= latestOriginalSize) {
-    alert("⚠️ Target size must be smaller than the original file.");
-    return;
-  }
-
-  setLoading(true);
-  try {
-    let compressedBlob: Blob;
-
-    if (originalFile.name.endsWith(".pdf")) {
-      compressedBlob = await compressPDF(originalFile);
-
-      if (compressedBlob.size > targetBytes) {
-        alert(
-          `⚠️ Compressed PDF size (${formatSize(
-            compressedBlob.size
-          )}) is still larger than target (${formatSize(targetBytes)})`
-        );
-      }
-    } else if (originalFile.name.endsWith(".docx")) {
-      compressedBlob = await compressWord(originalFile);
-
-      if (compressedBlob.size > targetBytes) {
-        alert(
-          `⚠️ Compressed Word size (${formatSize(
-            compressedBlob.size
-          )}) is still larger than target (${formatSize(targetBytes)})`
-        );
-      }
-    } else {
-      alert("⚠️ Unsupported file type.");
+    if (!latestTargetSize || latestTargetSize <= 0) {
+      toast.error("⚠️ Please enter a valid target size.");
       return;
     }
 
-    setCompressedFile(compressedBlob);
-    setCompressedSize(compressedBlob.size);
-  } catch (err) {
-    console.error(err);
-    alert("⚠️ Compression failed.");
-  } finally {
-    setLoading(false);
-  }
-};
+    const targetBytes =
+      latestTargetSize * (latestUnit === "KB" ? 1024 : 1024 * 1024);
 
+    if (targetBytes >= latestOriginalSize) {
+      toast.error("⚠️ Target size must be smaller than the original file size.");
+      return;
+    }
 
-  // Download file
+    setLoading(true);
+    const toastId = toast.loading("Compressing file...");
+
+    try {
+      let compressedBlob: Blob;
+
+      if (originalFile.name.toLowerCase().endsWith(".pdf")) {
+        compressedBlob = await compressPDF(originalFile);
+      } else if (originalFile.name.toLowerCase().endsWith(".docx")) {
+        compressedBlob = await compressWord(originalFile);
+      } else {
+        toast.error("⚠️ Only PDF and DOCX files are supported.");
+        return;
+      }
+
+      setCompressedFile(compressedBlob);
+      setCompressedSize(compressedBlob.size);
+
+      toast.success("🎉 Compression complete!", { id: toastId });
+
+      if (compressedBlob.size > targetBytes) {
+        toast(`⚠️ File is still larger than target (${formatSize(targetBytes)}).`, {
+          icon: "📏",
+        });
+      }
+    } catch (err: any) {
+      console.error(err);
+      toast.error(err.message || "⚠️ Compression failed.", { id: toastId });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // --- Utilities ---
   const downloadFile = () => {
     if (!compressedFile || !originalFile) return;
     const link = document.createElement("a");
-    let ext = originalFile.name.split(".").pop();
+    const ext = originalFile.name.split(".").pop();
     link.href = URL.createObjectURL(compressedFile);
     link.download = originalFile.name.replace(/\.(docx|pdf)$/i, `-compressed.${ext}`);
     link.click();
+    toast.success("✅ File downloaded!");
   };
 
-  // Format file size
   const formatSize = (bytes: number) => {
     if (bytes < 1024) return bytes + " B";
     if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(2) + " KB";
     return (bytes / 1024 / 1024).toFixed(2) + " MB";
   };
 
-  // Percentage reduction
   const getReductionPercent = () => {
     if (!originalSize || !compressedSize) return "0";
     return ((1 - compressedSize / originalSize) * 100).toFixed(1);
@@ -153,9 +155,11 @@ const compressPDF = async (file: File) => {
     document.title = "File Compressor";
   }, []);
 
+  // --- UI ---
   return (
     <div className="min-h-screen flex flex-col items-center justify-start bg-gradient-to-b from-gray-100 to-gray-200 p-6">
-      {/* Back button */}
+      <Toaster position="top-right" reverseOrder={false} />
+
       <div className="w-full flex justify-start mb-6">
         <button
           onClick={() => router.back()}
@@ -171,21 +175,18 @@ const compressPDF = async (file: File) => {
           File Compressor
         </h1>
 
-        {/* Upload */}
+        {/* Upload input */}
         <input
           type="file"
           accept=".docx,.pdf"
           ref={fileInputRef}
           onChange={handleFileChange}
-          className="block w-full text-sm text-gray-600
-                     file:mr-4 file:py-2 file:px-4
-                     file:rounded-full file:border-0
-                     file:text-sm file:font-semibold
-                     file:bg-purple-600 file:text-white
+          className="block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full
+                     file:border-0 file:font-semibold file:bg-purple-600 file:text-white
                      hover:file:bg-purple-800 mb-6 transition"
         />
 
-        {/* Original file info */}
+        {/* File Info */}
         {originalFile && (
           <div className="mb-6 p-4 bg-gray-50 rounded-xl shadow-inner border border-gray-200">
             <p className="font-medium text-gray-700 mb-2">Original File:</p>
@@ -195,17 +196,16 @@ const compressPDF = async (file: File) => {
           </div>
         )}
 
-        {/* Target size */}
+        {/* Target Size Input */}
         {originalFile && (
           <div className="flex gap-3 mb-6">
             <input
               type="number"
               min={1}
               value={targetSize ?? ""}
-              onChange={(e) => {
-                const val = parseFloat(e.target.value);
-                setTargetSize(isNaN(val) ? null : val);
-              }}
+              onChange={(e) =>
+                setTargetSize(e.target.value ? parseFloat(e.target.value) : null)
+              }
               placeholder="Enter target size"
               className="flex-1 px-4 py-2 border rounded-lg text-gray-700"
             />
@@ -220,20 +220,22 @@ const compressPDF = async (file: File) => {
           </div>
         )}
 
-        {/* Compress button */}
+        {/* Compress Button */}
         {originalFile && (
           <button
             onClick={compressFile}
-            disabled={loading || !targetSize || !originalFile}
+            disabled={loading || !targetSize}
             className={`w-full ${
-              loading ? "bg-purple-400 cursor-not-allowed" : "bg-purple-500 hover:bg-purple-800"
+              loading
+                ? "bg-purple-400 cursor-not-allowed"
+                : "bg-purple-500 hover:bg-purple-800"
             } text-white px-4 py-2 rounded-lg font-medium shadow transition transform hover:-translate-y-0.5 hover:scale-105 mb-6`}
           >
             {loading ? "Compressing..." : "Compress File"}
           </button>
         )}
 
-        {/* Result */}
+        {/* Compressed Result */}
         {compressedFile && (
           <div className="mb-6 p-4 bg-gray-50 rounded-xl shadow-inner border border-gray-200">
             <p className="font-medium text-gray-700 mb-2">Compressed File:</p>

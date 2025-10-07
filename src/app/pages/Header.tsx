@@ -52,7 +52,7 @@ function Dropdown({
   const handleClickInside = (e: React.MouseEvent<HTMLDivElement>) => {
     if ((e.target as HTMLElement).closest("a")) {
       setHideOnClick(true);
-      setTimeout(() => setHideOnClick(false), 100);
+      setTimeout(() => setHideOnClick(false), 10000);
     }
   };
 
@@ -96,7 +96,7 @@ export default function Header() {
       <div className="mx-auto flex h-16 items-center justify-between px-4 lg:px-6">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <div className="h-12 w-12 rounded-lg bg-black flex items-center justify-center shadow-lg border border-gray-700">
+          <div className="h-10 w-10 rounded-lg bg-black flex items-center justify-center shadow-lg border border-gray-700">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 64 64"
@@ -112,14 +112,14 @@ export default function Header() {
             href="/"
             className="text-lg md:text-xl font-extrabold text-black tracking-wide"
           >
-            Convex Converter
+            Convex Tools
           </Link>
         </div>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-4 relative overflow-visible">
+        <nav className="hidden md:flex items-center gap-4 relative overflow-visible ">
           {/* Example dropdown */}
-          <Dropdown label="SIZE REDUCER" width="w-64">
+          <Dropdown label="SIZE REDUCER" width="w-36">
             <div className="grid grid-cols-1 divide-y divide-gray-400/40">
               <div className="p-4">
                 <LinkItem href="/size/ImageSize" icon={ImageIcon} label="Image Size" />
@@ -278,7 +278,7 @@ export default function Header() {
         <div>
  {/* Build Resume Button */}
   <Link href="/">
-    <button className="inline-flex items-center gap-2 border border-gray-400 text-black px-4 py-2 rounded-lg shadow-md hover:shadow-gray-500/40 hover:scale-105 transition" >
+    <button className="inline-flex items-center border border-gray-400 text-black p-1  rounded-lg shadow-md hover:shadow-gray-500/40 hover:scale-105 transition" >
     <FileText className=" h-5" />
     Build My Resume
   </button>

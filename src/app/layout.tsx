@@ -1,6 +1,7 @@
 import "./globals.css";
 import Header from "./pages/Header";
 import Footer from "./pages/Footer";
+import { Toaster } from "react-hot-toast";
 import { SearchProvider } from "./pages/SearchContext"; 
 
 export const metadata = {
@@ -16,6 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="flex flex-col min-h-screen">
             <Header />
             <main className="flex-grow">{children}</main>
+              <Toaster position="top-right" reverseOrder={false} />
             <Footer />
           </div>
         </SearchProvider>

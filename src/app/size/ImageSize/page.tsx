@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
+import toast from "react-hot-toast";
 
 export default function ImageCompressor() {
   const router = useRouter();
@@ -27,6 +28,7 @@ export default function ImageCompressor() {
       setOriginalSize(file.size);
       setCompressedImage(null);
       setCompressedSize(null);
+      toast.success("✅ Image uploaded successfully!");
     };
     reader.readAsDataURL(file);
   };
@@ -39,9 +41,9 @@ export default function ImageCompressor() {
     }
 
     if (unit === "KB" && newUnit === "MB") {
-      setTargetSize(targetSize / 1024); // convert KB → MB
+      setTargetSize(targetSize / 1024);
     } else if (unit === "MB" && newUnit === "KB") {
-      setTargetSize(targetSize * 1024); // convert MB → KB
+      setTargetSize(targetSize * 1024);
     }
 
     setUnit(newUnit);
@@ -49,15 +51,19 @@ export default function ImageCompressor() {
 
   // 🧠 Compress image to target size
   const compressImage = async () => {
-    if (!originalImage || !targetSize || !originalSize) return;
+    if (!originalImage || !targetSize || !originalSize) {
+      toast.error("⚠️ Please upload an image and enter target size.");
+      return;
+    }
 
     const targetBytes = targetSize * (unit === "KB" ? 1024 : 1024 * 1024);
     if (targetBytes >= originalSize) {
-      alert("⚠️ Target size must be smaller than the original image.");
+      toast.error("⚠️ Target size must be smaller than the original image.");
       return;
     }
 
     setLoading(true);
+    toast.loading("Compressing image...");
 
     try {
       const img = new Image();
@@ -77,7 +83,6 @@ export default function ImageCompressor() {
       let lastBlob: Blob | null = null;
       let iteration = 0;
 
-      // Binary search compression (⚡ precise to target size)
       let low = 0.05;
       let high = 0.95;
 
@@ -97,25 +102,26 @@ export default function ImageCompressor() {
         } else if (compressedBlob.size < targetBytes * 0.98) {
           low = quality + 0.02;
         } else {
-          
           break;
         }
       }
 
       if (!lastBlob) throw new Error("Compression failed");
       if (lastBlob.size >= originalSize) {
-        alert("❌ Could not reduce image size further.");
         setCompressedImage(null);
         setCompressedSize(null);
+        toast.error("❌ Could not reduce image size further.");
       } else {
         setCompressedImage(URL.createObjectURL(lastBlob));
         setCompressedSize(lastBlob.size);
+        toast.success("🎉 Image compressed successfully!");
       }
     } catch (err) {
       console.error("Compression error:", err);
-      alert("⚠️ Something went wrong during compression.");
+      toast.error("⚠️ Something went wrong during compression.");
     } finally {
       setLoading(false);
+      toast.dismiss(); // remove "Compressing..." toast
     }
   };
 
@@ -126,6 +132,7 @@ export default function ImageCompressor() {
     link.href = compressedImage;
     link.download = "compressed-image.jpg";
     link.click();
+    toast.success("📥 Image downloaded successfully!");
   };
 
   // 📏 Helpers
@@ -253,7 +260,7 @@ export default function ImageCompressor() {
               onClick={downloadImage}
               className="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-medium shadow transition transform hover:-translate-y-0.5 hover:scale-105 mt-2"
             >
-            Download Compressed Image
+              Download Compressed Image
             </button>
           </div>
         )}

@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { PDFDocument } from "pdf-lib";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function PdfCompressor() {
   const router = useRouter();
@@ -18,104 +19,118 @@ export default function PdfCompressor() {
   const [unit, setUnit] = useState<"KB" | "MB">("KB");
   const [loading, setLoading] = useState<boolean>(false);
 
+  // Handle File Selection
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+
+    if (file.type !== "application/pdf") {
+      toast.error("⚠️ Please upload a valid PDF file.");
+      return;
+    }
+
     setOriginalFile(file);
     setOriginalSize(file.size);
     setCompressedBlob(null);
     setCompressedSize(null);
     setCompressedURL(null);
+
+    toast.success(`✅ ${file.name} uploaded`);
   };
 
+  // Unit Toggle (KB/MB)
   const handleUnitChange = (newUnit: "KB" | "MB") => {
-    if (targetSize === null) {
-      setUnit(newUnit);
-      return;
+    if (targetSize !== null) {
+      const newSize =
+        unit === "KB" && newUnit === "MB"
+          ? targetSize / 1024
+          : unit === "MB" && newUnit === "KB"
+          ? targetSize * 1024
+          : targetSize;
+      setTargetSize(Number(newSize.toFixed(2)));
     }
-    if (unit === "KB" && newUnit === "MB") setTargetSize(targetSize / 1024);
-    else if (unit === "MB" && newUnit === "KB") setTargetSize(targetSize * 1024);
     setUnit(newUnit);
   };
 
+  // Compress PDF safely
   const compressPdf = async () => {
-    if (!originalFile || !targetSize || !originalSize) return;
+    if (!originalFile || !targetSize || !originalSize) {
+      toast.error("⚠️ Please upload a file and enter a target size.");
+      return;
+    }
 
     const targetBytes = targetSize * (unit === "KB" ? 1024 : 1024 * 1024);
     if (targetBytes >= originalSize) {
-      alert("⚠️ Target size must be smaller than the original PDF.");
+      toast.error("⚠️ Target size must be smaller than the original file.");
       return;
     }
 
     setLoading(true);
+    const toastId = toast.loading("Compressing PDF...");
+
     try {
       const arrayBuffer = await originalFile.arrayBuffer();
-      let pdfDoc = await PDFDocument.load(arrayBuffer);
 
-      // Initial compression attempt
-      let compressedBytes = await pdfDoc.save({ useObjectStreams: true });
-      let currentSize = compressedBytes.length;
-
-      let minQuality = 0.1;
-      let maxQuality = 1.0;
-      let bestMatch = compressedBytes;
-
-      let attempts = 0;
-      const maxAttempts = 10;
-      const tolerance = targetBytes * 0.05; // ±5% of target
-
-      while (attempts < maxAttempts) {
-        attempts++;
-
-        const midQuality = (minQuality + maxQuality) / 2;
-
-        // Reload the PDF from current bytes
-        pdfDoc = await PDFDocument.load(arrayBuffer);
-
-        // Save with object streams enabled (lightweight compression)
-        const tempBytes = await pdfDoc.save({
-          useObjectStreams: true,
-          addDefaultPage: false,
-        });
-
-        const tempSize = tempBytes.length;
-
-        if (Math.abs(tempSize - targetBytes) <= tolerance) {
-          bestMatch = tempBytes;
-          break;
-        }
-
-        if (tempSize > targetBytes) {
-          maxQuality = midQuality;
-        } else {
-          minQuality = midQuality;
-          bestMatch = tempBytes;
-        }
+      // Validate PDF header
+      const header = new Uint8Array(arrayBuffer.slice(0, 5));
+      if (new TextDecoder().decode(header) !== "%PDF-") {
+        toast.error("⚠️ Not a valid PDF", { id: toastId });
+        setLoading(false);
+        return;
       }
 
-      const blob = new Blob([new Uint8Array(bestMatch)], {
-        type: "application/pdf",
-      });
+      let pdfDoc;
+      try {
+        pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
+      } catch (err) {
+        console.error("Failed to parse PDF:", err);
+        toast.error(
+          "⚠️ This PDF cannot be compressed. It may be corrupted or use advanced features.",
+          { id: toastId }
+        );
+        setLoading(false);
+        return;
+      }
 
-      setCompressedBlob(blob);
-      setCompressedSize(blob.size);
-      setCompressedURL(URL.createObjectURL(blob));
-    } catch (err) {
-      console.error(err);
-      alert("⚠️ Something went wrong during PDF compression.");
+// Compress PDF
+const compressedBytes = await pdfDoc.save({ useObjectStreams: true });
+
+// Ensure proper ArrayBuffer
+const blob = new Blob([new Uint8Array(compressedBytes)], { type: "application/pdf" });
+
+setCompressedBlob(blob);
+setCompressedSize(blob.size);
+setCompressedURL(URL.createObjectURL(blob));
+
+toast.success("🎉 PDF successfully compressed!", { id: toastId });
+
+if (blob.size > targetBytes) {
+  toast("📏 Compressed file is slightly larger than target size.", { icon: "⚠️" });
+}
+
+
+    } catch (err: any) {
+      console.error("Compression failed:", err);
+      toast.error(`⚠️ Compression failed: ${err.message}`, { id: toastId });
     } finally {
       setLoading(false);
     }
   };
 
+  // Download Compressed PDF
   const downloadPdf = () => {
-    if (!compressedBlob) return;
+    if (!compressedBlob) {
+      toast.error("⚠️ No compressed file available to download.");
+      return;
+    }
     const link = document.createElement("a");
     link.href = URL.createObjectURL(compressedBlob);
     link.download = "compressed.pdf";
     link.click();
+    toast.success("✅ PDF downloaded successfully!");
   };
 
+  // Helpers
   const formatSize = (bytes: number) => {
     if (bytes < 1024) return bytes + " B";
     if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(2) + " KB";
@@ -129,6 +144,8 @@ export default function PdfCompressor() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-start bg-gray-100 p-6">
+      <Toaster position="top-right" reverseOrder={false} />
+
       <div className="w-full flex justify-start mb-6">
         <button
           onClick={() => router.back()}
@@ -162,18 +179,14 @@ export default function PdfCompressor() {
         {originalFile && (
           <div className="flex gap-3 mb-6">
             <input
-                   type="number"
-                   min={1}
-                   value={targetSize !== null && !isNaN(targetSize) ? targetSize : ""}
-                   onChange={(e) => {
-                     const val = parseFloat(e.target.value);
-                     setTargetSize(!isNaN(val) ? val : null);
-                   }}
-                   placeholder="Enter target size"
-                   className="flex-1 px-4 py-2 border rounded-lg text-gray-700"
-                   />
-
-             <select
+              type="number"
+              min={1}
+              value={targetSize ?? ""}
+              onChange={(e) => setTargetSize(Number(e.target.value) || null)}
+              placeholder="Enter target size"
+              className="flex-1 px-4 py-2 border rounded-lg text-gray-700"
+            />
+            <select
               value={unit}
               onChange={(e) => handleUnitChange(e.target.value as "KB" | "MB")}
               className="px-4 py-2 border rounded-lg text-gray-700"
@@ -189,9 +202,7 @@ export default function PdfCompressor() {
             onClick={compressPdf}
             disabled={loading || !targetSize}
             className={`w-full ${
-              loading
-                ? "bg-purple-400 cursor-not-allowed"
-                : "bg-purple-500 hover:bg-purple-800"
+              loading ? "bg-purple-400 cursor-not-allowed" : "bg-purple-500 hover:bg-purple-800"
             } text-white px-4 py-2 rounded-lg font-medium shadow transition transform hover:-translate-y-0.5 hover:scale-105 mb-6`}
           >
             {loading ? "Compressing..." : "Compress PDF"}
@@ -204,10 +215,14 @@ export default function PdfCompressor() {
             <p className="text-gray-500 text-sm">
               Size: {formatSize(compressedSize)} (Reduced {getReductionPercent()}%)
             </p>
-            <iframe src={compressedURL} className="w-full h-[500px] border rounded-lg mt-2" />
+            <iframe
+              src={compressedURL}
+              className="w-full h-[500px] border rounded-lg mt-2"
+            />
             <button
               onClick={downloadPdf}
-              className="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-medium shadow transition transform hover:-translate-y-0.5 hover:scale-105 mt-2">
+              className="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-medium shadow transition transform hover:-translate-y-0.5 hover:scale-105 mt-2"
+            >
               Download Compressed PDF
             </button>
           </div>
