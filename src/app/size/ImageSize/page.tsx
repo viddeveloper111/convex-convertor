@@ -97,13 +97,12 @@ export default function ImageCompressor() {
         } else if (compressedBlob.size < targetBytes * 0.98) {
           low = quality + 0.02;
         } else {
-          // ✅ Size close enough (within ±2%)
+          
           break;
         }
       }
 
       if (!lastBlob) throw new Error("Compression failed");
-
       if (lastBlob.size >= originalSize) {
         alert("❌ Could not reduce image size further.");
         setCompressedImage(null);
@@ -159,7 +158,7 @@ export default function ImageCompressor() {
       </div>
 
       {/* 📦 Main card */}
-      <div className="w-full max-w-3xl bg-white rounded-2xl shadow-xl p-6">
+      <div className="w-full max-w-6xl bg-white rounded-2xl shadow-xl p-6">
         <h1 className="text-3xl font-extrabold text-center text-purple-600 mb-6">
           Image Compressor
         </h1>
@@ -171,11 +170,11 @@ export default function ImageCompressor() {
           ref={fileInputRef}
           onChange={handleFileChange}
           className="block w-full text-sm text-gray-600
-                     file:mr-4 file:py-2 file:px-4
-                     file:rounded-full file:border-0
-                     file:text-sm file:font-semibold
-                     file:bg-purple-600 file:text-white
-                     hover:file:bg-purple-800 mb-6 transition"
+           file:mr-4 file:py-2 file:px-4
+           file:rounded-full file:border-0
+           file:text-sm file:font-semibold
+           file:bg-purple-600 file:text-white
+           hover:file:bg-purple-800 mb-6 transition"
         />
 
         {/* Original preview */}
@@ -254,7 +253,7 @@ export default function ImageCompressor() {
               onClick={downloadImage}
               className="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-medium shadow transition transform hover:-translate-y-0.5 hover:scale-105 mt-2"
             >
-              Download Compressed Image
+            Download Compressed Image
             </button>
           </div>
         )}

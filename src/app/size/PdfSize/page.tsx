@@ -139,7 +139,7 @@ export default function PdfCompressor() {
         </button>
       </div>
 
-      <div className="w-full max-w-3xl bg-white rounded-2xl shadow-xl p-6">
+      <div className="w-full max-w-6xl bg-white rounded-2xl shadow-xl p-6">
         <h1 className="text-3xl font-extrabold text-center text-purple-600 mb-6">
           PDF Compressor
         </h1>
@@ -162,14 +162,18 @@ export default function PdfCompressor() {
         {originalFile && (
           <div className="flex gap-3 mb-6">
             <input
-              type="number"
-              min={1}
-              value={targetSize ?? ""}
-              onChange={(e) => setTargetSize(parseFloat(e.target.value))}
-              placeholder="Enter target size"
-              className="flex-1 px-4 py-2 border rounded-lg text-gray-700"
-            />
-            <select
+                   type="number"
+                   min={1}
+                   value={targetSize !== null && !isNaN(targetSize) ? targetSize : ""}
+                   onChange={(e) => {
+                     const val = parseFloat(e.target.value);
+                     setTargetSize(!isNaN(val) ? val : null);
+                   }}
+                   placeholder="Enter target size"
+                   className="flex-1 px-4 py-2 border rounded-lg text-gray-700"
+                   />
+
+             <select
               value={unit}
               onChange={(e) => handleUnitChange(e.target.value as "KB" | "MB")}
               className="px-4 py-2 border rounded-lg text-gray-700"
@@ -203,8 +207,7 @@ export default function PdfCompressor() {
             <iframe src={compressedURL} className="w-full h-[500px] border rounded-lg mt-2" />
             <button
               onClick={downloadPdf}
-              className="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-medium shadow transition transform hover:-translate-y-0.5 hover:scale-105 mt-2"
-            >
+              className="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-medium shadow transition transform hover:-translate-y-0.5 hover:scale-105 mt-2">
               Download Compressed PDF
             </button>
           </div>
