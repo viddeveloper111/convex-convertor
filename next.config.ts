@@ -1,9 +1,7 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */ 
-  eslint: {
-    ignoreDuringBuilds: true, // ✅ Ignores ESLint errors & warnings in build
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  turbopack: {
+    root: __dirname, // explicitly tell Turbopack the correct root
   },
 };
 
